@@ -1,0 +1,24 @@
+{
+  "name": "front-end-lab-8-team4",
+  "version": "1.0.0",
+  "description": "project for epam front-end-lab-8",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sergurets/front-end-lab-8-team4.git"
+  },
+  "keywords": [
+    "epam",
+    "project",
+    "front-end-lab-8"
+  ],
+  "author": "Semen, Sergiy, Tatiana, Roksolana",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sergurets/front-end-lab-8-team4/issues"
+  },
+  "homepage": "https://github.com/sergurets/front-end-lab-8-team4#readme"
+}
