@@ -1,0 +1,27 @@
+.regform{
+	background: #24303c;
+	margin: 2% auto;
+	width: 30%;
+	padding: 1% 2%;
+}
+
+input{
+	background: #24303c;
+	border: 1px solid #86959a;
+	padding: 1.5%;
+	width: 87%;
+	margin: 2% 5%;
+	height: 20px;
+	color: #fff;
+}
+
+.regform_send{
+	background: #1ab188;
+	color: #fff;
+	border: none;
+	text-transform: uppercase;
+	height: 35px;
+	width: 91%;
+	padding: 2% 8%;
+	margin: 3% 4.5% 2%;
+}
