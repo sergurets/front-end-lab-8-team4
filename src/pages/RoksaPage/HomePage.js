@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './RoksaPage.css';
+import './HomePage.css';
 
 import Header from './Header/Header.js'
 import AboutUs from './AboutUs/AboutUs.js'
 import JobList from './JobList/JobList.js'
 
-class RoksaPage extends React.Component{
+class HomePage extends React.Component{
 	render(){
 		return(
 			<div>
@@ -18,4 +18,4 @@ class RoksaPage extends React.Component{
 	}
 }
 
-export default RoksaPage
+export default HomePage
