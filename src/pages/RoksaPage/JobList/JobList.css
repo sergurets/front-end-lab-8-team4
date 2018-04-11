@@ -1,0 +1,16 @@
+#job-container{
+	margin: 20px 100px 0 100px;
+}
+.job-list{
+	padding: 20px;
+	overflow-y: scroll;
+   max-height:300px;
+}
+.job-list::marker{
+	font-size: 1.5vw;
+		font-weight: bold;
+}
+.job-list-item p:first-child{
+		font-size: 1.5vw;
+		font-weight: bold;
+}
