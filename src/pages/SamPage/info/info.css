@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu+Mono');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Ubuntu Mono', monospace;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+ul {
+    list-style: none;
+}
+
+.info {
+    display: flex;
+    justify-content: space-around;
+}
+
+.user-info {
+
+}
+
+.user-info #edit {
+    
+}
+
+.done {
+
+}
+
+.posted {
+
+}
