@@ -1,0 +1,16 @@
+#about-us{
+	background-image: url("img/Women-At-Home-Work.jpg");
+	background-position: center;
+  	background-repeat:no-repeat;
+  	background-size:cover;
+  	height: 43vw;
+ 	width: auto;
+}
+#about-us p{
+	padding: 0 100px 0 550px;
+	font-size: 1.5vw;
+	font-weight: bold;
+}
+#about-us h1{
+	padding: 100px 100px 0 550px;
+}
