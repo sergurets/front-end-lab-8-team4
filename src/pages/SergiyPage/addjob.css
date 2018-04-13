@@ -1,11 +1,11 @@
 .formjob{
 	font-size: 12px;
-    margin: 2% auto;
-    width: 80%;
+        margin: 2% auto;
+        width: 80%;
 	padding: 1% 2%;
 	display: flex;
 	flex-direction: column;
-    justify-content: center;	
+        justify-content: center;	
 }
 
 button{
