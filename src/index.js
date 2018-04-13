@@ -6,7 +6,8 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import HomePage from './pages/RoksaPage/HomePage.js';
 import SamPage from './pages/SamPage/SamPage.js';
 import SergiyPage from './pages/SergiyPage/SergiyPage.js';
-import TaniaPage from './pages/TaniaPage/TaniaPage.js';
+import Login from './pages/TaniaPage/Login.js';
+import Registration from './pages/TaniaPage/Registration.js';
 
 
 
@@ -19,7 +20,8 @@ const App = () => {
 				<Route path='/HomePage' component={HomePage}></Route>
 				<Route path='/SamPage' component={SamPage}></Route>
 				<Route path='/SergiyPage' component={SergiyPage}></Route>
-				<Route path='/TaniaPage' component={TaniaPage}></Route>
+				<Route path='/Login' component={Login}></Route>
+				<Route path='/Registration' component={Registration}></Route>
 			</div>
 		</BrowserRouter>
 	);
