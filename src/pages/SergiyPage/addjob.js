@@ -6,25 +6,25 @@ import Header from '../RoksaPage/Header/Header.js'
 class Job extends React.Component{
 	render(){
 		return(
-			<div className="form">   
-		 		    <label>Короткий опис</label>
-					<input type="text" id="name" className="regform_name"/>
-					<label>Детальний опис</label>
-					<textarea type="text" name="message" id="info" className="regform_name"/>
-					<label>Локація</label>
-					<input type="text" id="name" className="regform_name"/>
-					<label>Вартість, грн</label>
-					<input type="text" id="name" className="regform_name"/>
-					<label>Тривалість</label>
-					<select>
+			<form className="formjob">   
+		 		    <label className="formLabel">Короткий опис</label>
+					<input type="text" id="name" className="inpform"/>
+					<label className="formLabel"> Детальний опис </label>
+					<textarea type="text" name="message" id="info" className="inpform"/>
+					<label className="formLabel">Локація</label>
+					<input type="text" id="name" className="inpform"/>
+					<label className="formLabel">Вартість, грн</label>
+					<input type="text" id="name" className="inpform"/>
+					<label className="formLabel">Тривалість</label>
+					<select className="inpform">
 					  <option> до 2 годин</option>
 					  <option> 2-5 годин</option>
 					  <option> 5-8 годин</option>
 					</select>
-					<label>Крайній термін</label>
-					<input type="date" name="calendar"/>
-					<button className="regform_send">Підтвердити</button>
-			</div>
+					<label className="formLabel">Крайній термін</label>
+					<input type="date" name="calendar" className="inpform"/>
+					<button className="inpform_send">Підтвердити</button>
+			</form>
 		);
 	}
 }
