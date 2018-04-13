@@ -1,16 +1,39 @@
-.form{
+.formjob{
+	font-size: 12px;
     margin: 2% auto;
     width: 80%;
 	padding: 1% 2%;
 	display: flex;
 	flex-direction: column;
+    justify-content: center;	
 }
 
 button{
 	width: 160px;
 	margin: 5px auto;
+	margin: 2% auto;
 }
 
-input, label{
+.form input, label{
 	margin-top: 5px;
+	margin: 2% auto;
+}
+
+.inpform
+{
+	width: 60%;
+	background: none;
+	margin: 0 auto;
+	padding: 0;
+	color: black;
+	font-size: 12px;
+}
+
+.formLabel{
+	color: black;
+	margin: 5px;
+	padding: 0;
+	width: auto;
+	height: auto;
+	background: none;
 }
