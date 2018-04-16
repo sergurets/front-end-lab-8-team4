@@ -13,32 +13,20 @@ import Registration from './pages/TaniaPage/Registration.js';
 
 const App = () => (
 	<Router>
-    	<Layout path="/" component={Layout} />
+    	<Route path="/" component={Layout} />
 	</Router>
 );
 
-const Layout = () => (
+const Layout = ({ match }) => (
   	<div className="layout">
   		<Header/>
-    	<Route path='/Page' component={Page}/>
-		<Route path='/SamPage' component={SamPage}/>
-		<Route path='/SergiyPage' component={SergiyPage}/>
-		<Route path='/Addjob' component = {Addjob}/>
-		<Route path='/Login' component={Login}/>
-		<Route path='/Registration' component={Registration}/>
-    />
+    	<Route path={`${match.url}Page`} component={Page}/>
+		<Route path={`${match.url}SamPage`} component={SamPage}/>
+		<Route path={`${match.url}SergiyPage`} component={SergiyPage}/>
+		<Route path={`${match.url}Addjob`} component = {Addjob}/>
+		<Route path={`${match.url}Login`} component={Login}/>
+		<Route path={`${match.url}Registration`} component={Registration}/>
   	</div>
 );
-/*const Layout = ({ match }) => (
-  	<div className="layout">
-    	<Route path={`${match.url}/Page`} component={Page}/>
-		<Route path={`${match.url}/SamPage`} component={SamPage}/>
-		<Route path={`${match.url}/SergiyPage`} component={SergiyPage}/>
-		<Route path={`${match.url}/Addjob`} component = {Addjob}/>
-		<Route path={`${match.url}/Login`} component={Login}/>
-		<Route path={`${match.url}/Registration`} component={Registration}/>
-    />
-  	</div>
-);*/
 
 export default App
