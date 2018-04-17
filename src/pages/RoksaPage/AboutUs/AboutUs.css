@@ -6,11 +6,11 @@
   	height: 43vw;
  	width: auto;
 }
-#about-us p{
+.about-us__text{
 	padding: 0 100px 0 550px;
 	font-size: 1.5vw;
 	font-weight: bold;
 }
-#about-us h1{
+.about-us__header{
 	padding: 100px 100px 0 550px;
 }

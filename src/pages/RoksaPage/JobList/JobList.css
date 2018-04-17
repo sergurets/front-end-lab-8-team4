@@ -10,7 +10,7 @@
 	font-size: 1.5vw;
 		font-weight: bold;
 }
-.job-list-item p:first-child{
+.job-list__item p:first-child{
 		font-size: 1.5vw;
 		font-weight: bold;
 }
