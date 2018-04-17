@@ -1,12 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './addjob.css';
-import Header from '../RoksaPage/Header/Header.js'
 
 class Job extends React.Component{
 	render(){
 		return(
-			<form className="formjob">   
+			<form className="formjob">
 		 		    <label className="formLabel">Короткий опис</label>
 					<input type="text" id="name" className="inpform"/>
 					<label className="formLabel"> Детальний опис </label>
@@ -33,7 +32,6 @@ class Addjob extends React.Component{
 	render(){
 		return(
 			<div>
-		 		<Header/>
 		 		<Job/>
 			</div>
 		);
