@@ -8,7 +8,7 @@ export default function reducer(state = initialState, action) {
       ...state, action.payload]
     }
 
-  else if(action.type === 'DELETE_TRACK') {return state;}
+  else if(action.type === 'DELETE_JOB') {return state;}
 
   return state;
 }
