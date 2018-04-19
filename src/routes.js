@@ -29,4 +29,4 @@ const Layout = ({ match }) => (
   	</div>
 );
 
-export default App
+export default App;
