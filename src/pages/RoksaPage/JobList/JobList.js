@@ -1,11 +1,11 @@
 import React from 'react';
 import './JobList.css';
 import { connect } from 'react-redux';
-import * as actions from '../../../actions';
+import { jobList } from '../../../actions';
 
 class JobList extends React.Component{
 	componentWillMount(){
-		this.props.jobList()
+		this.props.getJobs()
 	}
 	renderList = (jobList) =>{
 		return(
@@ -36,5 +36,12 @@ const mapStateToProps = (state) => {
 		data: state.jobList
 	}
 }
+const mapDispatchToProps = (dispatch) => {
+	return {
+		getJobs : () => {
+			dispatch(jobList())
+		}
+	}
+}
 
-export default connect(mapStateToProps,actions)(JobList);
+export default connect(mapStateToProps,mapDispatchToProps)(JobList);
