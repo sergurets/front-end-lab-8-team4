@@ -9,13 +9,13 @@ class Login extends Component{
 			      <input type="email"
 			        placeholder="E-mail"
 			        id="email"
-			        className="regform_email"
+			        className="regform__email"
 			        required
 			      /><br/>
 			      <input type="password"
 			        placeholder="Enter password"
 			        id="password"
-			        className="regform_pass"
+			        className="regform__pass"
 			        required
 			      /><br/>
 			      <button className="regform_send">Send</button>
