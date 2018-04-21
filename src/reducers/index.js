@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux';
+import { firebaseStateReducer as firebase } from 'react-redux-firebase'
+import jobs from './jobs_reducer';
 
-import jobList from './jobList';
-import users from './users';
+const rootReducer = combineReducers({
+    jobs,
+    firebase
+});
 
-export default combineReducers({
-   jobList,
-   users   	
-})
+export default rootReducer;

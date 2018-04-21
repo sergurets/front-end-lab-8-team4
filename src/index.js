@@ -2,16 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './routes.js';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import reducer from './reducers';
+import { createStore, applyMiddleware } from 'redux';
 
-const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+import reducers from './reducers';
+
+const createStoreWidthMiddleWare = applyMiddleware()(createStore);
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('root')
+	<Provider store={createStoreWidthMiddleWare(reducers)}>
+		<App />
+	</Provider>,
+	document.getElementById('root')
 );
-
-console.log('store', store.getState())

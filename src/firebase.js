@@ -13,8 +13,8 @@ firebase.initializeApp(config);
 
 const firebaseDB = firebase.database();
 
-const firebaseUsers = firebase.ref('users');
-const firebaseJobs = firebase.ref('jobs');
+const firebaseUsers = firebaseDB.ref('users');
+const firebaseJobs = firebaseDB.ref('jobs');
 
 export {
     firebase,
