@@ -4,8 +4,14 @@ import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import './addjob.css';
 
+function a(id){
+	var link=document.createElement('p');
+	link.innerHTML = `<a href='SergiyPage#${id}'>link</a>`
+	document.getElementById('addJobForm').appendChild(link)
+};
 
 class Addjob extends Component {
+	
 	constructor(props){
 		super(props);
 		this.state = {
@@ -14,7 +20,8 @@ class Addjob extends Component {
 		  city: "",
 		  salary: "",
 		  duration: "up to 2 hours" ,
-		  deadlineDate: ""
+		  deadlineDate: "",
+		  file: ""
 		};
 		this.handleTitleChange = this.handleTitleChange.bind(this);
 		this.infohandleInfoChange = this.infohandleInfoChange.bind(this);
@@ -23,19 +30,31 @@ class Addjob extends Component {
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleDurationChange = this.handleDurationChange.bind(this);
 		this.handleDateChange = this.handleDateChange.bind(this);		
-		
+		this.handleFileUpload = this.handleFileUpload.bind(this);
 	  }
+	
 	
 	handleSubmit(event){
 		event.preventDefault();
 		/*console.log("Submited", this.state);*/
 		console.log(this.props);
+		console.log(this.props);
 		
 		this.state.id= Date.now().toString();
+		console.log(this.state.id);
 		this.props.onAddJob(this.state);
+		a(this.state.id);
+		//this.props.location.replace('/SergiyPage');
+		
+		/*React.render(<App/>, document.querySelector("#main"));*/
+		
+		
+		console.log(this.props.location);
 		
 	  }
-	  
+	  handleFileUpload(event){
+		this.setState({file: event.target.value});
+	  }
 	  handleDateChange(event){
 		this.setState({deadlineDate: event.target.value});
 	  }
@@ -65,13 +84,14 @@ class Addjob extends Component {
 	  handleCityChange(event){
 		this.setState({city: event.target.value});
 	  }
-
+      
+	  
 	
   render() {
    // console.log(this.props.jobList);
 	
     return (
-      <div>
+      <div id='addJobForm'>
 	  <form onSubmit={this.handleSubmit} method="post" 
 	  className="formjob">
       <input type="text"
@@ -121,17 +141,19 @@ class Addjob extends Component {
       </select>			
 	  <label className="formLabel">Крайній термін</label>
 	  <input 
+	  value="2028-04-18"
 	  onChange={this.handleDateChange} 
 	  value={this.state.date}
 	  type="date" 
 	  name="calendar" 
-	  min="2028-04-18"
+	  min="2018-04-18"
 	 className="inpform"
 	 required/>
       <label htmlFor="file">Upload Image</label>
-      <input type="file" id="file" name="photo" multiple accept="image/*,image/jpeg"/><br/>
+      <input type="file" id="file" name="photo" multiple accept="image/*,image/jpeg" onChange={this.handleFileUpload} value={this.state.file}/><br/>
       <button className="button">Send</button>
       </form>
+	  
       </div>
     );
   }
