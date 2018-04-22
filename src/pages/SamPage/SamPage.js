@@ -23,7 +23,7 @@ class User extends React.Component {
     }
 
     onSubmit(values) {
-        this.props.saveJob(values).then(this.props.dispatch(reset('NewPost')));
+        this.props.saveJob(values).then(this.props.dispatch(reset('NewJob')));
     }
 
     renderField(field) {
@@ -47,9 +47,9 @@ class User extends React.Component {
                                 label="Title"
                             />
                             <Field
-                                name="body"
+                                name="description"
                                 component={this.renderField}
-                                label="Body"
+                                label="Description"
                             />
                             <button type="submit">Post A Job</button>
                         </form>
@@ -61,7 +61,7 @@ class User extends React.Component {
 }
 
 let form = reduxForm({
-    form: 'NewPost'
+    form: 'NewJob'
 })(User);
 
 form = connect(state => ({ jobs: state.jobs }), { getJobs, saveJob })(form);
