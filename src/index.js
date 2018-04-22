@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom';
 import App from './routes.js';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 
-import reducers from './reducers';
+import reducers from './Reducers';
 
-const createStoreWidthMiddleWare = applyMiddleware()(createStore);
+const createStoreWidthMiddleWare = applyMiddleware(thunk)(createStore);
 
 ReactDOM.render(
 	<Provider store={createStoreWidthMiddleWare(reducers)}>

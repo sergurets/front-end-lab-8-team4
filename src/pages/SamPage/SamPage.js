@@ -1,35 +1,41 @@
 import React from 'react';
-import JobsList from './user/JobsList';
+// import JobsList from './user/JobsList';
+import { Field, reduxForm, reset } from 'redux-form';
 import { connect } from 'react-redux';
-import { jobsList } from '../../actions';
-import { bindActionCreators } from 'redux';
+import { getJobs } from '../../Actions/JobActions';
+import _ from 'lodash';
 
-
-class UserDone extends React.Component {
+class User extends React.Component {
 
     componentWillMount() {
-        this.props.jobsList();
+        this.props.getJobs();
+    }
+
+    renderJobs() {
+        return _.map(this.props.jobs, (job, key) => {
+            return (
+                <div key={key}>
+                    <h3>{job.title}</h3>
+                    <p>{job.description}</p>
+                </div>
+            );
+        });
     }
 
     render() {
+        console.log(this.props.jobs);
         return (
-            <div className="user-done">
-                <JobsList {...this.props} />
-            </div >
-        );
+            <div>
+                {this.renderJobs()}
+            </div>
+        )
     }
 }
 
-const mapStateProps = (state) => {
-    return {
-        data: state.jobs
-    }
-}
+let form = reduxForm({
+    form: 'NewPost'
+})(User);
 
-const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({
-        jobsList
-    }, dispatch)
-}
+form = connect(state => ({ jobs: state.jobs }), { getJobs })(form);
 
-export default connect(mapStateProps, mapDispatchToProps)(UserDone);
+export default form;

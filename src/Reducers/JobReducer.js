@@ -1,7 +1,9 @@
+import { FETCH_JOBS } from '../Actions/JobActions';
+
 export default function (state = {}, action) {
     switch (action.type) {
-        case 'JOBS_LIST':
-            return { ...state, jobs: action.payload }
+        case FETCH_JOBS:
+            return action.payload;
         default:
             return state;
     }
