@@ -1,7 +1,7 @@
 import { firebaseJobs } from '../firebase';
 export const FETCH_JOBS = 'fetch_jobs';
 
-export function getJobs() {
+export const getJobs = () => {
     return dispatch => {
         firebaseJobs.on('value', snapshot => {
             dispatch({
@@ -12,10 +12,6 @@ export function getJobs() {
     }
 }
 
-export function postJob() {
-
-}
-
-export function deleteJob() {
-
+export const saveJob = (job) => {
+    return dispatch => firebaseJobs.push(job);
 }
