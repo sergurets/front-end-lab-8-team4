@@ -10,13 +10,12 @@ const config = {
 };
 
 firebase.initializeApp(config);
+ export const firebaseDB = firebase.database();
 
-const firebaseDB = firebase.database();
+ export const firebaseUsers = firebaseDB.ref('users');
+ export const firebaseJobs = firebaseDB.ref('jobs');
 
-const firebaseUsers = firebase.ref('users');
-const firebaseJobs = firebase.ref('jobs');
-
-export {
+export default {
     firebase,
     firebaseDB,
     firebaseUsers,
