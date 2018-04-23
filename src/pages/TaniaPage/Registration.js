@@ -17,16 +17,11 @@ class App extends Component{
       email: ""
     };
     this.handleChange = this.handleChange.bind(this);
-    // this.handleSurNameChange = this.handleSurNameChange.bind(this);
-    // this.handleCityChange = this.handleCityChange.bind(this);
-    // this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    //this.handlePasswordChange = this.handlePasswordChange.bind(this);
   }
 
   handleSubmit(event){
     event.preventDefault();
-
     var usersRef = firebase.database().ref('usersT/')
     usersRef.push({
 	    name: this.state.name,
@@ -39,32 +34,17 @@ class App extends Component{
   	firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
   		.then(res => {
   			console.log(res);
+  			alert('Successfully registrated');
   		})
   		.catch(error => {
   			console.log(error);
   		})
-
   }
 
   handleChange(event){
     this.setState({[event.target.id]: event.target.value});
   }
 
-  handleSurNameChange(event){
-    this.setState({surname: event.target.value});
-  }
-
-  handleCityChange(event){
-    this.setState({city: event.target.value});
-  }
-
-  handleEmailChange(event){
-  	this.setState({email: event.target.value});
-  }
-
-  handlePasswordChange(event){
-  	this.setState({password: event.target.value});
-  }
   render(){
     return (
       <div className="regform">

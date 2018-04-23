@@ -12,16 +12,17 @@ class Login extends Component{
 	    this.handleEmailChange = this.handleEmailChange.bind(this);
 	    this.handleSubmit = this.handleSubmit.bind(this);
 	    this.handlePasswordChange = this.handlePasswordChange.bind(this);
+	    this.singOut = this.singOut.bind(this);
   	}
   	handleSubmit(event){
 	    event.preventDefault();
 	    console.log("Submited", this.state);
-	    var usersRef = firebase.database().ref('usersT/')
 	    firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then(res => {
   			console.log(res);
+  			document.getElementsByClassName('header__nav__item')[3].style.display = 'none';
+  			alert('Successfully logged');
   		}).catch(function(error) {
-	    	 var errorCode = error.code;
-  			 var errorMessage = error.message;
+	    	 console.log(error);
 		});
   	}
   	handleEmailChange(event){
@@ -30,6 +31,15 @@ class Login extends Component{
 
 	handlePasswordChange(event){
 	  	this.setState({password: event.target.value});
+	}
+	singOut(){
+		firebase.auth().signOut().then(function() {
+	  // Sign-out successful.
+	  		alert('logged out');
+		}).catch(function(error) {
+	  // An error happened.
+	  		alert('dayn');
+		});
 	}
 	render(){
 		return (
@@ -53,7 +63,11 @@ class Login extends Component{
 			      /><br/>
 			      <button className="regform_send">Send</button>
 			    </form>
+			    <div>
+				<button onClick={this.singOut}>Log Out</button>
 			</div>
+			</div>
+
 		)
 	}
 }
