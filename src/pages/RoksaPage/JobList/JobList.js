@@ -2,6 +2,7 @@ import React from 'react';
 import './JobList.css';
 import { connect } from 'react-redux';
 import { jobList } from '../../../actions';
+import { Link } from "react-router-dom";
 
 class JobList extends React.Component{
 	componentWillMount(){
@@ -12,7 +13,7 @@ class JobList extends React.Component{
 			jobList?
 			jobList.map(item =>(
 					<li className = "job-list__item" key ={item.id}>
-						<p>{item.job_title}</p>
+						<Link to="/SergiyPage">{item.title}</Link>
 						<p>{item.description}</p>
 					</li>
 				)): null
