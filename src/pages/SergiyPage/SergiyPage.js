@@ -1,47 +1,109 @@
-import React, { Component } from 'react';
-import './SergiyPage.css';
+import React from 'react';
+//import './JobList.css';
+import { connect } from 'react-redux';
+import { jobList } from '../../actions';
+import { Link } from "react-router-dom";
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">fast work</h1>
-        </header>
+/*function getObj(obj)
+{
+	(for var key in obj)
+	{
+		if (key) == '-LAmLRviwch1VqN45FMB' return obj
+	}
+	
+}
+
+*/
+
+
+
+class JobList extends React.Component{
+	componentWillMount(){
+		this.props.getJobs()
+	}
+	
+	renderList = (jobList) =>{
+		
+		
+		if (jobList)
+		{
+	     function find(object, id){
+			 var obj={};
+			 for (var key in object){
+				 console.log(key, object[key].id, id);
+				 if (object[key].id===id){
+					 obj= Object.assign({}, object[key] );
+				 }
+	 
+			 }
+			 console.log(obj)
+				 return obj;
+		 }
+		 
+		 
+	     var obj = Object.assign({}, jobList);
+		 console.log(obj);
+		 var jobId=this.props.location.hash.slice(1)+'';
+		 var job=find(obj, jobId);
+		 //var id="1524484394807";
+		 
+		 console.log(jobId);
+		 
+		 
+		 
+		 
+		 console.log(job)
+	
+		return  (<div className="App">
         <div className="Description">
         <h1 className="Name">
-          Прибрати будівельне сміття на задньому дворі
+          {job.title}
         </h1>
-        <p>Після ремонту на задньому дворі залишилося багато будівельного сміття. В основному це бита цегла і бетон, частково дошки і залишки старих меблів. </p>
+        <p>{job.info}</p>
         <div className="JobFeatures">
         <div className="JobList">
         <ul>
-          <li>Тривалість: від 3 до 5 годин</li>
-          <li>Час початку робти: не пізніше 17.08</li>
-          <li>Крайній термін виконання: 17:00 18.08</li>
-          <li>Локація: Львів, вул. Личаківська 22</li>
-          <li>Оплата: 800грн</li>
+          <li>Duration: {job.duration}</li>
+          <li>Deadline: {job.deadlineDate}</li>
+          <li>Location: {job.city}</li>
+          <li>Salary: {job.salary}</li>
           </ul>
           </div>
           <div className="Contacts">
-          <h3>Сергій</h3>
+          <h3>Serg</h3>
           <p>+380670000000</p>
           </div>
         </div>
         </div>
-        <div className="JobImage">
-        <img src="https://scontent.fiev1-1.fna.fbcdn.net/v/t1.0-9/30623950_1633496920048789_4881096526492860416_n.jpg?_nc_cat=0&oh=c51fe51aec60c56d8a99622b083721ce&oe=5B6D97D4" className="JbImage"  alt="jobphoto" />
-        <img src="https://scontent.fiev1-1.fna.fbcdn.net/v/t1.0-9/30629531_1633496936715454_914632900798840832_o.jpg?_nc_cat=0&oh=3fea16d8f0b996317c56c571c2b15e72&oe=5B2C2BE5" className="JbImage"  alt="jobphoto" />
-        <img src="https://scontent.fiev1-1.fna.fbcdn.net/v/t1.0-9/30709690_1633496930048788_602166771520110592_o.jpg?_nc_cat=0&oh=79ca60a8956fca51059f721409b6b7b3&oe=5B58BD82" className="JbImage"  alt="jobphoto" />
-        </div>
-        <div className="Map">
-        <img src="https://scontent.fiev1-1.fna.fbcdn.net/v/t1.0-9/30624552_1633496923382122_1617418034371100672_n.png?_nc_cat=0&oh=e225e7323cf59e5d843e87785bea4644&oe=5B73A3D4"  alt="map" />
-        </div>
-      </div>
-    );
-  }
+ 
+      </div>)}
+		 else {return null }
+		
+					
+	}
+	render(){
+		//console.log(this.props.data.jobList);
+		return(
+			<div>
+				
+					{this.renderList(this.props.data.jobList)}
+				
+			</div>
+		);
+	}
 }
 
+const mapStateToProps = (state) => {
+	return {
+		data: state.jobList
+	}
+}
+const mapDispatchToProps = (dispatch) => {
+	return {
+		getJobs : () => {
+			dispatch(jobList())
+		}
+	}
+}
 
-export default App;
-
+export default connect(mapStateToProps,mapDispatchToProps)(JobList);
