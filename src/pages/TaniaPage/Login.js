@@ -9,9 +9,8 @@ class Login extends Component{
 		      password: "",
 		      email: ""
 		};
-	    this.handleEmailChange = this.handleEmailChange.bind(this);
+	    this.handleChange = this.handleChange.bind(this);
 	    this.handleSubmit = this.handleSubmit.bind(this);
-	    this.handlePasswordChange = this.handlePasswordChange.bind(this);
 	    this.singOut = this.singOut.bind(this);
   	}
   	handleSubmit(event){
@@ -25,20 +24,15 @@ class Login extends Component{
 	    	 console.log(error);
 		});
   	}
-  	handleEmailChange(event){
-  		this.setState({email: event.target.value});
+  	handleChange(event){
+   		this.setState({[event.target.id]: event.target.value});
   	}
-
-	handlePasswordChange(event){
-	  	this.setState({password: event.target.value});
-	}
 	singOut(){
 		firebase.auth().signOut().then(function() {
-	  // Sign-out successful.
 	  		alert('logged out');
+	  		document.getElementsByClassName('header__nav__item')[3].style.display = 'block';
 		}).catch(function(error) {
-	  // An error happened.
-	  		alert('dayn');
+	  		console.log(error);
 		});
 	}
 	render(){
@@ -50,7 +44,7 @@ class Login extends Component{
 			        id="email"
 			        className="regform__email"
 			        value={this.state.email}
-        			onChange={this.handleEmailChange}
+        			onChange={this.handleChange}
 			        required
 			      /><br/>
 			      <input type="password"
@@ -58,7 +52,7 @@ class Login extends Component{
 			        id="password"
 			        className="regform__pass"
 			        value={this.state.password}
-        			onChange={this.handlePasswordChange}
+        			onChange={this.handleChange}
 			        required
 			      /><br/>
 			      <button className="regform_send">Send</button>
