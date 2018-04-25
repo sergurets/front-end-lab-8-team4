@@ -7,9 +7,9 @@ import { firebaseJobList } from '../../firebase';
 
 function a(id){
 	var link=document.createElement('p');
-	link.innerHTML = `<a href='SergiyPage#${id}'>link</a>`;
+	link.innerHTML = `<a href='SergiyPage#${id}'>link to job</a>`;
 	document.getElementById('addJobForm').appendChild(link);
-	//console.log(firebaseJobList ('jobs'));
+
 };
 
 class Addjob extends Component {
@@ -35,15 +35,9 @@ class Addjob extends Component {
 	
 	handleSubmit(event){
 		event.preventDefault();
-		/*console.log("Submited", this.state);*/
-		console.log(this.props);
-		
 		this.state.id= Date.now().toString();
 		a(this.state.id);
-		this.props.onAddJob(this.state);
-		//firebaseJobList.push(this.state);
-		
-		
+		this.props.onAddJob(this.state);			
 	  }
 	  
 	  handleDateChange(event){
@@ -78,7 +72,6 @@ class Addjob extends Component {
 
 	
   render() {
-   // console.log(this.props.jobList);
 	
     return (
       <div id='addJobForm'>
@@ -165,15 +158,3 @@ const mapDispatchToProps = (dispatch) => {
 
 export default connect(mapStateToProps,mapDispatchToProps)(Addjob);
 
-/*
-export default connect(
-	state => ({
-	  jobList: state.jobList
-	}),
-	dispatch => ({
-		onAddJob: (job)=>{
-			dispatch({ type: 'ADD_JOB', payload: job });
-			
-		} 
-	})
-  )(Addjob); */
