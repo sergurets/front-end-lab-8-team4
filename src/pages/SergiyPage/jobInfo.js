@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { jobList } from '../../actions';
-import './SergiyPage.css';
+import './jobInfo.css';
 
 
 class JobInfo extends React.Component{

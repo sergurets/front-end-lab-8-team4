@@ -7,7 +7,7 @@ import { firebaseJobList } from '../../firebase';
 
 function a(id){
 	var link=document.createElement('p');
-	link.innerHTML = `<a href='SergiyPage#${id}'>link to job</a>`;
+	link.innerHTML = `<a href='jobInfo#${id}'>link to job</a>`;
 	document.getElementById('addJobForm').appendChild(link);
 
 };
