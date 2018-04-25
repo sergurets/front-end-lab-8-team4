@@ -17,7 +17,7 @@ class JobList extends React.Component{
 			jobs?
 			jobs.map(item =>(
 					<li className = "job-list__item" key ={item.id}>
-						<Link to= {`/SergiyPage/#${item.id}`}>{item.title}</Link>
+						<Link to= {`/jobInfo/#${item.id}`}>{item.title}</Link>
 						<p>{item.info}</p>
 					</li>
 				)): null
