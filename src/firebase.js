@@ -19,5 +19,6 @@ export default {
     firebase,
     firebaseDB,
     firebaseUsers,
-    firebaseJobs
+    firebaseJobs,
+	
 }
