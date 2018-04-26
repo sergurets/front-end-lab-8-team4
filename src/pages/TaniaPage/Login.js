@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import { firebase } from '../../firebase.js';
+import  fireb  from '../../firebase.js';
+import { Link } from 'react-router-dom'
 import './Login.css';
 
 class Login extends Component{
@@ -16,23 +17,27 @@ class Login extends Component{
   	handleSubmit(event){
 	    event.preventDefault();
 	    console.log("Submited", this.state);
-	    firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then(res => {
+	    fireb.firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then(res => {
   			console.log(res);
+  			document.getElementsByClassName("regform--logout")[0].style.visibility = "visible";
   			document.getElementsByClassName('header__nav__item')[3].style.display = 'none';
   			alert('Successfully logged');
+  			document.getElementsByTagName('input')[0].value ="";
+  			document.getElementsByTagName('input')[1].value ="";
   		}).catch(function(error) {
-	    	 console.log(error);
+	    	 alert(error);
 		});
   	}
   	handleChange(event){
    		this.setState({[event.target.id]: event.target.value});
   	}
 	singOut(){
-		firebase.auth().signOut().then(function() {
+		fireb.firebase.auth().signOut().then(function() {
 	  		alert('logged out');
 	  		document.getElementsByClassName('header__nav__item')[3].style.display = 'block';
+	  		document.getElementsByClassName("regform--logout")[0].style.visibility = "hidden";
 		}).catch(function(error) {
-	  		console.log(error);
+	  		alert(error);
 		});
 	}
 	render(){
@@ -55,13 +60,15 @@ class Login extends Component{
         			onChange={this.handleChange}
 			        required
 			      /><br/>
-			      <button className="regform_send">Send</button>
+			      <button className="regform--send">Send</button>
 			    </form>
 			    <div>
-				<button onClick={this.singOut}>Log Out</button>
+					<button onClick={this.singOut} className="regform--logout">Log Out</button>
+				</div>
+				<div>
+					<Link to="/registration" className="regform__register">Don't have an account? Register now</Link>
+				</div>
 			</div>
-			</div>
-
 		)
 	}
 }

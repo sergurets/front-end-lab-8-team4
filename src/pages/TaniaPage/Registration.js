@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import { firebase } from '../../firebase.js';
+import  fireb  from '../../firebase.js';
 import './Registration.css';
 
-// var database = firebase.database();
-
-// const auth = firebase.auth();
 
 class App extends Component{
   constructor(props){
@@ -22,8 +19,7 @@ class App extends Component{
 
   handleSubmit(event){
     event.preventDefault();
-    var usersRef = firebase.database().ref('usersT/')
-    usersRef.push({
+    fireb.firebaseTrueUsers.push({
 	    name: this.state.name,
 	    email: this.state.email,
 	    password: this.state.password,
@@ -31,7 +27,7 @@ class App extends Component{
 	    surname: this.state.surname
   	});
 
-  	firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
+  	fireb.firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
   		.then(res => {
   			console.log(res);
   			alert('Successfully registrated');
