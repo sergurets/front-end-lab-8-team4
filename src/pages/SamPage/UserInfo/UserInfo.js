@@ -1,31 +1,53 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { userList } from '../../../actions';
 
-class Info extends React.Component {
+class UserInfo extends React.Component {
 
+	componentWillMount() {
+		this.props.getUsers();
+	}
 
-    render() {
-        return (
-            <div className="info">
-                <h1>Your Info</h1>
-                <div className="user-info">
-                    <ul className="user-info__list">
-                        <li class="user-info__item">
-                            <div>Name</div><div>VALUE</div>
-                        </li>
-                        <li class="user-info__item">
-                            <div>Surname</div><div>VALUE</div>
-                        </li>
-                        <li class="user-info__item">
-                            <div>Phone number</div><div>VALUE</div>
-                        </li>
-                        <li class="user-info__item">
-                            <div>E-Mail</div><div>VALUE</div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        );
-    }
+	renderList = (obj) => {
+		let users = [];
+		for (var key in obj) {
+			users.push(obj[key]);
+		}
+
+		return (
+			users.map(item => (
+				<li className="" key={item.id}>
+					<h3>{item.name}</h3>
+					<p>{item.surname}</p>
+				</li>
+			))
+		);
+	}
+
+	render() {
+		return (
+			<div id="">
+				<h1>Users</h1>
+				<ol className="">
+					{this.renderList(this.props.data)}
+				</ol>
+			</div>
+		);
+	}
 }
 
-export default Info;
+const mapStateToProps = (state) => {
+	return {
+		data: state.userList.users
+	}
+}
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		getUsers: () => {
+			dispatch(userList())
+		}
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserInfo);

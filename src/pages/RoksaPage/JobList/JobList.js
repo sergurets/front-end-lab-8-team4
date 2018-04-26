@@ -4,31 +4,32 @@ import { connect } from 'react-redux';
 import { jobList } from '../../../actions';
 import { Link } from "react-router-dom";
 
-class JobList extends React.Component{
-	componentWillMount(){
+class JobList extends React.Component {
+	componentWillMount() {
 		this.props.getJobs()
 	}
-	renderList = (jobList) =>{
+	renderList = (jobList) => {
 		let jobs = [];
-		for(var key in jobList){
+		for (var key in jobList) {
 			jobs.push(jobList[key]);
 		}
-		return(
-			jobs?
-			jobs.map(item =>(
-					<li className = "job-list__item" key ={item.id}>
-						<Link to= {`/jobInfo/#${item.id}`}>{item.title}</Link>
+		return (
+			jobs ?
+				jobs.map(item => (
+					<li className="job-list__item" key={item.id}>
+						<Link to={`/jobInfo/#${item.id}`}>{item.title}</Link>
 						<p>{item.info}</p>
 					</li>
-				)): null
+				)) : null
 		);
 	}
-	render(){
+
+	render() {
 		console.log(this.props.data.jobList);
-		return(
-			<div id = "job-container">
+		return (
+			<div id="job-container">
 				<h1> Jobs</h1>
-				<ol className = "job-list">
+				<ol className="job-list">
 					{this.renderList(this.props.data.jobList)}
 				</ol>
 			</div>
@@ -43,10 +44,10 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
 	return {
-		getJobs : () => {
+		getJobs: () => {
 			dispatch(jobList())
 		}
 	}
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(JobList);
+export default connect(mapStateToProps, mapDispatchToProps)(JobList);

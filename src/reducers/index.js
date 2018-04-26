@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import jobList from './jobList_reducer';
-import users from './users';
+import userList from './userList_reducer';
 
 const rootReducer = combineReducers({
-	jobList,
-   users 
+    jobList,
+    userList
 })
 
 export default rootReducer;

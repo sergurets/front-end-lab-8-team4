@@ -1,14 +1,22 @@
-import * as firebase from 'firebase';
-import { firebaseJobs } from '../firebase.js'
+import { firebaseJobs, firebaseTrueUsers } from '../firebase.js';
 
 export function jobList() {
 	return dispatch => {
 		firebaseJobs.on('value', snapshot => {
-			console.log(snapshot.val());
 			dispatch({
-				type: 'jobList',
+				type: 'FETCH_JOB_LIST',
 				jobs: snapshot.val()
+			});
+		});
+	};
+}
 
+export function userList() {
+	return dispatch => {
+		firebaseTrueUsers.on('value', snapshot => {
+			dispatch({
+				type: 'FETCH_USER_LIST',
+				payload: snapshot.val()
 			});
 		});
 	};

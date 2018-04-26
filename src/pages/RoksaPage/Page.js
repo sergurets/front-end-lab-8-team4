@@ -5,15 +5,15 @@ import './Page.css';
 import AboutUs from './AboutUs/AboutUs.js'
 import JobList from './JobList/JobList.js'
 
-class HomePage extends React.Component{
-	render(){
-		return(
+class HomePage extends React.Component {
+	render() {
+		return (
 			<div>
-		 		<AboutUs/>
-		 		<JobList/>
+				<AboutUs />
+				<JobList />
 			</div>
 		);
 	}
 }
 
-export default HomePage
+export default HomePage;
