@@ -1,14 +1,12 @@
 import React from 'react';
 
-import Header from './header/header';
-import Info from './info/info';
+import UserInfo from './UserInfo/UserInfo';
 
 class SamPage extends React.Component {
     render() {
         return (
             <div>
-                <Header />
-                <Info />
+                <UserInfo />
             </div>
         );
     }
