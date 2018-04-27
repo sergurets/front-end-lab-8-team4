@@ -1,11 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { userList } from '../../../actions';
+import FB from '../../../firebase';
 
 class UserInfo extends React.Component {
 
 	componentWillMount() {
 		this.props.getUsers();
+		FB.firebase.auth().onAuthStateChanged((user) => {
+			if (user) {
+				console.log(user.uid);
+			} else {
+				console.log('no user');
+			}
+		})
 	}
 
 	renderList = (obj) => {
