@@ -24,6 +24,8 @@ class Login extends Component{
   			alert('Successfully logged');
   			document.getElementsByTagName('input')[0].value ="";
   			document.getElementsByTagName('input')[1].value ="";
+  			var user = fireb.firebase.auth().currentUser;
+  			console.log(user);
   		}).catch(function(error) {
 	    	 alert(error);
 		});

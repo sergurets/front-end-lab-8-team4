@@ -67,3 +67,7 @@ label{
   margin: 2% 4%;
   visibility: hidden;
 }
+
+.regform__register{
+  text-align: center;
+}
