@@ -1,8 +1,9 @@
 import React from 'react';
 
 import UserInfo from './UserInfo/UserInfo';
+import UserJobList from './UserJobList/UserJobList';
 
-class SamPage extends React.Component {
+class UserProfile extends React.Component {
     render() {
         return (
             <div>
@@ -12,4 +13,4 @@ class SamPage extends React.Component {
     }
 }
 
-export default SamPage;
+export default UserProfile;

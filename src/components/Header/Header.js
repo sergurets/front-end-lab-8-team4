@@ -14,7 +14,7 @@ class Header extends React.Component {
 				</nav>
 				<div className="header__div">
 					<Link to="/Login" className="header__nav__item">Sign in</Link>
-					<Link to="SamPage" className="header__div__img"></Link>
+					<Link to="UserProfile" className="header__div__img"></Link>
 				</div>
 			</header>
 		);
