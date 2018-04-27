@@ -6,10 +6,10 @@ import './Login.css';
 class Login extends Component{
 	constructor(props){
 	    super(props);
-		    this.state = {
-		      password: "",
-		      email: ""
-		};
+		  this.state = {
+		    password: "",
+		    email: ""
+		  };
 	    this.handleChange = this.handleChange.bind(this);
 	    this.handleSubmit = this.handleSubmit.bind(this);
 	    this.singOut = this.singOut.bind(this);
@@ -22,16 +22,15 @@ class Login extends Component{
   			document.getElementsByClassName("regform--logout")[0].style.visibility = "visible";
   			document.getElementsByClassName('header__nav__item')[3].style.display = 'none';
   			alert('Successfully logged');
-  			document.getElementsByTagName('input')[0].value ="";
-  			document.getElementsByTagName('input')[1].value ="";
-  			var user = fireb.firebase.auth().currentUser;
-  			console.log(user);
   		}).catch(function(error) {
 	    	 alert(error);
 		});
+		for (var ref in this.refs) {
+  			this.refs[ref].value = "";
+    	}
   	}
   	handleChange(event){
-   		this.setState({[event.target.id]: event.target.value});
+   		this.setState({[event.target.name]: event.target.value});
   	}
 	singOut(){
 		fireb.firebase.auth().signOut().then(function() {
@@ -48,7 +47,8 @@ class Login extends Component{
 				<form onSubmit={this.handleSubmit} method="post">
 			      <input type="email"
 			        placeholder="E-mail"
-			        id="email"
+			        name="email"
+			        ref="email"
 			        className="regform__email"
 			        value={this.state.email}
         			onChange={this.handleChange}
@@ -56,7 +56,8 @@ class Login extends Component{
 			      /><br/>
 			      <input type="password"
 			        placeholder="Enter password"
-			        id="password"
+			        name="password"
+			        ref="pass"
 			        className="regform__pass"
 			        value={this.state.password}
         			onChange={this.handleChange}

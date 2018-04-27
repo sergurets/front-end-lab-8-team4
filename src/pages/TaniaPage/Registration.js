@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import  fireb  from '../../firebase.js';
 import './Registration.css';
 
-
 class App extends Component{
   constructor(props){
     super(props);
@@ -20,30 +19,24 @@ class App extends Component{
 
   handleSubmit(event){
     event.preventDefault();
-    var key = fireb.firebaseTrueUsers.push({
-	    name: this.state.name,
-	    email: this.state.email,
-	    password: this.state.password,
-	    city: this.state.city,
-	    surname: this.state.surname
-  	}).key;
-  	var data = {
+  	let data = {
   		name: this.state.name,
 	    email: this.state.email,
 	    password: this.state.password,
 	    city: this.state.city,
 	    surname: this.state.surname
   	}
-		var filename = this.state.image.name;
-  	var storageRef = fireb.firebase.storage().ref('/userImages/' + filename);
-  	var upload = storageRef.put(this.state.image);
+  	let key = fireb.firebaseTrueUsers.push(data).key;
+		let filename = this.state.image.name;
+  	let storageRef = fireb.firebase.storage().ref('/userImages/' + filename);
+  	let upload = storageRef.put(this.state.image);
   	upload.on('state_changed', function(snapshot){
 
   	}, function(error){
   		console.log(error);
   	}, function(){
-  		var downloadURL = upload.snapshot.downloadURL;
-  		var updates = {};
+  		let downloadURL = upload.snapshot.downloadURL;
+  		let updates = {};
   		data.url = downloadURL;
   		updates['/usersT/'+key] = data;
   		fireb.firebaseDB.ref().update(updates);
@@ -57,14 +50,13 @@ class App extends Component{
   		.catch(error => {
   			console.log(error);
   		})
-  	var inputs = document.getElementsByTagName('input');
-  	for(var i=0;i<inputs.length;i++){
-  		inputs[i].value="";
-  	}
+  	for (var ref in this.refs) {
+  		this.refs[ref].value = "";
+    }
   }
 
   handleChange(event){
-    this.setState({[event.target.id]: event.target.value});
+    this.setState({[event.target.name]: event.target.value});
   }
 
   getFile(event){
@@ -78,7 +70,8 @@ class App extends Component{
       <form onSubmit={this.handleSubmit} method="post">
       <input type="text"
         placeholder="Enter name"
-        id="name"
+        name="name"
+        ref="name"
         className="regform_name"
         value={this.state.name}
         onChange={this.handleChange}
@@ -86,7 +79,8 @@ class App extends Component{
       />
       <input type="text"
         placeholder="Enter surname"
-        id="surname"
+        name="surname"
+        ref="surname"
         className="regform_surname"
         value={this.state.surname}
         onChange={this.handleChange}
@@ -94,7 +88,8 @@ class App extends Component{
       /><br/>
       <input type="password"
         placeholder="Enter password"
-        id="password"
+        name="password"
+        ref="pass"
         className="regform_pass"
         value={this.state.password}
         onChange={this.handleChange}
@@ -102,7 +97,8 @@ class App extends Component{
       /><br/>
       <input type="text"
         placeholder="Enter city"
-        id="city"
+        name="city"
+        ref="city"
         className="regform_city"
         value={this.state.city}
         onChange={this.handleChange}
@@ -110,7 +106,8 @@ class App extends Component{
       /><br/>
       <input type="email"
         placeholder="E-mail"
-        id="email"
+        name="email"
+        ref="email"
         className="regform_email"
         value={this.state.email}
         onChange={this.handleChange}
@@ -124,6 +121,5 @@ class App extends Component{
     );
   }
 }
-
 
 export default App;
