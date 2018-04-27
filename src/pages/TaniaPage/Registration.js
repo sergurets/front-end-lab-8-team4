@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import  fireb  from '../../firebase.js';
 import './Registration.css';
 
 class App extends Component{
@@ -11,96 +12,114 @@ class App extends Component{
       city: "",
       email: ""
     };
-    this.handleNameChange = this.handleNameChange.bind(this);
-    this.handleSurNameChange = this.handleSurNameChange.bind(this);
-    this.handleCityChange = this.handleCityChange.bind(this);
-    this.handleEmailChange = this.handleEmailChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    this.getFile = this.getFile.bind(this);
   }
 
   handleSubmit(event){
     event.preventDefault();
-    console.log("Submited", this.state);
+  	let data = {
+  		name: this.state.name,
+	    email: this.state.email,
+	    password: this.state.password,
+	    city: this.state.city,
+	    surname: this.state.surname
+  	}
+  	let key = fireb.firebaseTrueUsers.push(data).key;
+		let filename = this.state.image.name;
+  	let storageRef = fireb.firebase.storage().ref('/userImages/' + filename);
+  	let upload = storageRef.put(this.state.image);
+  	upload.on('state_changed', function(snapshot){
+
+  	}, function(error){
+  		console.log(error);
+  	}, function(){
+  		let downloadURL = upload.snapshot.downloadURL;
+  		let updates = {};
+  		data.url = downloadURL;
+  		updates['/usersT/'+key] = data;
+  		fireb.firebaseDB.ref().update(updates);
+  	});
+
+  	fireb.firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
+  		.then(res => {
+  			console.log(res);
+  			alert('Successfully registrated');
+  		})
+  		.catch(error => {
+  			console.log(error);
+  		})
+  	for (var ref in this.refs) {
+  		this.refs[ref].value = "";
+    }
   }
 
-  handleNameChange(event){
-    this.setState({name: event.target.value});
+  handleChange(event){
+    this.setState({[event.target.name]: event.target.value});
   }
 
-  handleSurNameChange(event){
-    this.setState({surname: event.target.value});
+  getFile(event){
+  	var selectedFile = event.target.files[0];
+  	this.state.image = selectedFile;
   }
 
-  handleCityChange(event){
-    this.setState({city: event.target.value});
-  }
-
-  handleEmailChange(event){
-  	this.setState({email: event.target.value});
-  }
-
-  handlePasswordChange(event){
-  	this.setState({password: event.target.value});
-  }
   render(){
     return (
       <div className="regform">
       <form onSubmit={this.handleSubmit} method="post">
       <input type="text"
         placeholder="Enter name"
-        id="name"
+        name="name"
+        ref="name"
         className="regform_name"
         value={this.state.name}
-        onChange={this.handleNameChange}
+        onChange={this.handleChange}
         required
       />
       <input type="text"
         placeholder="Enter surname"
-        id="surname"
+        name="surname"
+        ref="surname"
         className="regform_surname"
         value={this.state.surname}
-        onChange={this.handleSurNameChange}
+        onChange={this.handleChange}
         required
       /><br/>
       <input type="password"
         placeholder="Enter password"
-        id="password"
+        name="password"
+        ref="pass"
         className="regform_pass"
         value={this.state.password}
-        onChange={this.handlePasswordChange}
-        required
-      /><br/>
-      <input type="password"
-        placeholder="Confirm password"
-        id="cpassword"
-        className="regform_cpass"
+        onChange={this.handleChange}
         required
       /><br/>
       <input type="text"
         placeholder="Enter city"
-        id="city"
+        name="city"
+        ref="city"
         className="regform_city"
         value={this.state.city}
-        onChange={this.handleCityChange}
+        onChange={this.handleChange}
         required
       /><br/>
       <input type="email"
         placeholder="E-mail"
-        id="email"
+        name="email"
+        ref="email"
         className="regform_email"
         value={this.state.email}
-        onChange={this.handleEmailChange}
+        onChange={this.handleChange}
         required
       /><br/>
-      <label htmlFor="file">Upload Image</label>
-      <input type="file" id="file" name="photo" multiple accept="image/*,image/jpeg"/><br/>
+      <label htmlFor="file" >Upload Image</label>
+      <input type="file" onChange={this.getFile} id="file" name="photo" multiple accept="image/*,image/jpeg"/><br/>
       <button className="regform_send">Send</button>
       </form>
       </div>
     );
   }
 }
-
 
 export default App;

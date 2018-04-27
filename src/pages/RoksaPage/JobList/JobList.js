@@ -9,12 +9,16 @@ class JobList extends React.Component{
 		this.props.getJobs()
 	}
 	renderList = (jobList) =>{
+		let jobs = [];
+		for(var key in jobList){
+			jobs.push(jobList[key]);
+		}
 		return(
-			jobList?
-			jobList.map(item =>(
+			jobs?
+			jobs.map(item =>(
 					<li className = "job-list__item" key ={item.id}>
-						<Link to="/SergiyPage">{item.title}</Link>
-						<p>{item.description}</p>
+						<Link to= {`/jobInfo/#${item.id}`}>{item.title}</Link>
+						<p>{item.info}</p>
 					</li>
 				)): null
 		);

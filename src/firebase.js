@@ -10,14 +10,15 @@ const config = {
 };
 
 firebase.initializeApp(config);
- export const firebaseDB = firebase.database();
-
- export const firebaseUsers = firebaseDB.ref('users');
- export const firebaseJobs = firebaseDB.ref('jobs');
+  const firebaseDB = firebase.database();
+  const firebaseUsers = firebaseDB.ref('users');
+  const firebaseTrueUsers = firebaseDB.ref('usersT');
+ export const firebaseJobs = firebaseDB.ref('jobList');
 
 export default {
     firebase,
     firebaseDB,
     firebaseUsers,
-    firebaseJobs
+    firebaseJobs,
+	  firebaseTrueUsers,
 }

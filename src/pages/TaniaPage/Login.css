@@ -1,27 +1,73 @@
+.regform__register{
+	color: #fff;
+	text-decoration: none;
+}
+
 .regform{
-	background: #24303c;
-	margin: 2% auto;
-	width: 30%;
+  background: #24303c;
+  margin: 2% auto;
+  width: 30%;
 	padding: 1% 2%;
 }
 
 input{
-	background: #24303c;
-	border: 1px solid #86959a;
-	padding: 1.5%;
-	width: 87%;
-	margin: 2% 5%;
-	height: 20px;
-	color: #fff;
+  background: #24303c;
+  border: 1px solid #86959a;
+  padding: 1.5%;
+  width: 87%;
+  margin: 3% 5%;
+  height: 20px;
+  color: #fff;
 }
 
-.regform__send{
-	background: #1ab188;
-	color: #fff;
-	border: none;
-	text-transform: uppercase;
-	height: 35px;
-	width: 91%;
-	padding: 2% 8%;
-	margin: 3% 4.5% 2%;
+.regform_name, .regform_surname{
+  width: 40%;
+  margin: 1.5%;
+  position: relative;
+  left: 4%;
+  display: inline-block;
+}
+
+#file{
+  display: none;
+}
+
+label{
+  color: #fff;
+  padding: 2% 9%;
+  background: #1a87b1;
+  margin: 1% 25%;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 12px;
+  display: block;
+  width: 35%;
+  height: 10%;
+}
+
+.regform--send{
+  background: #1ab188;
+  color: #fff;
+  border: none;
+  text-transform: uppercase;
+  height: 35px;
+  width: 92%;
+  padding: 2% 8%;
+  margin: 2% 4%;
+}
+
+.regform--logout{
+  background: #1ab188;
+  color: #fff;
+  border: none;
+  text-transform: uppercase;
+  height: 35px;
+  width: 92%;
+  padding: 2% 8%;
+  margin: 2% 4%;
+  visibility: hidden;
+}
+
+.regform__register{
+  text-align: center;
 }
