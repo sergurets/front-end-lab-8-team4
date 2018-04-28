@@ -6,10 +6,10 @@ import './Login.css';
 class Login extends Component{
 	constructor(props){
 	    super(props);
-		  this.state = {
-		    password: "",
-		    email: ""
-		  };
+		    this.state = {
+		      password: "",
+		      email: ""
+		};
 	    this.handleChange = this.handleChange.bind(this);
 	    this.handleSubmit = this.handleSubmit.bind(this);
 	    this.singOut = this.singOut.bind(this);
@@ -49,7 +49,7 @@ class Login extends Component{
 			        placeholder="E-mail"
 			        name="email"
 			        ref="email"
-			        className="regform__email"
+			        className="regform__input"
 			        value={this.state.email}
         			onChange={this.handleChange}
 			        required
@@ -58,7 +58,7 @@ class Login extends Component{
 			        placeholder="Enter password"
 			        name="password"
 			        ref="pass"
-			        className="regform__pass"
+			        className="regform__input"
 			        value={this.state.password}
         			onChange={this.handleChange}
 			        required

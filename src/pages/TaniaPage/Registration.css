@@ -5,7 +5,7 @@
 	padding: 1% 2%;
 }
 
-input{
+.regform__input{
   background: #24303c;
   border: 1px solid #86959a;
   padding: 1.5%;
@@ -15,7 +15,7 @@ input{
   color: #fff;
 }
 
-.regform_name, .regform_surname{
+.regform__name, .regform__surname{
   width: 40%;
   margin: 1.5%;
   position: relative;
@@ -27,7 +27,7 @@ input{
   display: none;
 }
 
-label{
+.regform__label{
   color: #fff;
   padding: 2% 9%;
   background: #1a87b1;
@@ -40,7 +40,7 @@ label{
   height: 10%;
 }
 
-.regform_send{
+.regform--send{
   background: #1ab188;
   color: #fff;
   border: none;
