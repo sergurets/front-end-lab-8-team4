@@ -14,11 +14,13 @@ firebase.initializeApp(config);
   const firebaseUsers = firebaseDB.ref('users');
   const firebaseTrueUsers = firebaseDB.ref('usersT');
  export const firebaseJobs = firebaseDB.ref('jobList');
+ export const firebaseJobsArchive = firebaseDB.ref('jobArchive');
 
 export default {
     firebase,
     firebaseDB,
     firebaseUsers,
     firebaseJobs,
-	  firebaseTrueUsers,
+	firebaseTrueUsers,
+	firebaseJobsArchive
 }

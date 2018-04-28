@@ -10,6 +10,7 @@ import jobInfo from './pages/SergiyPage/jobInfo.js';
 import Addjob from './pages/SergiyPage/addjob.js';
 import Login from './pages/TaniaPage/Login.js';
 import Registration from './pages/TaniaPage/Registration.js';
+import  editJob  from './pages/SergiyPage/editJob.js';
 
 const App = () => (
 	<Router>
@@ -24,6 +25,7 @@ const Layout = ({ match }) => (
 		<Route path={`${match.url}SamPage`} component={SamPage}/>
 		<Route path={`${match.url}jobInfo`} component={jobInfo}/>
 		<Route path={`${match.url}Addjob`} component = {Addjob}/>
+		<Route path={`${match.url}editJob`} component={editJob}/> 
 		<Route path={`${match.url}Login`} component={Login}/>
 		<Route path={`${match.url}Registration`} component={Registration}/>
   	</div>
