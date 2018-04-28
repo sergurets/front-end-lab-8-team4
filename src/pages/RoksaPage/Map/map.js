@@ -29,7 +29,7 @@ class WorkMap extends React.Component{
   	}
 
    render(){
-   const GoogleMapExample = withGoogleMap(props => (
+   const WorksMap = withGoogleMap(props => (
       <GoogleMap
         defaultCenter = { { lat: 49.861684, lng: 24.063663 } }
         defaultZoom = { 12 }
@@ -39,7 +39,7 @@ class WorkMap extends React.Component{
    ));
    return(
       <div >
-        <GoogleMapExample
+        <WorksMap
           containerElement={ <div id = "work-map"/> }
           mapElement={ <div style={{ height: `100%` }} /> }
         />
