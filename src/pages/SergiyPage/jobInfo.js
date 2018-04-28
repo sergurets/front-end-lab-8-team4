@@ -8,7 +8,7 @@ class JobInfo extends React.Component{
 	componentWillMount(){
 		this.props.getJobs();
 	}
-	
+
 	find(object, id){
 		var obj={};
 		for (var key in object){
@@ -19,19 +19,19 @@ class JobInfo extends React.Component{
 			 }
 		console.log(obj)
 		return obj;
-	} 
+	}
 	renderList = (jobList) =>{
-			
+
 		if (jobList)
-		{ 
+		{
 	     var obj = Object.assign({}, jobList);
 		 console.log(obj);
 		 var jobId=this.props.location.hash.slice(1)+'';
-		 var job=this.find(obj, jobId);	
-         		 
+		 var job=this.find(obj, jobId);
+
 		 console.log(jobId);
 		 console.log('job',job);
-	      if (job.id) {console.log('length');  
+	      if (job.id) {console.log('length');
 		  	return  (
 		<div className="App">
 			<div className="Description">
@@ -56,17 +56,17 @@ class JobInfo extends React.Component{
 			    </div>
             </div>
         </div>)
- 
+
 		  }
 		  else {return "no data" }
 		}
-		 else {return "no data" }							
+		 else {return "no data" }
 	}
 	render(){
 		return(
 			<div>
 					{this.renderList(this.props.data.jobList)}
-				
+
 			</div>
 		);
 	}
