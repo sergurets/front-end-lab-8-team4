@@ -1,8 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { jobList } from '../../actions';
+import { deleteJob} from '../../actions';
 import './jobInfo.css';
 
+function a(id){
+	return `/editJob#${id}`;
+
+};
 
 class JobInfo extends React.Component{
 	componentWillMount(){
@@ -15,6 +20,7 @@ class JobInfo extends React.Component{
 			console.log(key, object[key].id, id);
 			if (object[key].id===id){
 					obj= Object.assign({}, object[key] );
+					/*obj.databaseId=key;*/
 				 }
 			 }
 		console.log(obj)
@@ -55,6 +61,10 @@ class JobInfo extends React.Component{
 					</div>
 			    </div>
             </div>
+			
+								<a className='ButtonLink' href={a(job.id)}>Edit</a>
+								<button onClick={() => deleteJob(job, job.databaseId)}>Delete</button>
+			
         </div>)
  
 		  }

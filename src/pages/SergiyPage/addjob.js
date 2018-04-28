@@ -5,12 +5,16 @@ import './addjob.css';
 import { saveJob } from '../../actions';
 import { firebaseJobList } from '../../firebase';
 
+
 function a(id){
-	var link=document.createElement('p');
+	if (id!=undefined){var link=document.createElement('p');
 	link.innerHTML = `<a href='jobInfo#${id}'>link to job</a>`;
-	document.getElementById('addJobForm').appendChild(link);
+	document.getElementById('addJobForm').appendChild(link);}
+	
 
 };
+
+var b;
 
 class Addjob extends Component {
 	constructor(props){
@@ -37,7 +41,11 @@ class Addjob extends Component {
 		event.preventDefault();
 		this.state.id= Date.now().toString();
 		a(this.state.id);
-		this.props.onAddJob(this.state);			
+		
+
+		this.props.onAddJob(this.state);
+
+      		
 	  }
 	  
 	  handleDateChange(event){
@@ -157,4 +165,5 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(Addjob);
+
 

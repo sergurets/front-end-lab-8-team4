@@ -37,3 +37,10 @@ button{
 	height: auto;
 	background: none;
 }
+.ButtonLink
+{
+	border: 1px solid black;
+	display: block;
+	float: left;
+	width: 50px;
+}
