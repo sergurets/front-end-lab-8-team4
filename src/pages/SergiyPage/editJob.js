@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { jobList, editJob } from '../../actions';
 import './addjob.css';
 
-function a(id){
+function addLink(id){
 	if (id!=undefined){var link=document.createElement('p');
 	link.innerHTML = `<a  href='jobInfo#${id}'>link to job</a>`;
 	document.getElementById('editJob').appendChild(link);}
@@ -48,7 +48,7 @@ class JobEdit extends React.Component{
 		var res=Object.assign(this.defaultObj, this.state );
 
 		editJob(res,ID);
-		a(this.props.location.hash.slice(1));
+		addLink(this.props.location.hash.slice(1));
 
       		
 	  }

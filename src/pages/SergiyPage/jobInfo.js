@@ -3,11 +3,25 @@ import { connect } from 'react-redux';
 import { jobList } from '../../actions';
 import { deleteJob} from '../../actions';
 import './jobInfo.css';
+import * as firebase from 'firebase';
 
 function a(id){
 	return `/editJob#${id}`;
 
 };
+
+function renderButton(email, id, databaseId, job){
+	var user = firebase.auth().currentUser;
+	if (user) {if (user.email==email) { 
+		  console.log(user);
+	      return (
+		  <div><a className='ButtonLink' href={a(id)}>Edit</a>
+		  <button onClick={() => deleteJob(job, databaseId)}>Delete</button></div> );
+		  }
+		}
+	
+	  else {return null}
+}
 
 class JobInfo extends React.Component{
 	componentWillMount(){
@@ -56,14 +70,13 @@ class JobInfo extends React.Component{
 						 </ul>
 					</div>
 					<div className="Contacts">
-						  <h3>Serg</h3>
+						  <h3>{job.user}</h3>
 						  <p>+380670000000</p>
 					</div>
 			    </div>
             </div>
 			
-								<a className='ButtonLink' href={a(job.id)}>Edit</a>
-								<button onClick={() => deleteJob(job, job.databaseId)}>Delete</button>
+								{renderButton(job.user, job.id, job.databaseId, job)}
 			
         </div>)
  

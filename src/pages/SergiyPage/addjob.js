@@ -4,17 +4,20 @@ import { connect } from 'react-redux';
 import './addjob.css';
 import { saveJob } from '../../actions';
 import { firebaseJobList } from '../../firebase';
+import * as firebase from 'firebase';
 
 
-function a(id){
+function addLink(id){
 	if (id!=undefined){var link=document.createElement('p');
 	link.innerHTML = `<a href='jobInfo#${id}'>link to job</a>`;
 	document.getElementById('addJobForm').appendChild(link);}
-	
-
 };
-
-var b;
+function TodayDate(){var defaultDate = new Date; 
+	if (defaultDate.getMonth() <=8) {var month = '0' + (defaultDate.getMonth()+1)}
+	else {var month = (defaultDate.getMonth()+1)}
+	return `${defaultDate.getFullYear()}-${month}-${defaultDate.getDate()}`;}
+	
+var defDate = TodayDate();	
 
 class Addjob extends Component {
 	constructor(props){
@@ -25,7 +28,7 @@ class Addjob extends Component {
 		  city: "",
 		  salary: "",
 		  duration: "up to 2 hours" ,
-		  deadlineDate: ""
+		  deadlineDate: defDate
 		};
 		this.handleTitleChange = this.handleTitleChange.bind(this);
 		this.infohandleInfoChange = this.infohandleInfoChange.bind(this);
@@ -40,12 +43,9 @@ class Addjob extends Component {
 	handleSubmit(event){
 		event.preventDefault();
 		this.state.id= Date.now().toString();
-		a(this.state.id);
-		
-
+		addLink(this.state.id);
 		this.props.onAddJob(this.state);
-
-      		
+ 		
 	  }
 	  
 	  handleDateChange(event){
@@ -80,8 +80,11 @@ class Addjob extends Component {
 
 	
   render() {
-	
-    return (
+
+	var user = firebase.auth().currentUser;  
+	if (user)	
+	{ this.state.user = user.email;
+		return (
       <div id='addJobForm'>
 	  <form onSubmit={this.handleSubmit} method="post" 
 	  className="formjob">
@@ -132,12 +135,12 @@ class Addjob extends Component {
       </select>			
 	  <label className="formLabel">Крайній термін</label>
 	  <input 
-	  value="2028-04-18"
+      min = {defDate}
 	  onChange={this.handleDateChange} 
-	  value={this.state.date}
+	  value={this.state.deadlineDate}
 	  type="date" 
 	  name="calendar" 
-	  min="2018-04-18"
+	 
 	 className="inpform"
 	 required/>
       <label htmlFor="file">Upload Image</label>
@@ -147,6 +150,12 @@ class Addjob extends Component {
 	  
       </div>
     );
+	}
+	else return (
+	<div>
+	You need to login
+	</div>
+	)
   }
 }
 
