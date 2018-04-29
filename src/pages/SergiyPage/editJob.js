@@ -163,9 +163,8 @@ class JobEdit extends React.Component{
       </select>			
 	  <label className="formLabel">Deadline</label>
 	  <input 
-	  value="2028-04-18"
 	  onChange={this.handleDateChange} 
-	  defaultValue={defaultState.date}
+	  defaultValue={defaultState.deadlineDate}
 	  type="date" 
 	  name="calendar" 
 	  min="2018-04-18"
