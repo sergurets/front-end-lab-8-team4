@@ -21,7 +21,6 @@ class WorkMap extends React.Component{
 			jobs.map(item =>(
 					<Marker key={Number(`${item.id}`)} position={{ lat: Number(`${item.lat}`), lng: Number(`${item.lng}`) }}
 						onClick= {(e) => {
-							console.log(e.latLng.lng())
 							window.location.href =`/jobInfo/#${item.id}`;
 						}}>
 						</Marker>
@@ -60,4 +59,6 @@ const mapDispatchToProps = (dispatch) => {
 		}
 	}
 }
+
  export default connect(mapStateToProps,mapDispatchToProps)(WorkMap)
+
