@@ -19,15 +19,15 @@ class WorkMap extends React.Component{
 		return(
 			jobs?
 			jobs.map(item =>(
-					<Marker position={{ lat: Number(`${item.lat}`), lng: Number(`${item.lng}`) }}
-						onClick= {this.handleMarkerClick}/>
+					<Marker key={Number(`${item.id}`)} position={{ lat: Number(`${item.lat}`), lng: Number(`${item.lng}`) }}
+						onClick= {(e) => {
+							console.log(e.latLng.lng())
+							window.location.href =`/jobInfo/#${item.id}`;
+						}}>
+						</Marker>
 				)): null
 		);
 	}
-	handleMarkerClick = (props, marker, e) => {
-		console.log(e);
-  	}
-
    render(){
    const WorksMap = withGoogleMap(props => (
       <GoogleMap
