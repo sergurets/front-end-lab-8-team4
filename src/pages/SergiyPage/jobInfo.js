@@ -4,6 +4,8 @@ import { jobList } from '../../actions';
 import { deleteJob} from '../../actions';
 import './jobInfo.css';
 import * as firebase from 'firebase';
+import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
+import Map from './Map/map.js';
 
 function a(id){
 	return `/editJob#${id}`;
@@ -75,7 +77,7 @@ class JobInfo extends React.Component{
 					</div>
 			    </div>
             </div>
-			
+			<Map name={job}/>
 								{renderButton(job.user, job.id, job.databaseId, job)}
 			
         </div>)

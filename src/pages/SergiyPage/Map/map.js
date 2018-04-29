@@ -7,30 +7,29 @@ import { jobList } from '../../../actions';
 import { Link } from "react-router-dom";
 
 class WorkMap extends React.Component{
+	
 
 	componentWillMount(){
+		console.log(this.props.name)
 		this.props.getJobs()
 	}
-	renderWorksOnMap = (jobList) =>{
-		let jobs = [];
-		for(var key in jobList){
-			jobs.push(jobList[key]);
-		}
+	renderWorksOnMap = () =>{
+
 		return(
-			jobs?
-			jobs.map(item =>(
-					<Marker key={Number(`${item.id}`)} position={{ lat: Number(`${item.lat}`), lng: Number(`${item.lng}`) }}
-						onClick= {(e) => {
-							window.location.href =`/jobInfo/#${item.id}`;
-						}}>
-						</Marker>
-				)): null
+
+					<Marker position={{ lat: Number(`${this.props.name.lat}`), lng: Number(`${this.props.name.lng}`) }}/>
+
 		);
 	}
+	handleMarkerClick = (props, marker, e) => {
+		console.log(e);
+  	}
+
    render(){
+this.props.name
    const WorksMap = withGoogleMap(props => (
       <GoogleMap
-        defaultCenter = { { lat: 49.861684, lng: 24.063663 } }
+        defaultCenter = { { lat: this.props.name.lat, lng: this.props.name.lng } }
         defaultZoom = { 12 }
       >
       {this.renderWorksOnMap(this.props.data.jobList)}
@@ -38,6 +37,7 @@ class WorkMap extends React.Component{
    ));
    return(
       <div >
+	
         <WorksMap
           containerElement={ <div id = "work-map"/> }
           mapElement={ <div style={{ height: `100%` }} /> }
@@ -59,6 +59,4 @@ const mapDispatchToProps = (dispatch) => {
 		}
 	}
 }
-
- export default connect(mapStateToProps,mapDispatchToProps)(WorkMap)
-
+ export default connect(mapStateToProps,mapDispatchToProps)(WorkMap) 

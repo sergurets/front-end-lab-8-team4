@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import  fireb  from '../../firebase.js';
 import './Registration.css';
 
-
 class App extends Component{
   constructor(props){
     super(props);
@@ -73,7 +72,7 @@ class App extends Component{
         placeholder="Enter name"
         name="name"
         ref="name"
-        className="regform__input regform__name"
+        className="regform_name"
         value={this.state.name}
         onChange={this.handleChange}
         required
@@ -82,7 +81,7 @@ class App extends Component{
         placeholder="Enter surname"
         name="surname"
         ref="surname"
-        className="regform__input regform__surname"
+        className="regform_surname"
         value={this.state.surname}
         onChange={this.handleChange}
         required
@@ -91,7 +90,7 @@ class App extends Component{
         placeholder="Enter password"
         name="password"
         ref="pass"
-        className="regform__input"
+        className="regform_pass"
         value={this.state.password}
         onChange={this.handleChange}
         required
@@ -100,7 +99,7 @@ class App extends Component{
         placeholder="Enter city"
         name="city"
         ref="city"
-        className="regform__input"
+        className="regform_city"
         value={this.state.city}
         onChange={this.handleChange}
         required
@@ -109,19 +108,18 @@ class App extends Component{
         placeholder="E-mail"
         name="email"
         ref="email"
-        className="regform__input"
+        className="regform_email"
         value={this.state.email}
         onChange={this.handleChange}
         required
       /><br/>
-      <label htmlFor="file" className="regform__label">Upload Image</label>
+      <label htmlFor="file" >Upload Image</label>
       <input type="file" onChange={this.getFile} id="file" name="photo" multiple accept="image/*,image/jpeg"/><br/>
-      <button className="regform--send">Send</button>
+      <button className="regform_send">Send</button>
       </form>
       </div>
     );
   }
 }
-
 
 export default App;

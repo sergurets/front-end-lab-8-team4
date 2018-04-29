@@ -39,6 +39,8 @@ export const editJob = (job, key) => {
   console.log('yyyete', job, key);
   firebase.database().ref(`jobList/${key}`).update({
     "city": job.city,
+	"lat": job.lat,
+	"lng": job.lng,
     "deadlineDate": job.deadlineDate,
     "duration": job.duration,
     "info": job.info,

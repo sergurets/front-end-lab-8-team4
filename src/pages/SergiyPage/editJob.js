@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { jobList, editJob } from '../../actions';
 import './addjob.css';
+import Autocomplete from 'react-google-autocomplete';
 
 function addLink(id){
 	if (id!=undefined){var link=document.createElement('p');
@@ -9,14 +10,13 @@ function addLink(id){
 	document.getElementById('editJob').appendChild(link);}
 };
 var ID;
-
+var Coordinates = {};
 class JobEdit extends React.Component{
 	defaultObj={}
 	componentWillMount(){
         this.props.getJobs();
         this.handleTitleChange = this.handleTitleChange.bind(this);
 		this.infohandleInfoChange = this.infohandleInfoChange.bind(this);
-		this.handleCityChange = this.handleCityChange.bind(this);
         this.handleSalaryChange = this.handleSalaryChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleDurationChange = this.handleDurationChange.bind(this);
@@ -45,7 +45,7 @@ class JobEdit extends React.Component{
 		event.preventDefault();
 
 		console.log(this.state,ID);
-		var res=Object.assign(this.defaultObj, this.state );
+		var res=Object.assign(this.defaultObj, this.state, Coordinates );
 
 		editJob(res,ID);
 		addLink(this.props.location.hash.slice(1));
@@ -79,9 +79,7 @@ class JobEdit extends React.Component{
 		this.setState({info: event.target.value});
 	  }
 	
-	  handleCityChange(event){
-		this.setState({city: event.target.value});
-	  }
+
 
 	renderList = (jobList) =>{
 			
@@ -106,7 +104,7 @@ class JobEdit extends React.Component{
          		 
 //		 console.log(jobId);
 //		 console.log('job',job);
-	      if (job.id) {//console.log('length');  
+	      if (job.id) {  
 		  	return  (
 	<div id="editJob">
 
@@ -133,14 +131,21 @@ class JobEdit extends React.Component{
         onChange={this.infohandleInfoChange}
         required
       /><br/><label className='formLabel'>Location</label>
-      <input type="text"
-        placeholder="Enter city"
-        id="city"
-        className="form input"
-        defaultValue={defaultState.city}
-        onChange={this.handleCityChange}
-        required
-      /><br/>
+           <Autocomplete
+				style={{width: '90%'}}
+				onPlaceSelected={(place) => {
+				  Coordinates.lng = place.geometry.viewport.b.b;
+				  Coordinates.lat = place.geometry.viewport.f.b;
+				  Coordinates.city = place.address_components[0].long_name;
+				  console.log(Coordinates,place)
+				  /*this.state.lng = place.geometry.viewport.b.b;
+				  this.state.lat = place.geometry.viewport.f.b;*/
+				  //this.state.city = place.address_components[0].long_name;
+				  //console.log(place.address_components[0].long_name)
+				}}
+				types={['(regions)']}
+				componentRestrictions={{country: "ua"}}
+                /><br/>
 	  <label className='formLabel'>Salary</label>
 	  <input type="number"
 	    min="0"
@@ -173,11 +178,7 @@ class JobEdit extends React.Component{
       <label htmlFor="file">Upload Image</label>
       <input type="file" id="file" name="photo" multiple accept="image/*,image/jpeg" onChange={this.handleFileUpload} defaultValue={defaultState.file}/><br/>
       <button className="button">Save</button>
-      </form>
-
-
-
-			
+      </form>	
         </div>)
  
 		  }
@@ -207,5 +208,5 @@ const mapDispatchToProps = (dispatch) => {
 		}
 	}
 }
-
+console.log(this.state)
 export default connect(mapStateToProps,mapDispatchToProps)(JobEdit);
