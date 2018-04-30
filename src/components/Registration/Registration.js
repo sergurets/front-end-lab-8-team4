@@ -28,21 +28,23 @@ class App extends Component{
 	    surname: this.state.surname
   	}
   	let key = fireb.firebaseTrueUsers.push(data).key;
-		let filename = this.state.image.name;
-  	let storageRef = fireb.firebase.storage().ref('/userImages/' + filename);
-  	let upload = storageRef.put(this.state.image);
-  	upload.on('state_changed', function(snapshot){
+    if(this.state.image){ 
+  		let filename = this.state.image.name;
+    	let storageRef = fireb.firebase.storage().ref('/userImages/' + filename);
 
-  	}, function(error){
-  		console.log(error);
-  	}, function(){
-  		let downloadURL = upload.snapshot.downloadURL;
-  		let updates = {};
-  		data.url = downloadURL;
-  		updates['/usersT/'+key] = data;
-  		fireb.firebaseDB.ref().update(updates);
-  	});
+    	let upload = storageRef.put(this.state.image);
+    	upload.on('state_changed', function(snapshot){
 
+    	}, function(error){
+    		console.log(error);
+    	}, function(){
+    		let downloadURL = upload.snapshot.downloadURL;
+    		let updates = {};
+    		data.url = downloadURL;
+    		updates['/usersT/'+key] = data;
+    		fireb.firebaseDB.ref().update(updates);
+    	});
+    }
   	fireb.firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
   		.then(res => {
   			console.log(res);
