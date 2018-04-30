@@ -49,6 +49,12 @@ export const editJob = (job, key) => {
   })
 }
 
+export const addExecutor = (mail, key) => {
+  console.log('yyyete', mail, key);
+  firebase.database().ref(`jobList/${key}`).update({
+    "executor": mail
+  })
+}
 
 export const deleteJob = (job, key) => {
   firebaseJobsArchive.push(job);

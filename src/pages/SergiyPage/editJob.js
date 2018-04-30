@@ -134,9 +134,9 @@ class JobEdit extends React.Component{
            <Autocomplete
 				style={{width: '90%'}}
 				onPlaceSelected={(place) => {
-				  Coordinates.lng = place.geometry.viewport.b.b;
-				  Coordinates.lat = place.geometry.viewport.f.b;
-				  Coordinates.city = place.address_components[0].long_name;
+				  Coordinates.lng = (place.geometry.viewport.b.f+place.geometry.viewport.b.b)/2;
+				  Coordinates.lat = (place.geometry.viewport.f.f+place.geometry.viewport.f.b)/2;
+				  Coordinates.city = place.formatted_address;
 				  console.log(Coordinates,place)
 				  /*this.state.lng = place.geometry.viewport.b.b;
 				  this.state.lat = place.geometry.viewport.f.b;*/
