@@ -12,9 +12,12 @@ function a(id){
 };
 
 function renderButton(email, id, databaseId, job){
+	
 	var user = firebase.auth().currentUser;
-	console.log('autor:',email, 'active user:', user.email);
-	if (user.email==job.executor) {return  (<div><button onClick={() => addExecutor('', databaseId)}>Сancel execution</button></div> ); }
+	
+	if (user)
+	{	console.log('autor:',email, 'active user:', user.email);
+		if (user.email==job.executor) {return  (<div><button onClick={() => addExecutor('', databaseId)}>Сancel execution</button></div> ); }
 	else if (user.email===email) { 
 	      return (
 		  <div><a className='ButtonLink' href={a(id)}>Edit</a>
@@ -23,7 +26,10 @@ function renderButton(email, id, databaseId, job){
 		else if (user.email!==email){
 			return  (<div><button onClick={() => addExecutor(user.email, databaseId)}>Accept Job</button></div> ); 
 		}
-	  else {return null}
+	}
+	  else return  (<div><p>You must login to accept job</p></div> ); 
+
+
 }
 
 class JobInfo extends React.Component{
