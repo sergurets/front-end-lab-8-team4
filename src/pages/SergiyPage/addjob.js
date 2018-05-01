@@ -7,14 +7,14 @@ import Autocomplete from 'react-google-autocomplete';
 
 
 import Addform from './addForm.js'
-//import JobList from './JobList/JobList.js'
+// import JobList from './JobList/JobList.js'
 
 
-class AddJob extends React.Component{
-	render(){
-		return(
+class AddJob extends React.Component {
+	render() {
+		return (
 			<div>
-		 		<Addform/>
+				<Addform />
 
 			</div>
 		);
