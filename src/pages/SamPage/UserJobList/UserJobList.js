@@ -5,15 +5,8 @@ import { Link } from "react-router-dom";
 
 class UserJobList extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            email: this.props.email
-        }
-    }
-
-    componentWillMount() {
-        this.props.getJobs()
+    componentDidMount() {
+        this.props.getJobs();
     }
 
     renderList = (jobList) => {
@@ -21,6 +14,7 @@ class UserJobList extends React.Component {
         for (var key in jobList) {
             jobs.push(jobList[key]);
         }
+
         return (
             jobs ?
                 jobs.map(item => (
@@ -33,10 +27,10 @@ class UserJobList extends React.Component {
     }
 
     render() {
-        console.log(this.state.email);
+        console.log(this.props.data)
         return (
             <div id="job-container">
-                <h1> Jobs</h1>
+                <h1>Jobs</h1>
                 <ol className="job-list">
                     {this.renderList(this.props.data)}
                 </ol>

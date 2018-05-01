@@ -1,14 +1,14 @@
 import React from 'react';
 
 import UserInfo from './UserInfo/UserInfo';
-// import UserJobList from './UserJobList/UserJobList';
+import UserJobList from './UserJobList/UserJobList';
 
 class UserProfile extends React.Component {
     render() {
         return (
             <div>
                 <UserInfo />
-                {/* <UserJobList /> */}
+                <UserJobList />
             </div>
         );
     }
