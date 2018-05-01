@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import  fireb  from '../../firebase.js';
 import './Registration.css';
+import * as firebase from 'firebase';
 
 
 class App extends Component{
@@ -27,7 +28,11 @@ class App extends Component{
 	    city: this.state.city,
 	    surname: this.state.surname
   	}
-  	let key = fireb.firebaseTrueUsers.push(data).key;
+    let key = fireb.firebaseTrueUsers.push(data).key;
+    var Ref = firebase.database().ref(`usersT/${key}`);
+    Ref.update({
+      "databaseId": key
+    }); 
     if(this.state.image){ 
   		let filename = this.state.image.name;
     	let storageRef = fireb.firebase.storage().ref('/userImages/' + filename);
