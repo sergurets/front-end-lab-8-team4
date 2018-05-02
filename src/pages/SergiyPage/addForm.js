@@ -7,6 +7,7 @@ import { firebaseJobList } from '../../firebase';
 import * as firebase from 'firebase';
 //import Map from './Map/map.js';
 import Autocomplete from 'react-google-autocomplete';
+import {  BrowserRouter as Router , Link, Route, Redirect, withRouter} from 'react-router-dom';
 
 /*
 function addLink(id){
@@ -183,8 +184,8 @@ class Addjob extends Component {
 		}
 		else return (
 			<div>
-				You need to login
-	</div>
+				<Redirect to={'/login'}/>
+	    </div>
 		)
 	}
 }

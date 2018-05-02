@@ -21,45 +21,69 @@ class App extends Component{
 
   handleSubmit(event){
     event.preventDefault();
-  	let data = {
-  		name: this.state.name,
-	    email: this.state.email,
-	    password: this.state.password,
-	    city: this.state.city,
-	    surname: this.state.surname
-  	}
-    let key = fireb.firebaseTrueUsers.push(data).key;
-    var Ref = firebase.database().ref(`usersT/${key}`);
-    Ref.update({
-      "databaseId": key
-    }); 
-    if(this.state.image){ 
-  		let filename = this.state.image.name;
-    	let storageRef = fireb.firebase.storage().ref('/userImages/' + filename);
-
-    	let upload = storageRef.put(this.state.image);
-    	upload.on('state_changed', function(snapshot){
-
-    	}, function(error){
-    		console.log(error);
-    	}, function(){
-    		let downloadURL = upload.snapshot.downloadURL;
-    		let updates = {};
-    		data.url = downloadURL;
-    		updates['/usersT/'+key] = data;
-    		fireb.firebaseDB.ref().update(updates);
-    	});
+    let data = {
+      name: this.state.name,
+      email: this.state.email.toLowerCase(),
+      password: this.state.password,
+      city: this.state.city,
+      surname: this.state.surname,
     }
-  	fireb.firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
-  		.then(res => {
-  			console.log(res);
-  			alert('Successfully registrated');
-  		})
-  		.catch(error => {
-  			console.log(error);
-  		})
-  	for (var ref in this.refs) {
-  		this.refs[ref].value = "";
+    if(this.state.image){
+      data.image = this.state.image;
+    }
+    fireb.firebaseTrueUsers.orderByChild('email').equalTo(data.email).once("value", function(snapshot) {
+      console.log(snapshot.val());
+       if(snapshot.val()){
+        //alert('email is already used'); //used email
+      } else {
+       // alert('everything is okay');
+        let key = fireb.firebaseTrueUsers.push(data).key;
+        var Ref = firebase.database().ref(`usersT/${key}`);
+        Ref.update({
+          "databaseId": key
+        });
+
+        if(data.image){ 
+          let filename = data.image.name;
+          console.log(filename)
+          let storageRef = fireb.firebase.storage().ref('/userImages/' + filename);
+
+          let upload = storageRef.put(data.image);
+          upload.on('state_changed', function(snapshot){
+
+          }, function(error){
+            console.log(error);
+          }, function(){
+            let downloadURL = upload.snapshot.downloadURL;
+            let updates = {};
+            data.url = downloadURL;
+            updates['/usersT/'+key] = data;
+            fireb.firebaseDB.ref().update(updates);
+          });
+        } else {
+          let updates = {};
+            data.url = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png";
+            updates['/usersT/'+key] = data;
+            fireb.firebaseDB.ref().update(updates);
+        }
+
+
+        fireb.firebase.auth().createUserWithEmailAndPassword(data.email, data.password)
+          .then(res => {
+            console.log(res);
+            alert('Successfully registrated');
+          })
+          .catch(error => {
+            console.log(error);
+          });
+        }
+    });
+
+    for (let ref in this.refs) {
+      this.refs[ref].value = "";
+    }
+    for (let key in this.state){
+      this.state[key] = "";
     }
   }
 
@@ -68,8 +92,8 @@ class App extends Component{
   }
 
   getFile(event){
-  	var selectedFile = event.target.files[0];
-  	this.state.image = selectedFile;
+    var selectedFile = event.target.files[0];
+    this.setState({image: selectedFile});
   }
 
   render(){
