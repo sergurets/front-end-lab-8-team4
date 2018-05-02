@@ -18,19 +18,15 @@ class Login extends Component{
   	} 
   	handleSubmit(event){
 	    event.preventDefault();
-	    console.log("Submited", this.state);
 	    fireb.firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then(res => {
-  			console.log(res); 
   			document.getElementsByClassName("regform--logout")[0].style.visibility = "visible";
-  			//document.getElementsByClassName('header__nav__item')[3].style.display = 'none';
   			document.getElementsByClassName("regform--send")[0].style.visibility = "hidden";
-  			alert('Successfully logged');
   			window.history.back();
   		}).catch(function(error) {
 	    	 alert(error);
 		});
-		for (var ref in this.refs) {
-  			this.refs[ref].value = "";
+	for (let ref in this.refs) {
+  	      this.refs[ref].value = "";
     	}
     	for (let key in this.state){
 	      this.state[key] = "";
@@ -43,7 +39,6 @@ class Login extends Component{
 	singOut(){
 		fireb.firebase.auth().signOut().then(function() {
 	  		alert('logged out');
-	  		//document.getElementsByClassName('header__nav__item')[3].style.visibility = 'visible';
 	  		document.getElementsByClassName("regform--logout")[0].style.visibility = "hidden";
 	  		document.getElementsByClassName("regform--send")[0].style.visibility = "visible";
 
@@ -52,9 +47,7 @@ class Login extends Component{
 		});
 	}
 	testIfLogin(){
-		var user = fireb.firebase.auth().currentUser;
-		console.log('user', user);
-		//alert('1');
+		let user = fireb.firebase.auth().currentUser;
 		if(user){
 			document.getElementsByClassName("regform--logout")[0].style.visibility = "visible";
 			document.getElementsByClassName("regform--send")[0].style.visibility = "hidden";
