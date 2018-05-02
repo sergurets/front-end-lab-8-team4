@@ -31,11 +31,12 @@ class App extends Component{
     if(this.state.image){
       data.image = this.state.image;
     }
-
     fireb.firebaseTrueUsers.orderByChild('email').equalTo(data.email).once("value", function(snapshot) {
       console.log(snapshot.val());
-       if(snapshot.val()){alert('email is already used')} else {
-        alert('everything is okay');
+       if(snapshot.val()){
+        //alert('email is already used'); //used email
+      } else {
+       // alert('everything is okay');
         let key = fireb.firebaseTrueUsers.push(data).key;
         var Ref = firebase.database().ref(`usersT/${key}`);
         Ref.update({
@@ -76,9 +77,13 @@ class App extends Component{
           });
         }
     });
-    for (var ref in this.refs) {
+
+    for (let ref in this.refs) {
       this.refs[ref].value = "";
-    } 
+    }
+    for (let key in this.state){
+      this.state[key] = "";
+    }
   }
 
   handleChange(event){
