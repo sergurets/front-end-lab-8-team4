@@ -1,3 +1,8 @@
+.regform__register{
+	color: #fff;
+	text-decoration: none;
+}
+
 .regform{
   background: #24303c;
   margin: 2% auto;
@@ -5,7 +10,7 @@
 	padding: 1% 2%;
 }
 
-input{
+.regform__input{
   background: #24303c;
   border: 1px solid #86959a;
   padding: 1.5%;
@@ -27,20 +32,7 @@ input{
   display: none;
 }
 
-label{
-  color: #fff;
-  padding: 2% 9%;
-  background: #1a87b1;
-  margin: 1% 25%;
-  text-align: center;
-  text-transform: uppercase;
-  font-size: 12px;
-  display: block;
-  width: 35%;
-  height: 10%;
-}
-
-.regform_send{
+.regform--send{
   background: #1ab188;
   color: #fff;
   border: none;
@@ -48,5 +40,21 @@ label{
   height: 35px;
   width: 92%;
   padding: 2% 8%;
-  margin: 0 4%;
+  margin: 2% 4%;
+}
+
+.regform--logout{
+  background: #1ab188;
+  color: #fff;
+  border: none;
+  text-transform: uppercase;
+  height: 35px;
+  width: 92%;
+  padding: 2% 8%;
+  margin: 2% 4%;
+  visibility: hidden;
+}
+
+.regform__register{
+  text-align: center;
 }

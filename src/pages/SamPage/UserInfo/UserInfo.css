@@ -1,0 +1,27 @@
+.user-info {
+    padding: 10px;
+}
+
+.user-info ul {
+    list-style: none;
+}
+
+.user-info__heading {
+    text-align: center;
+}
+
+.user-info__list {
+    padding: 5px;
+}
+
+.user-info__list__item {
+    padding: 5px;
+}
+
+.user-info__list__item:nth-child(2n+1) {
+    background: rgb(235, 235, 235);
+}
+
+.user-info__list__item span {
+    float: right;
+}
