@@ -8,12 +8,13 @@ import * as firebase from 'firebase';
 //import Map from './Map/map.js';
 import Autocomplete from 'react-google-autocomplete';
 
-
+import {  BrowserRouter as Router , Link, Route, Redirect, withRouter} from 'react-router-dom';
+/*
 function addLink(id){
 	if (id!=undefined){var link=document.createElement('p');
 	link.innerHTML = `<a href='jobInfo#${id}'>link to job</a>`;
 	document.getElementById('addJobForm').appendChild(link);}
-};
+};*/
 function TodayDate(){var defaultDate = new Date; 
 	if (defaultDate.getMonth() <=8) {var month = '0' + (defaultDate.getMonth()+1)}
 	else {var month = (defaultDate.getMonth()+1)}
@@ -44,8 +45,9 @@ class Addjob extends Component {
 	handleSubmit(event){
 		event.preventDefault();
 		this.state.id= Date.now().toString();
-		addLink(this.state.id);
+		/*addLink(this.state.id);*/
 		this.props.onAddJob(this.state);
+		window.location.href =`/jobInfo/#${this.state.id}`;
  		
 	  }
 	  
@@ -114,8 +116,8 @@ class Addjob extends Component {
 				  this.state.lng = (place.geometry.viewport.b.f+place.geometry.viewport.b.b)/2;
 				  console.log(this.state.lng);
 				  this.state.lat = (place.geometry.viewport.f.f+place.geometry.viewport.f.b)/2;
-				  this.state.city = place.address_components[0].long_name;
-				  console.log(this.state,place.geometry.viewport)
+				  this.state.city = place.formatted_address;
+					console.log(this.state,place.geometry.viewport)
 				}}
 				types={['(regions)']}
 				componentRestrictions={{country: "ua"}}
@@ -160,8 +162,9 @@ class Addjob extends Component {
 	}
 	else return (
 	<div>
-	You need to login
+	<Redirect to={'/login'}/>
 	</div>
+	
 	)
   }
 }
