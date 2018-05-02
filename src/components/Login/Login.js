@@ -32,7 +32,10 @@ class Login extends Component{
 		for (var ref in this.refs) {
   			this.refs[ref].value = "";
     	}
-    	//this.context.router.push('/Page');
+    	for (let key in this.state){
+	      this.state[key] = "";
+	    }
+
   	}
   	handleChange(event){
    		this.setState({[event.target.name]: event.target.value});
