@@ -32,20 +32,16 @@ class App extends Component{
       data.image = this.state.image;
     }
     fireb.firebaseTrueUsers.orderByChild('email').equalTo(data.email).once("value", function(snapshot) {
-      console.log(snapshot.val());
        if(snapshot.val()){
-        //alert('email is already used'); //used email
       } else {
-       // alert('everything is okay');
         let key = fireb.firebaseTrueUsers.push(data).key;
-        var Ref = firebase.database().ref(`usersT/${key}`);
+        let Ref = firebase.database().ref(`usersT/${key}`);
         Ref.update({
           "databaseId": key
         });
 
         if(data.image){ 
           let filename = data.image.name;
-          console.log(filename)
           let storageRef = fireb.firebase.storage().ref('/userImages/' + filename);
 
           let upload = storageRef.put(data.image);
@@ -69,12 +65,8 @@ class App extends Component{
 
 
         fireb.firebase.auth().createUserWithEmailAndPassword(data.email, data.password)
-          .then(res => {
-            console.log(res);
-            alert('Successfully registrated');
-          })
           .catch(error => {
-            console.log(error);
+            alert(error);
           });
         }
     });
