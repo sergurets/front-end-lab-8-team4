@@ -29,6 +29,16 @@ export function userList() {
 		});
 	};
 }
+export function getUser(mail) {
+	return dispatch => {
+		firebaseTrueUsers.orderByChild('email').equalTo(mail).on('value', snapshot => {
+			dispatch({
+				type: 'FETCH_USER_LIST',
+				payload: snapshot.val()
+			});
+		});
+	};
+}
 
 export const saveJob = (job) => {
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import './addjob.css';
-import { saveJob } from '../../actions';
+import { saveJob, getUser } from '../../actions';
 import { firebaseJobList } from '../../firebase';
 import * as firebase from 'firebase';
 //import Map from './Map/map.js';
@@ -18,7 +18,10 @@ function TodayDate() {
 	var defaultDate = new Date;
 	if (defaultDate.getMonth() <= 8) { var month = '0' + (defaultDate.getMonth() + 1) }
 	else { var month = (defaultDate.getMonth() + 1) }
-	return `${defaultDate.getFullYear()}-${month}-${defaultDate.getDate()}`;
+	if (defaultDate.getDate() <= 9) { var date = '0' + defaultDate.getDate() }
+	else { var date = defaultDate.getDate() }
+
+	return `${defaultDate.getFullYear()}-${month}-${date}`;
 }
 
 var defDate = TodayDate();
@@ -32,7 +35,8 @@ class Addjob extends Component {
 			info: "",
 			salary: "",
 			duration: "up to 2 hours",
-			deadlineDate: defDate
+			deadlineDate: defDate,
+			jobStatus: 'new'
 		};
 		this.handleTitleChange = this.handleTitleChange.bind(this);
 		this.infohandleInfoChange = this.infohandleInfoChange.bind(this);
@@ -42,14 +46,29 @@ class Addjob extends Component {
 		this.handleDateChange = this.handleDateChange.bind(this);
 
 	}
+	addjobUser (user, job){
+		console.log('add_to_user', user, job);
+		firebase.database().ref(`usersT/${user}/createdJob`).push(job)
+		}
 
 	handleSubmit(event) {
 		event.preventDefault();
 		this.state.id = Date.now().toString();
 		/*addLink(this.state.id);*/
+		var userId = Object.keys(this.props.data.users)[0];
+		this.state.userID=userId;
+		this.state.userName=this.props.data.users[userId].name;
+		console.log(userId, this.state.userNamee);
+		var JobInfo = {
+			 id: this.state.id,
+			 title: this.state.title,
+			 executor: null,
+			 executorID: null,
+			 jobStatus: 'new',
+		}
+		this.addjobUser(userId, JobInfo )
 		this.props.onAddJob(this.state);
 		window.location.href = `/jobInfo/#${this.state.id}`;
-
 	}
 
 	handleDateChange(event) {
@@ -77,14 +96,20 @@ class Addjob extends Component {
 	infohandleInfoChange(event) {
 		this.setState({ info: event.target.value });
 	}
-
-
-
-
-	render() {
-
+	componentWillMount(){
 		var user = firebase.auth().currentUser;
+		let email = '';
 		if (user) {
+			email = user.email;
+		}
+		this.props.getUser(email);		
+	}
+	render() {	
+		
+		var user = firebase.auth().currentUser;
+		console.log('active_user', user )
+		if (user) {
+			console.log('active_user', user )
 			this.state.user = user.email;
 			return (
 				<div id='addJobForm'>
@@ -110,12 +135,7 @@ class Addjob extends Component {
 						<Autocomplete
 							style={{ width: '90%' }}
 							onPlaceSelected={(place) => {
-								/*Coordinates.lng = place.geometry.viewport.b.b;
-								Coordinates.lat = place.geometry.viewport.f.b;
-								Coordinates.city = place.address_components[0].long_name;
-								console.log(Coordinates,place)*/
 								this.state.lng = (place.geometry.viewport.b.f + place.geometry.viewport.b.b) / 2;
-								console.log(this.state.lng);
 								this.state.lat = (place.geometry.viewport.f.f + place.geometry.viewport.f.b) / 2;
 								this.state.city = place.formatted_address;
 								console.log(this.state, place.geometry.viewport)
@@ -172,13 +192,17 @@ class Addjob extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		saveJob: state.saveJob
+		saveJob: state.saveJob,
+		data: state.userList
 	}
 }
 const mapDispatchToProps = (dispatch) => {
 	return {
 		onAddJob: (job) => {
 			dispatch(saveJob(job))
+		},
+		getUser: (mail) =>{
+			dispatch(getUser(mail))
 		}
 	}
 }
