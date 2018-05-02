@@ -80,7 +80,7 @@ class JobInfo extends React.Component{
 						 </ul>
 					</div>
 					<div className="Contacts">
-						  <h3>{job.user}</h3>
+						  <h3>{job.userName}</h3>
 						  <p>+380670000000</p>
 					</div>
 			    </div>
