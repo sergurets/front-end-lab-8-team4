@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import  fireb  from '../../firebase.js';
-import { Link, Route, Redirect, withRouter, BrowserRouter as Router } from 'react-router-dom'
+import { Link, Route, Redirect, withRouter, BrowserRouter as Router } from 'react-router-dom';
 import './Login.css';
 
 class Login extends Component{
