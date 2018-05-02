@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { jobList } from '../../actions';
-import { deleteJob} from '../../actions';
+import { jobList, addExecutor, deleteJob  } from '../../actions';
 import './jobInfo.css';
 import * as firebase from 'firebase';
 import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
@@ -13,16 +12,24 @@ function a(id){
 };
 
 function renderButton(email, id, databaseId, job){
+	
 	var user = firebase.auth().currentUser;
-	if (user) {if (user.email==email) { 
-		  console.log(user);
+	
+	if (user)
+	{	console.log('autor:',email, 'active user:', user.email);
+		if (user.email==job.executor) {return  (<div><button onClick={() => addExecutor('', databaseId)}>Сancel execution</button></div> ); }
+	else if (user.email===email) { 
 	      return (
 		  <div><a className='ButtonLink' href={a(id)}>Edit</a>
-		  <button onClick={() => deleteJob(job, databaseId)}>Delete</button></div> );
-		  }
+		  <button onClick={() => deleteJob(job, databaseId)}>Delete</button></div> ); 
 		}
-	
-	  else {return null}
+		else if (user.email!==email){
+			return  (<div><button onClick={() => addExecutor(user.email, databaseId)}>Accept Job</button></div> ); 
+		}
+	}
+	  else return  (<div><p>You must login to accept job</p></div> ); 
+
+
 }
 
 class JobInfo extends React.Component{
@@ -42,6 +49,7 @@ class JobInfo extends React.Component{
 		console.log(obj)
 		return obj;
 	}
+
 	renderList = (jobList) =>{
 
 		if (jobList)
@@ -52,7 +60,7 @@ class JobInfo extends React.Component{
 		 var job=this.find(obj, jobId);
 
 		 console.log(jobId);
-		 console.log('job',job);
+	//	 console.log('job',job);
 	      if (job.id) {console.log('length');
 		  	return  (
 		<div className="App">
@@ -72,7 +80,7 @@ class JobInfo extends React.Component{
 						 </ul>
 					</div>
 					<div className="Contacts">
-						  <h3>{job.user}</h3>
+						  <h3>{job.userName}</h3>
 						  <p>+380670000000</p>
 					</div>
 			    </div>

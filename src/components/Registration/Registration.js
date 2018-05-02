@@ -67,6 +67,7 @@ class App extends Component{
             fireb.firebaseDB.ref().update(updates);
         }
 
+
         fireb.firebase.auth().createUserWithEmailAndPassword(data.email, data.password)
           .then(res => {
             console.log(res);
