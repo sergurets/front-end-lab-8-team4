@@ -120,7 +120,7 @@ class Addjob extends Component {
 								this.state.city = place.formatted_address;
 								console.log(this.state, place.geometry.viewport)
 							}}
-							types={['(regions)']}
+							types={['geocode']}
 							componentRestrictions={{ country: "ua" }}
 						/>
 						<br />
