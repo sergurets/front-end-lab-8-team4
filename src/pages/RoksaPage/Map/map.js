@@ -21,7 +21,7 @@ class WorkMap extends React.Component{
 			jobs.map(item =>(
 					<Marker key={Number(`${item.id}`)} position={{ lat: Number(`${item.lat}`), lng: Number(`${item.lng}`) }}
 						onClick= {(e) => {
-							window.location.href =`/jobInfo/#${item.id}`;
+							window.location.href =`/jobInfo/#${item.id}`;// redirect to
 						}}>
 						</Marker>
 				)): null
