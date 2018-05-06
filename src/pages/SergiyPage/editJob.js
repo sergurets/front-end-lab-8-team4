@@ -52,7 +52,6 @@ class JobEdit extends React.Component{
 	
 	  handleDurationChange(event){
 		this.setState({duration: event.target.value});
-		console.log(event.target.value)
 	  }
 
 
