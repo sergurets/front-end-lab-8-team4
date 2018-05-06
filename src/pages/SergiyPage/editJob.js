@@ -1,16 +1,12 @@
 import React from 'react';
+import * as firebase from 'firebase';
 import { connect } from 'react-redux';
-import { jobList, editJob } from '../../actions';
+import { jobList, editJob, editJobUser } from '../../actions';
 import './addjob.css';
 import Autocomplete from 'react-google-autocomplete';
 
-function addLink(id){
-	if (id!=undefined){var link=document.createElement('p');
-	link.innerHTML = `<a  href='jobInfo#${id}'>link to job</a>`;
-	document.getElementById('editJob').appendChild(link);}
-};
-var ID;
-var Coordinates = {};
+let ID;
+let Coordinates = {};
 class JobEdit extends React.Component{
 	defaultObj={}
 	componentWillMount(){
@@ -25,31 +21,24 @@ class JobEdit extends React.Component{
 	
 	find(object, id){
 		
-		var obj={};
-		for (var key in object){
-		//	console.log(key, object[key].id, id);
+		let obj={};
+		for (let key in object){
 			if (object[key].id===id){
 					obj= Object.assign({}, object[key] );
-					/*obj.databaseId=key;*/
 				 }
 			 }
 		this.defaultObj=Object.assign({}, obj );	 
-		console.log(this.defaultObj);	 
-	//	console.log(obj)
-		ID= obj.databaseId;
+		ID = obj.databaseId;
 		return obj;
     } 
     
     
     handleSubmit(event){
 		event.preventDefault();
-
-		console.log(this.state,ID);
-		var res=Object.assign(this.defaultObj, this.state, Coordinates );
-
+		let res=Object.assign(this.defaultObj, this.state, Coordinates );
 		editJob(res,ID);
-		addLink(this.props.location.hash.slice(1));
-
+		editJobUser(res);
+		window.location.href = `/jobInfo/#${res.id}`;
       		
 	  }
 	  
@@ -63,7 +52,6 @@ class JobEdit extends React.Component{
 	
 	  handleDurationChange(event){
 		this.setState({duration: event.target.value});
-		console.log(event.target.value)
 	  }
 
 
@@ -85,13 +73,11 @@ class JobEdit extends React.Component{
 			
 		if (jobList)
 		{ 
-	     var obj = Object.assign({}, jobList);
-		// console.log(obj);
-		 var jobId=this.props.location.hash.slice(1)+'';
-         var job=this.find(obj, jobId);	
-
-		  
-		  var defaultState = {
+	     let obj = Object.assign({}, jobList);
+		 let jobId=this.props.location.hash.slice(1)+'';
+         let job=this.find(obj, jobId);	
+ 
+		  let defaultState = {
             title: job.title,
             info: job.info,
             city: job.city,
@@ -99,12 +85,8 @@ class JobEdit extends React.Component{
             duration: job.duration ,
             deadlineDate: job.deadlineDate
           };
-		  
- //         console.log(this.state)
-         		 
-//		 console.log(jobId);
-//		 console.log('job',job);
-	      if (job.id) {  
+          let user = firebase.auth().currentUser;
+	      if (job.user === user.email) {  
 		  	return  (
 	<div id="editJob">
 
@@ -132,16 +114,12 @@ class JobEdit extends React.Component{
         required
       /><br/><label className='formLabel'>Location</label>
            <Autocomplete
-				style={{width: '90%'}}
+		   placeholder={defaultState.city}
+				style={{width: '80%'}}
 				onPlaceSelected={(place) => {
 				  Coordinates.lng = (place.geometry.viewport.b.f+place.geometry.viewport.b.b)/2;
 				  Coordinates.lat = (place.geometry.viewport.f.f+place.geometry.viewport.f.b)/2;
 				  Coordinates.city = place.formatted_address;
-				  console.log(Coordinates,place)
-				  /*this.state.lng = place.geometry.viewport.b.b;
-				  this.state.lat = place.geometry.viewport.f.b;*/
-				  //this.state.city = place.address_components[0].long_name;
-				  //console.log(place.address_components[0].long_name)
 				}}
 				types={['(regions)']}
 				componentRestrictions={{country: "ua"}}
@@ -208,5 +186,5 @@ const mapDispatchToProps = (dispatch) => {
 		}
 	}
 }
-console.log(this.state)
+
 export default connect(mapStateToProps,mapDispatchToProps)(JobEdit);

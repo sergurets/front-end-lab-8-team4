@@ -5,27 +5,22 @@ import './addjob.css';
 import { saveJob, getUser } from '../../actions';
 import { firebaseJobList } from '../../firebase';
 import * as firebase from 'firebase';
-//import Map from './Map/map.js';
 import Autocomplete from 'react-google-autocomplete';
 import {  BrowserRouter as Router , Link, Route, Redirect, withRouter} from 'react-router-dom';
 
-/*
-function addLink(id){
-	if (id!=undefined){var link=document.createElement('p');
-	link.innerHTML = `<a href='jobInfo#${id}'>link to job</a>`;
-	document.getElementById('addJobForm').appendChild(link);}
-};*/
+
 function TodayDate() {
-	var defaultDate = new Date;
-	if (defaultDate.getMonth() <= 8) { var month = '0' + (defaultDate.getMonth() + 1) }
-	else { var month = (defaultDate.getMonth() + 1) }
-	if (defaultDate.getDate() <= 9) { var date = '0' + defaultDate.getDate() }
-	else { var date = defaultDate.getDate() }
+	let month, date;
+	let defaultDate = new Date;
+	if (defaultDate.getMonth() <= 8) { month = '0' + (defaultDate.getMonth() + 1) }
+	else { month = (defaultDate.getMonth() + 1) }
+	if (defaultDate.getDate() <= 9) { date = '0' + defaultDate.getDate() }
+	else { date = defaultDate.getDate() }
 
 	return `${defaultDate.getFullYear()}-${month}-${date}`;
 }
 
-var defDate = TodayDate();
+let defDate = TodayDate();
 
 
 class Addjob extends Component {
@@ -48,19 +43,17 @@ class Addjob extends Component {
 
 	}
 	addjobUser (user, job){
-		console.log('add_to_user', user, job);
-		firebase.database().ref(`usersT/${user}/createdJob`).push(job)
+		let key = firebase.database().ref(`usersT/${user}/createdJob`).push(job).key
+		this.state.userJobKey = key
 		}
 
 	handleSubmit(event) {
 		event.preventDefault();
 		this.state.id = Date.now().toString();
-		/*addLink(this.state.id);*/
-		var userId = Object.keys(this.props.data.users)[0];
+		let userId = Object.keys(this.props.data.users)[0];
 		this.state.userID=userId;
 		this.state.userName=this.props.data.users[userId].name;
-		console.log(userId, this.state.userNamee);
-		var JobInfo = {
+		let JobInfo = {
 			 id: this.state.id,
 			 title: this.state.title,
 			 executor: null,
@@ -98,7 +91,7 @@ class Addjob extends Component {
 		this.setState({ info: event.target.value });
 	}
 	componentWillMount(){
-		var user = firebase.auth().currentUser;
+		let user = firebase.auth().currentUser;
 		let email = '';
 		if (user) {
 			email = user.email;
@@ -107,10 +100,8 @@ class Addjob extends Component {
 	}
 	render() {	
 		
-		var user = firebase.auth().currentUser;
-		console.log('active_user', user )
+		let user = firebase.auth().currentUser;
 		if (user) {
-			console.log('active_user', user )
 			this.state.user = user.email;
 			return (
 				<div id='addJobForm'>
