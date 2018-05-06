@@ -6,6 +6,7 @@ import './Login.css';
 class Login extends Component{
 	constructor(props){
 	    super(props);
+		//fix 
 		    this.state = {
 		      password: "",
 		      email: ""
@@ -18,7 +19,7 @@ class Login extends Component{
   	handleSubmit(event){
 	    event.preventDefault();
 	    fireb.firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then(res => {
-  			document.getElementsByClassName("regform--logout")[0].style.visibility = "visible";
+  			document.getElementsByClassName("regform--logout")[0].style.visibility = "visible"; 
   			document.getElementsByClassName("regform--send")[0].style.visibility = "hidden";
   			window.history.back();
   		}).catch(function(error) {
@@ -53,7 +54,7 @@ class Login extends Component{
 		}
 	}
 	render(){
-		const {from} = this.props.location.state || {from: {pathname: '/'}};
+		const {from} = this.props.location.state || {from: {pathname: '/'}}; //delete
 		return (
 			<div className='regform' onMouseUp={this.testIfLogin}>
 				<form onSubmit={this.handleSubmit} method="post">
