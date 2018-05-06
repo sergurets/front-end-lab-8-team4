@@ -10,11 +10,11 @@ class JobList extends React.Component{
 	}
 	renderList = (jobList) =>{
 		let jobs = [];
-		for(var key in jobList){
+		for(var key in jobList){//var 
 			jobs.push(jobList[key]);
-		}
+		}// object values js insted of this cicle for
 		return(
-			jobs?
+			jobs?// check length
 			jobs.map(item =>(
 					<li className = "job-list__item" key ={item.id}>
 						<Link to= {`/jobInfo/#${item.id}`}>{item.title}</Link>
