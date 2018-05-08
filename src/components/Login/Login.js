@@ -14,7 +14,6 @@ class Login extends Component{
 	    this.handleChange = this.handleChange.bind(this);
 	    this.handleSubmit = this.handleSubmit.bind(this);
 	    this.singOut = this.singOut.bind(this);
-	   // this.testIfLogin = this.testIfLogin.bind(this);
   	} 
 
   	componentWillMount(){
@@ -39,17 +38,15 @@ class Login extends Component{
   		}).catch(function(error) {
 	    	 alert(error);
 		});
-	// for (let ref in this.refs) {
- //  	      this.refs[ref].value = "";
- //    	}
     	for (let key in this.state){
 	      this.setState({[key]: ""})
 	    }
-
   	}
+
   	handleChange(event){
    		this.setState({[event.target.name]: event.target.value});
   	}
+
 	singOut(){
 		fireb.firebase.auth().signOut().then(function() {
 	  		alert('logged out');
@@ -59,17 +56,9 @@ class Login extends Component{
 	  		alert(error);
 		});
 	}
-	// testIfLogin(){
-	// 	let user = fireb.firebase.auth().currentUser;
-	// 	if(user){
-	// 		//document.getElementsByClassName("regform--logout")[0].style.visibility = "visible";
-	// 		document.getElementsByClassName("regform--send")[0].style.visibility = "hidden";
-	// 	}
-	// }
-	render(){
 
+	render(){
 		let isLog = this.state.status;
-		console.log('isLog', isLog)
 		return (
 			<div className='regform' >
 				<form onSubmit={this.handleSubmit} method="post">
