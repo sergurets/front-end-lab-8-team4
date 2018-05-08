@@ -25,7 +25,6 @@ class Login extends Component{
   				document.getElementsByClassName("regform--logout")[0].style.visibility = "visible";
 		 		document.getElementsByClassName("regform--send")[0].style.visibility = "hidden";
   			}
-  			console.log("status", this.state.status);
   		})
   	}
 
