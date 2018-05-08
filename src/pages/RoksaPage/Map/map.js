@@ -37,7 +37,7 @@ class WorkMap extends React.Component{
       </GoogleMap>
    ));
    return(
-      <div >
+      <div className = "section--map" >
         <WorksMap
           containerElement={ <div id = "work-map"/> }
           mapElement={ <div style={{ height: `100%` }} /> }
