@@ -32,8 +32,7 @@ class App extends Component{
       data.image = this.state.image;
     }
     fireb.firebaseTrueUsers.orderByChild('email').equalTo(data.email).once("value", function(snapshot) {
-       if(snapshot.val()){ //fix empty if
-      } else {
+       if(!snapshot.val()) {
         let key = fireb.firebaseTrueUsers.push(data).key;
         let Ref = firebase.database().ref(`usersT/${key}`);
         Ref.update({
@@ -62,21 +61,18 @@ class App extends Component{
             updates['/usersT/'+key] = data;
             fireb.firebaseDB.ref().update(updates);
         }
-
-
         fireb.firebase.auth().createUserWithEmailAndPassword(data.email, data.password)
+          .then(res => {
+            alert("Successfully registrated");
+          })
           .catch(error => {
             alert(error);
-          }); // add then
+          });
         }
     });
-
-    for (let ref in this.refs) {
-      this.refs[ref].value = "";
-    } //delete
     for (let key in this.state){
-      this.state[key] = "";
-    } //setState
+      this.setState({[key]: ""})
+    }
   }
 
   handleChange(event){
@@ -84,7 +80,7 @@ class App extends Component{
   }
 
   getFile(event){
-    var selectedFile = event.target.files[0]; //const , tab
+    var selectedFile = event.target.files[0];
     this.setState({image: selectedFile});
   }
 
