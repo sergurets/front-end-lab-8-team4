@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 
 import Header from './components/Header/Header.js';
+import Footer from './components/Footer/footer.js';
 import Page from './pages/RoksaPage/Page.js';
 import UserProfile from './pages/SamPage/UserProfile';
 import jobInfo from './pages/SergiyPage/jobInfo.js';
@@ -21,13 +22,14 @@ const App = () => (
 const Layout = ({ match }) => (
 	<div className="layout">
 		<Header />
-		<Route path={`${match.url}Page`} component={Page} />
+		<Route exact path={`${match.url}Page`} component={Page} />
 		<Route path={`${match.url}UserProfile`} component={UserProfile} />
 		<Route path={`${match.url}jobInfo`} component={jobInfo} />
 		<Route path={`${match.url}Addjob`} component={Addjob} />
 		<Route path={`${match.url}editJob`} component={editJob} />
 		<Route path={`${match.url}login`} component={Login} />
 		<Route path={`${match.url}registration`} component={Registration} />
+		<Footer/>
 	</div>
 );
 
