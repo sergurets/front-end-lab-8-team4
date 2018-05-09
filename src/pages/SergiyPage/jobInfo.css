@@ -1,24 +1,68 @@
-.App {
-	text-align: center;
-	background-color: #F7F7F7;
-	font-size: 16px;
+.section-job-info{
+	height: 100vh;
+	display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    background-image: linear-gradient(-140deg, #2c7dbc 15%, #7cccc5 70%);
+}
+.section-job-info .section--features {
+    width: 100%;
+    padding: 15vh 10vh 0 10vh;
+}
+.section-job-info .section--features .section__layout{
+	background-color: #ffffff;
+    -webkit-box-shadow: 0 0 20px 0px rgba(0,0,0,0.05);
+    box-shadow: 0 0 20px 0px rgba(0,0,0,0.2);
+}
+.job-info-map{
+	margin-top: 30px;
 }
 
-
-.information
-{font-size: 18px;}
-
-/**/
-
-.Description {
+.job-info__description{
 	text-align: left;
 	width: 80%;
-	margin: 0 auto;
+	margin:0 auto;
 }
-.titleInfo{
+.job-info__header{
 	text-align: center;
 	font-size: 30px;
+	padding-top: 10px;
 }
+.section-job-info .section__line {
+    position: relative;
+    height: 4px;
+    margin-top:10px;
+    margin-bottom: 10px;
+}
+.button{
+	display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    border-radius: 50px;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-transition: all 0.5s cubic-bezier(0.4, 0.25, 0, 1);
+    transition: all 0.5s cubic-bezier(0.4, 0.25, 0, 1);
+    border: 2px solid transparent;
+    -webkit-box-shadow: 0 0 0 0 transparent;
+    box-shadow: 0 0 0 0 transparent;
+    border-color: #2c7dbc;
+    background-color: transparent;
+    color: #2c7dbc;
+    padding: 7px 7px 7px 40px;
+    margin-left: 100px;
+    font-weight: bold;
+    font-size: 15px;
+
+}
+
+
 .Contacts {
 	width: 80%;
 }

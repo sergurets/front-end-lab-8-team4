@@ -12,22 +12,22 @@ function a(id){
 };
 
 function renderButton(email, id, databaseId, job){
-	
+
 	var user = firebase.auth().currentUser;
-	
+
 	if (user)
 	{	console.log('autor:',email, 'active user:', user.email);
 		if (user.email==job.executor) {return  (<div><button onClick={() => addExecutor('', databaseId)}>Сancel execution</button></div> ); }
-	else if (user.email===email) { 
+	else if (user.email===email) {
 	      return (
 		  <div><a className='ButtonLink' href={a(id)}>Edit</a>
-		  <button onClick={() => deleteJob(job, databaseId)}>Delete</button></div> ); 
+		  <button className = "button" onClick={() => deleteJob(job, databaseId)}>Delete</button></div> );
 		}
 		else if (user.email!==email){
-			return  (<div><button onClick={() => addExecutor(user.email, databaseId)}>Accept Job</button></div> ); 
+			return  (<div><button className = "button" onClick={() => addExecutor(user.email, databaseId)}>Accept Job</button></div> );
 		}
 	}
-	  else return  (<div><p>You must login to accept job</p></div> ); 
+	  else return  (<div><p>You must login to accept job</p></div> );
 
 
 }
@@ -63,11 +63,14 @@ class JobInfo extends React.Component{
 	//	 console.log('job',job);
 	      if (job.id) {console.log('length');
 		  	return  (
-		<div className="App">
-			<div className="Description">
-				<h1 className="titleInfo">
+		<section className =" section-job-info">
+		<div className="section--features">
+			<div className = "section__layout">
+			<div className="job-info__description">
+				<h1 className="job-info__header">
 				  {job.title}
 				</h1>
+				<div className = "section__line"></div>
 				<p className="information">{job.info}</p>
 				<div className="JobFeatures">
 					<div className="JobList">
@@ -85,10 +88,12 @@ class JobInfo extends React.Component{
 					</div>
 			    </div>
             </div>
-			<Map name={job}/>
-								{renderButton(job.user, job.id, job.databaseId, job)}
-			
-        </div>)
+            {renderButton(job.user, job.id, job.databaseId, job)}
+			<Map className = "job-info-map" name={job}/>
+
+		</div>
+        </div>
+        </section>)
 
 		  }
 		  else {return "no data" }
