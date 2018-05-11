@@ -1,5 +1,5 @@
 .section-job-info{
-	height: 100vh;
+	height: 105vh;
 	display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -10,7 +10,8 @@
 }
 .section-job-info .section--features {
     width: 100%;
-    padding: 15vh 10vh 0 10vh;
+    padding: 25vh 10vh 0 10vh;
+    position: static;
 }
 .section-job-info .section--features .section__layout{
 	background-color: #ffffff;
@@ -55,13 +56,33 @@
     border-color: #2c7dbc;
     background-color: transparent;
     color: #2c7dbc;
-    padding: 7px 7px 7px 40px;
+    padding: 1% 3% 1% 3%;
     margin-left: 100px;
     font-weight: bold;
     font-size: 15px;
 
 }
+.job-info__text{
+	padding-left: 30px;
+}
+.job-info__information{
+	border:1px solid black;
+	padding: 3vh;
+	margin-bottom: 1vh;
+	font-size: 20px;
+    font-family: "Proxima-Nova-Bold",sans-serif;
+    font-weight: normal;
+    line-height: normal;
+}
+.job-info__details {
+	display: grid;
+	grid-template-columns: 50% 50%;
+	font-size: 18px;
+    font-family: "Proxima-Nova-Bold",sans-serif;
+    font-weight: normal;
+    line-height: normal;
 
+}
 
 .Contacts {
 	width: 80%;
@@ -73,14 +94,9 @@
 	height: 200px;
 	display: flex;
 	justify-content: space-between;
-	/*display: grid;
-  grid-template-columns: 33% 33% 33%;*/
 }
 
-.JobFeatures {
-	display: grid;
-	grid-template-columns: 50% 50%;
-}
+
 
 .JbImage {
 	width: 300px;

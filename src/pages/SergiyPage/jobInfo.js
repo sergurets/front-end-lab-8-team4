@@ -17,7 +17,7 @@ function renderButton(email, id, databaseId, job){
 
 	if (user)
 	{	console.log('autor:',email, 'active user:', user.email);
-		if (user.email==job.executor) {return  (<div><button onClick={() => addExecutor('', databaseId)}>Сancel execution</button></div> ); }
+		if (user.email==job.executor) {return  (<div><button className = "button" onClick={() => addExecutor('', databaseId)}>Сancel execution</button></div> ); }
 	else if (user.email===email) {
 	      return (
 		  <div><a className='ButtonLink' href={a(id)}>Edit</a>
@@ -71,22 +71,24 @@ class JobInfo extends React.Component{
 				  {job.title}
 				</h1>
 				<div className = "section__line"></div>
-				<p className="information">{job.info}</p>
-				<div className="JobFeatures">
-					<div className="JobList">
-					<p className="information">Additional Information</p>
-						<ul>
-						  <li>Duration: {job.duration}</li>
-						  <li>Deadline: {job.deadlineDate}</li>
-						  <li>Location: {job.city}</li>
-						  <li>Salary: {job.salary}</li>
-						 </ul>
-					</div>
-					<div className="Contacts">
-						  <h3>{job.userName}</h3>
-						  <p>+380670000000</p>
-					</div>
-			    </div>
+				<div className = "job-info__text">
+					<p className="job-info__information">{job.info}</p>
+					<div className="job-info__details">
+						<div className="JobList">
+						<p className="information">Additional Information</p>
+							<ul>
+							  <li>Duration: {job.duration}</li>
+							  <li>Deadline: {job.deadlineDate}</li>
+							  <li>Location: {job.city}</li>
+							  <li>Salary: {job.salary}</li>
+							 </ul>
+						</div>
+						<div className="Contacts">
+							  <h3>{job.userName}</h3>
+							  <p>+380670000000</p>
+						</div>
+				    </div>
+				</div>
             </div>
             {renderButton(job.user, job.id, job.databaseId, job)}
 			<Map className = "job-info-map" name={job}/>
