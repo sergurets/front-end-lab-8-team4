@@ -20,7 +20,7 @@ function renderButton(email, id, databaseId, job){
 		if (user.email==job.executor) {return  (<div><button className = "button" onClick={() => addExecutor('', databaseId)}>Сancel execution</button></div> ); }
 	else if (user.email===email) {
 	      return (
-		  <div><a className='ButtonLink' href={a(id)}>Edit</a>
+		  <div><a className = "button ButtonClick"  href={a(id)}>Edit</a>
 		  <button className = "button" onClick={() => deleteJob(job, databaseId)}>Delete</button></div> );
 		}
 		else if (user.email!==email){

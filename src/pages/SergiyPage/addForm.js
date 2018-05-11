@@ -103,23 +103,25 @@ class Addjob extends Component {
 		if (user) {
 			email = user.email;
 		}
-		this.props.getUser(email);		
+		this.props.getUser(email);
 	}
-	render() {	
-		
+	render() {
+
 		var user = firebase.auth().currentUser;
 		console.log('active_user', user )
 		if (user) {
 			console.log('active_user', user )
 			this.state.user = user.email;
 			return (
-				<div id='addJobForm'>
+				<section id='addJobForm' className = "section-add-job">
+					<div className = "section--features">
 					<form onSubmit={this.handleSubmit} method="post"
-						className="formjob">
+						className="section__layout">
+						<h1 className = "add-job__header"> Fill in : </h1>
 						<input type="text"
 							placeholder="title"
 							id="title"
-							className="regform_name"
+							className="add-job__input"
 							value={this.state.title}
 							onChange={this.handleTitleChange}
 							required
@@ -128,12 +130,13 @@ class Addjob extends Component {
 						<textarea
 							placeholder="Enter info"
 							id="info"
-							className="form input"
+							className="add-job__input"
 							value={this.state.info}
 							onChange={this.infohandleInfoChange}
 							required
 						/><br />
 						<Autocomplete
+							className = "add-job__input"
 							style={{ width: '90%' }}
 							onPlaceSelected={(place) => {
 								this.state.lng = (place.geometry.viewport.b.f + place.geometry.viewport.b.b) / 2;
@@ -149,37 +152,46 @@ class Addjob extends Component {
 							min="0"
 							placeholder="salary"
 							id="salary"
-							className="form input"
+							className="add-job__input"
 							value={this.state.salary}
 							onChange={this.handleSalaryChange}
 							required
 						/><br />
-						<label className="formLabel">Тривалість</label>
-						<select
-							onChange={this.handleDurationChange}
-							value={this.state.duration}
-							required>
-							<option>up to 2 hours</option>
-							<option>3-5 hours</option>
-							<option>6-8 hours</option>
-							<option>more than 8 hours</option>
-						</select>
-						<label className="formLabel">Крайній термін</label>
-						<input
-							min={defDate}
-							onChange={this.handleDateChange}
-							value={this.state.deadlineDate}
-							type="date"
-							name="calendar"
+						<div className = "job-info__selections">
+							<div className = "job-info_duration">
+								<label className="job-info__label">Тривалість</label>
+								<select
+									onChange={this.handleDurationChange}
+									value={this.state.duration}
+									required>
+									<option>up to 2 hours</option>
+									<option>3-5 hours</option>
+									<option>6-8 hours</option>
+									<option>more than 8 hours</option>
+								</select>
+							</div>
+							<div className = "job-info_deadline">
+								<label className="job-info__label">Крайній термін</label>
+								<input
+									min={defDate}
+									onChange={this.handleDateChange}
+									value={this.state.deadlineDate}
+									type="date"
+									name="calendar"
 
-							className="inpform"
-							required />
-						<label htmlFor="file">Upload Image</label>
-						<input type="file" id="file" name="photo" multiple accept="image/*,image/jpeg" onChange={this.handleFileUpload} value={this.state.file} /><br />
-						<button className="button">Send</button>
+									className="inpform"
+									required />
+							</div>
+							<div className = "job-info_img">
+								<label htmlFor="file" className = "job-info__label">Upload Image</label>
+								<input type="file" id="file" name="photo" multiple accept="image/*,image/jpeg" onChange={this.handleFileUpload} value={this.state.file} /><br />
+							</div>
+						</div>
+						<button className="button send-button">Send</button>
 					</form>
 
-				</div>
+					</div>
+				</section>
 			);
 		}
 		else return (
