@@ -14,7 +14,7 @@ class Login extends Component{
 	    this.handleSubmit = this.handleSubmit.bind(this);
 	    this.singOut = this.singOut.bind(this);
 	    this.testIfLogin = this.testIfLogin.bind(this);
-  	} 
+  	}
   	handleSubmit(event){
 	    event.preventDefault();
 	    fireb.firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then(res => {
@@ -55,35 +55,37 @@ class Login extends Component{
 	render(){
 		const {from} = this.props.location.state || {from: {pathname: '/'}};
 		return (
-			<div className='regform' onMouseUp={this.testIfLogin}>
-				<form onSubmit={this.handleSubmit} method="post">
-			      <input type="email"
-			        placeholder="E-mail"
-			        name="email"
-			        ref="email"
-			        className="regform__input"
-			        value={this.state.email}
-        			onChange={this.handleChange}
-			        required
-			      /><br/>
-			      <input type="password"
-			        placeholder="Enter password"
-			        name="password"
-			        ref="pass"
-			        className="regform__input"
-			        value={this.state.password}
-        			onChange={this.handleChange}
-			        required
-			      /><br/>
-			      <button className="regform--send">Send</button>
-			    </form>
-			    <div>
-					<button onClick={this.singOut} className="regform--logout">Log Out</button>
+			<section className = "section-login">
+				<div className='regform' onMouseUp={this.testIfLogin}>
+					<form onSubmit={this.handleSubmit} method="post">
+				      <input type="email"
+				        placeholder="E-mail"
+				        name="email"
+				        ref="email"
+				        className="regform__input"
+				        value={this.state.email}
+	        			onChange={this.handleChange}
+				        required
+				      /><br/>
+				      <input type="password"
+				        placeholder="Enter password"
+				        name="password"
+				        ref="pass"
+				        className="regform__input"
+				        value={this.state.password}
+	        			onChange={this.handleChange}
+				        required
+				      /><br/>
+				      <button className="regform--send">Send</button>
+				    </form>
+				    <div>
+						<button onClick={this.singOut} className="button regform--logout">Log Out</button>
+					</div>
+					<div className="regform__register">
+						<Link to="/registration" className="regform__register" >Don't have an account? Register now</Link>
+					</div>
 				</div>
-				<div>
-					<Link to="/registration" className="regform__register">Don't have an account? Register now</Link>
-				</div>
-			</div>
+			</section>
 		)
 	}
 }

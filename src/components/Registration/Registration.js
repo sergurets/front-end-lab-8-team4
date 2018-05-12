@@ -40,7 +40,7 @@ class App extends Component{
           "databaseId": key
         });
 
-        if(data.image){ 
+        if(data.image){
           let filename = data.image.name;
           let storageRef = fireb.firebase.storage().ref('/userImages/' + filename);
 
@@ -90,58 +90,60 @@ class App extends Component{
 
   render(){
     return (
-      <div className="regform">
-      <form onSubmit={this.handleSubmit} method="post">
-      <input type="text"
-        placeholder="Enter name"
-        name="name"
-        ref="name"
-        className="regform__input regform__name"
-        value={this.state.name}
-        onChange={this.handleChange}
-        required
-      />
-      <input type="text"
-        placeholder="Enter surname"
-        name="surname"
-        ref="surname"
-        className="regform__input regform__surname"
-        value={this.state.surname}
-        onChange={this.handleChange}
-        required
-      /><br/>
-      <input type="password"
-        placeholder="Enter password"
-        name="password"
-        ref="pass"
-        className="regform__input"
-        value={this.state.password}
-        onChange={this.handleChange}
-        required
-      /><br/>
-      <input type="text"
-        placeholder="Enter city"
-        name="city"
-        ref="city"
-        className="regform__input"
-        value={this.state.city}
-        onChange={this.handleChange}
-        required
-      /><br/>
-      <input type="email"
-        placeholder="E-mail"
-        name="email"
-        ref="email"
-        className="regform__input"
-        value={this.state.email}
-        onChange={this.handleChange}
-        required
-      /><br/>
-      <label htmlFor="file" className="regform__label">Upload Image</label>
-      <input type="file" onChange={this.getFile} id="file" name="photo" multiple accept="image/*,image/jpeg"/><br/>
-      <button className="regform--send">Send</button>
-      </form>
-      </div>
+    	<section className = "section-registration">
+	      <div className="regform">
+	      <form onSubmit={this.handleSubmit} method="post">
+	      <input type="text"
+	        placeholder="Enter name"
+	        name="name"
+	        ref="name"
+	        className="regform__input regform__name"
+	        value={this.state.name}
+	        onChange={this.handleChange}
+	        required
+	      />
+	      <input type="text"
+	        placeholder="Enter surname"
+	        name="surname"
+	        ref="surname"
+	        className="regform__input regform__surname"
+	        value={this.state.surname}
+	        onChange={this.handleChange}
+	        required
+	      /><br/>
+	      <input type="password"
+	        placeholder="Enter password"
+	        name="password"
+	        ref="pass"
+	        className="regform__input"
+	        value={this.state.password}
+	        onChange={this.handleChange}
+	        required
+	      /><br/>
+	      <input type="text"
+	        placeholder="Enter city"
+	        name="city"
+	        ref="city"
+	        className="regform__input"
+	        value={this.state.city}
+	        onChange={this.handleChange}
+	        required
+	      /><br/>
+	      <input type="email"
+	        placeholder="E-mail"
+	        name="email"
+	        ref="email"
+	        className="regform__input"
+	        value={this.state.email}
+	        onChange={this.handleChange}
+	        required
+	      /><br/>
+	      <label htmlFor="file" className="regform__label">Upload Image</label>
+	      <input type="file" onChange={this.getFile} id="file" name="photo" multiple accept="image/*,image/jpeg"/><br/>
+	      <button className="regform--send">Send</button>
+	      </form>
+	      </div>
+      </section>
     );
   }
 }
