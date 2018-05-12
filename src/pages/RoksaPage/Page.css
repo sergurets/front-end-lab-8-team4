@@ -1,15 +1,15 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    overflow-y: scroll;
-    overflow-x: hidden;
-    font-family: "Proxima-Nova-Regular",sans-serif;
-    font-weight: normal;
-    line-height: normal;
-    -webkit-font-smoothing: antialiased;
-    background-color: rgba(247,247,247,0.9);
+  overflow-y: scroll;
+  overflow-x: hidden;
+  font-family: "Proxima-Nova-Regular", sans-serif;
+  font-weight: normal;
+  line-height: normal;
+  -webkit-font-smoothing: antialiased;
+  background-color: rgba(247, 247, 247, 0.9);
 }

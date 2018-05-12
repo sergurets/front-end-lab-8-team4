@@ -1,6 +1,6 @@
-.section-login{
-	height: 93vh;
-	display: -webkit-box;
+.section-login {
+  height: 93vh;
+  display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
@@ -9,20 +9,20 @@
   background-image: linear-gradient(-140deg, #2c7dbc 15%, #7cccc5 70%);
 }
 
-.regform__register{
-	color: #000;
-	text-decoration: none;
+.regform__register {
+  color: #000;
+  text-decoration: none;
 }
 
-.regform{
-  background: rgba(247,247,247,0.9);
-  -webkit-box-shadow: 0 0 20px 0px rgba(0,0,0,0.3);
+.regform {
+  background: rgba(247, 247, 247, 0.9);
+  -webkit-box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.3);
   margin: 2% auto;
   width: 50%;
-	padding: 1% 2%;
+  padding: 1% 2%;
 }
 
-.regform__input{
+.regform__input {
   background-image: linear-gradient(-140deg, #2c7dbc 15%, #7cccc5 70%);
   border: 1px solid #86959a;
   padding: 3%;
@@ -32,7 +32,8 @@
   color: #fff;
 }
 
-.regform_name, .regform_surname{
+.regform_name,
+.regform_surname {
   width: 40%;
   margin: 1.5%;
   position: relative;
@@ -40,78 +41,78 @@
   display: inline-block;
 }
 
-#file{
+#file {
   display: none;
 }
 
-.regform--send{
+.regform--send {
   display: -webkit-inline-box;
-    display: -ms-inline-flexbox;
-    display: inline-flex;
-    border-radius: 50px;
-    border: 0;
-    outline: 0;
-    cursor: pointer;
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-    -webkit-transition: all 0.5s cubic-bezier(0.4, 0.25, 0, 1);
-    transition: all 0.5s cubic-bezier(0.4, 0.25, 0, 1);
-    border: 2px solid transparent;
-    -webkit-box-shadow: 0 0 0 0 transparent;
-    box-shadow: 0 0 0 0 transparent;
-    border-color: #2c7dbc;
-    background-color: transparent;
-    color: #2c7dbc;
-	margin-left: 35%;
-	margin-top: 2%;
-    font-weight: bold;
-    font-size: 15px;
-    text-decoration: none;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-}
-
-.regform--logout{
-  display: -webkit-inline-box;
-    display: -ms-inline-flexbox;
-    display: inline-flex;
-    border-radius: 50px;
-    border: 0;
-    outline: 0;
-    cursor: pointer;
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-    -webkit-transition: all 0.5s cubic-bezier(0.4, 0.25, 0, 1);
-    transition: all 0.5s cubic-bezier(0.4, 0.25, 0, 1);
-    border: 2px solid transparent;
-    -webkit-box-shadow: 0 0 0 0 transparent;
-    box-shadow: 0 0 0 0 transparent;
-    border-color: #2c7dbc;
-    background-color: transparent;
-    color: #2c7dbc;
-		margin-left: 35%;
-		margin-top: 2%;
-    font-weight: bold;
-    font-size: 15px;
-    text-decoration: none;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    visibility: hidden;
-}
-.regform--send:hover{
-	background-color: #91e5c5;
-	color: #fff;
-	border-color: #91e5c5;
-}
-.regform--logout:hover{
-	background-color: #91e5c5;
-	color: #fff;
-	border-color: #91e5c5;
-}
-
-.regform__register{
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  border-radius: 50px;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-transition: all 0.5s cubic-bezier(0.4, 0.25, 0, 1);
+  transition: all 0.5s cubic-bezier(0.4, 0.25, 0, 1);
+  border: 2px solid transparent;
+  -webkit-box-shadow: 0 0 0 0 transparent;
+  box-shadow: 0 0 0 0 transparent;
+  border-color: #2c7dbc;
+  background-color: transparent;
+  color: #2c7dbc;
+  margin-left: 35%;
+  margin-top: 2%;
+  font-weight: bold;
+  font-size: 15px;
+  text-decoration: none;
+  padding: 15px 32px;
   text-align: center;
-  margin-top: 2%
+  text-decoration: none;
+}
+
+.regform--logout {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  border-radius: 50px;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-transition: all 0.5s cubic-bezier(0.4, 0.25, 0, 1);
+  transition: all 0.5s cubic-bezier(0.4, 0.25, 0, 1);
+  border: 2px solid transparent;
+  -webkit-box-shadow: 0 0 0 0 transparent;
+  box-shadow: 0 0 0 0 transparent;
+  border-color: #2c7dbc;
+  background-color: transparent;
+  color: #2c7dbc;
+  margin-left: 35%;
+  margin-top: 2%;
+  font-weight: bold;
+  font-size: 15px;
+  text-decoration: none;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  visibility: hidden;
+}
+.regform--send:hover {
+  background-color: #91e5c5;
+  color: #fff;
+  border-color: #91e5c5;
+}
+.regform--logout:hover {
+  background-color: #91e5c5;
+  color: #fff;
+  border-color: #91e5c5;
+}
+
+.regform__register {
+  text-align: center;
+  margin-top: 2%;
 }

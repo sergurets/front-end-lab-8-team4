@@ -1,24 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Map from './Map/map.js';
-import Autocomplete from 'react-google-autocomplete';
+import React from "react";
+import ReactDOM from "react-dom";
+import Map from "./Map/map.js";
+import Autocomplete from "react-google-autocomplete";
 
-
-
-
-import Addform from './addForm.js'
+import Addform from "./addForm.js";
 // import JobList from './JobList/JobList.js'
 
-
 class AddJob extends React.Component {
-	render() {
-		return (
-			<div>
-				<Addform />
-
-			</div>
-		);
-	}
+  render() {
+    return (
+      <div>
+        <Addform />
+      </div>
+    );
+  }
 }
 
-export default AddJob
+export default AddJob;
