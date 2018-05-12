@@ -24,18 +24,19 @@ class JobList extends React.Component {
 
   renderList = jobList => {
     let jobs = [];
-    for (var key in jobList) {
+    for (let key in jobList) {
       jobs.push(jobList[key]);
     }
 
-    return jobs
-      ? jobs.map(item => (
-          <li className="job-list__item" key={item.id}>
-            <Link to={`/jobInfo/#${item.id}`}>{item.title}</Link>
-            <p>{item.info}</p>
-          </li>
-        ))
-      : null;
+    return(
+			jobs?// check length
+			jobs.map(item =>(
+					<li className = "job-list__item" key ={item.id}>
+						<Link to= {`/jobInfo/#${item.id}`}>{item.title}</Link>
+						<p>{item.info}</p>
+					</li>
+				)): null
+		);
   };
 
   render() {

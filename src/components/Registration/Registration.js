@@ -34,14 +34,12 @@ class App extends Component {
       .orderByChild("email")
       .equalTo(data.email)
       .once("value", function(snapshot) {
-        if (snapshot.val()) {
-        } else {
-          let key = fireb.firebaseTrueUsers.push(data).key;
-          let Ref = firebase.database().ref(`usersT/${key}`);
-          Ref.update({
-            databaseId: key
-          });
-
+        if(!snapshot.val()) {
+        let key = fireb.firebaseTrueUsers.push(data).key;
+        let Ref = firebase.database().ref(`usersT/${key}`);
+        Ref.update({
+          "databaseId": key
+        });
           if (data.image) {
             let filename = data.image.name;
             let storageRef = fireb.firebase
@@ -69,22 +67,24 @@ class App extends Component {
               "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png";
             updates["/usersT/" + key] = data;
             fireb.firebaseDB.ref().update(updates);
-          }
-
-          fireb.firebase
-            .auth()
-            .createUserWithEmailAndPassword(data.email, data.password)
-            .catch(error => {
-              alert(error);
-            });
+           });
+        } else {
+          let updates = {};
+            data.url = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png";
+            updates['/usersT/'+key] = data;
+            fireb.firebaseDB.ref().update(updates);
         }
-      });
-
-    for (let ref in this.refs) {
-      this.refs[ref].value = "";
-    }
-    for (let key in this.state) {
-      this.state[key] = "";
+        fireb.firebase.auth().createUserWithEmailAndPassword(data.email, data.password)
+          .then(res => {
+            alert("Successfully registrated");
+          })
+          .catch(error => {
+            alert(error);
+          });
+        }
+    });
+    for (let key in this.state){
+      this.setState({[key]: ""})
     }
   }
 
@@ -175,5 +175,6 @@ class App extends Component {
     );
   }
 }
+
 
 export default App;

@@ -24,7 +24,7 @@ class WorkMap extends React.Component {
               lng: Number(`${item.lng}`)
             }}
             onClick={e => {
-              window.location.href = `/jobInfo/#${item.id}`;
+              window.location.href = `/jobInfo/#${item.id}`; // redirect to
             }}
           />
         ))

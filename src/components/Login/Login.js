@@ -1,11 +1,9 @@
+
 import React, { Component } from "react";
 import fireb from "../../firebase.js";
 import {
   Link,
-  Route,
-  Redirect,
-  withRouter,
-  BrowserRouter as Router
+  Redirect
 } from "react-router-dom";
 import "./Login.css";
 
@@ -14,38 +12,43 @@ class Login extends Component {
     super(props);
     this.state = {
       password: "",
-      email: ""
+      email: "",
+      status: true
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.singOut = this.singOut.bind(this);
-    this.testIfLogin = this.testIfLogin.bind(this);
   }
+  componentWillMount(){
+  		fireb.firebase.auth().onAuthStateChanged((user)=>{
+  			this.setState({
+  				status: user? true : false 
+  			});
+  			if(user){
+  				document.getElementsByClassName("regform--logout")[0].style.visibility = "visible";
+		 		document.getElementsByClassName("regform--send")[0].style.visibility = "hidden";
+  			}
+  		})
+  	}
+  
   handleSubmit(event) {
     event.preventDefault();
-    fireb.firebase
-      .auth()
-      .signInWithEmailAndPassword(this.state.email, this.state.password)
-      .then(res => {
-        document.getElementsByClassName("regform--logout")[0].style.visibility =
-          "visible";
-        document.getElementsByClassName("regform--send")[0].style.visibility =
-          "hidden";
-        window.history.back();
-      })
-      .catch(function(error) {
-        alert(error);
-      });
-    for (let ref in this.refs) {
-      this.refs[ref].value = "";
-    }
-    for (let key in this.state) {
-      this.state[key] = "";
-    }
+	    fireb.firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then(res => {
+  			document.getElementsByClassName("regform--logout")[0].style.visibility = "visible";
+  			document.getElementsByClassName("regform--send")[0].style.visibility = "hidden";
+  			alert('okay')
+  		}).catch(function(error) {
+	    	 alert(error);
+		});
+    	for (let key in this.state){
+	      this.setState({[key]: ""})
+	    }
   }
+  
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
+  
   singOut() {
     fireb.firebase
       .auth()
@@ -61,20 +64,12 @@ class Login extends Component {
         alert(error);
       });
   }
-  testIfLogin() {
-    let user = fireb.firebase.auth().currentUser;
-    if (user) {
-      document.getElementsByClassName("regform--logout")[0].style.visibility =
-        "visible";
-      document.getElementsByClassName("regform--send")[0].style.visibility =
-        "hidden";
-    }
-  }
+
   render() {
-    const { from } = this.props.location.state || { from: { pathname: "/" } };
+    let isLog = this.state.status;
     return (
       <section className="section-login">
-        <div className="regform" onMouseUp={this.testIfLogin}>
+        <div className="regform">
           <form onSubmit={this.handleSubmit} method="post">
             <input
               type="email"
