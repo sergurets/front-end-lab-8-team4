@@ -1,3 +1,4 @@
+
 import React from 'react';
 import * as firebase from 'firebase';
 import { connect } from 'react-redux';
@@ -188,3 +189,4 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(JobEdit);
+

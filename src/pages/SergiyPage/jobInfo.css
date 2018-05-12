@@ -1,49 +1,114 @@
-.App {
-	text-align: center;
-	background-color: #F7F7F7;
-	font-size: 16px;
+.section-job-info {
+  height: 105vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background-image: linear-gradient(-140deg, #2c7dbc 15%, #7cccc5 70%);
+}
+.section-job-info .section--features {
+  width: 100%;
+  padding: 25vh 10vh 0 10vh;
+  position: static;
+}
+.section-job-info .section--features .section__layout {
+  background-color: #ffffff;
+  -webkit-box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.2);
+}
+.job-info-map {
+  margin-top: 30px;
 }
 
-
-.information
-{font-size: 18px;}
-
-/**/
-
-.Description {
-	text-align: left;
-	width: 80%;
-	margin: 0 auto;
+.job-info__description {
+  text-align: left;
+  width: 80%;
+  margin: 0 auto;
 }
-.titleInfo{
-	text-align: center;
-	font-size: 30px;
+.job-info__header {
+  text-align: center;
+  font-size: 30px;
+  padding-top: 10px;
 }
+.section-job-info .section__line {
+  position: relative;
+  height: 4px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.button {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  border-radius: 50px;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-transition: all 0.5s cubic-bezier(0.4, 0.25, 0, 1);
+  transition: all 0.5s cubic-bezier(0.4, 0.25, 0, 1);
+  border: 2px solid transparent;
+  -webkit-box-shadow: 0 0 0 0 transparent;
+  box-shadow: 0 0 0 0 transparent;
+  border-color: #2c7dbc;
+  background-color: transparent;
+  color: #2c7dbc;
+  margin-left: 100px;
+  margin-top: 2%;
+  font-weight: bold;
+  font-size: 15px;
+  text-decoration: none;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+}
+.button:hover {
+  background-color: #91e5c5;
+  color: #fff;
+  border-color: #91e5c5;
+}
+.job-info__text {
+  padding-left: 30px;
+}
+.job-info__information {
+  border: 1px solid black;
+  padding: 3vh;
+  margin-bottom: 1vh;
+  font-size: 20px;
+  font-family: "Proxima-Nova-Bold", sans-serif;
+  font-weight: normal;
+  line-height: normal;
+}
+.job-info__details {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  font-size: 18px;
+  font-family: "Proxima-Nova-Bold", sans-serif;
+  font-weight: normal;
+  line-height: normal;
+}
+
 .Contacts {
-	width: 80%;
+  width: 80%;
 }
 
 .JobImage {
-	width: 80%;
-	margin: 0 auto;
-	height: 200px;
-	display: flex;
-	justify-content: space-between;
-	/*display: grid;
-  grid-template-columns: 33% 33% 33%;*/
-}
-
-.JobFeatures {
-	display: grid;
-	grid-template-columns: 50% 50%;
+  width: 80%;
+  margin: 0 auto;
+  height: 200px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .JbImage {
-	width: 300px;
-	margin: 1%px;
+  width: 300px;
+  margin: 1%px;
 }
 
 .Map img {
-	width: 80%;
-	margin: 20px auto;
+  width: 80%;
+  margin: 20px auto;
 }

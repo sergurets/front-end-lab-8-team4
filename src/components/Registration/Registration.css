@@ -1,21 +1,34 @@
-.regform{
-  background: #24303c;
-  margin: 2% auto;
-  width: 30%;
-	padding: 1% 2%;
+.section-registration {
+  height: 93vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background-image: linear-gradient(-140deg, #2c7dbc 15%, #7cccc5 70%);
 }
 
-.regform__input{
-  background: #24303c;
+.regform {
+  background: rgba(247, 247, 247, 0.9);
+  -webkit-box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.3);
+  margin: 2% auto;
+  width: 50%;
+  padding: 1% 2%;
+}
+
+.regform__input {
+  background-image: linear-gradient(-140deg, #2c7dbc 15%, #7cccc5 70%);
   border: 1px solid #86959a;
-  padding: 1.5%;
+  padding: 3%;
   width: 87%;
   margin: 3% 5%;
   height: 20px;
   color: #fff;
 }
 
-.regform__name, .regform__surname{
+.regform__name,
+.regform__surname {
   width: 40%;
   margin: 1.5%;
   position: relative;
@@ -23,15 +36,15 @@
   display: inline-block;
 }
 
-#file{
+#file {
   display: none;
 }
 
-.regform__label{
-  color: #fff;
+.regform__label {
+  color: #86959a;
   padding: 2% 9%;
-  
-  margin: 1% 25%;
+  cursor: pointer;
+  margin: 0 25%;
   text-align: center;
   text-transform: uppercase;
   font-size: 12px;
@@ -40,13 +53,30 @@
   height: 10%;
 }
 
-.regform--send{
-  background: #1ab188;
-  color: #fff;
-  border: none;
-  text-transform: uppercase;
-  height: 35px;
-  width: 92%;
-  padding: 2% 8%;
-  margin: 0 4%;
+.regform--send {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  border-radius: 50px;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-transition: all 0.5s cubic-bezier(0.4, 0.25, 0, 1);
+  transition: all 0.5s cubic-bezier(0.4, 0.25, 0, 1);
+  border: 2px solid transparent;
+  -webkit-box-shadow: 0 0 0 0 transparent;
+  box-shadow: 0 0 0 0 transparent;
+  border-color: #2c7dbc;
+  background-color: transparent;
+  color: #2c7dbc;
+  margin-left: 35%;
+  margin-top: 2%;
+  font-weight: bold;
+  font-size: 15px;
+  text-decoration: none;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
 }

@@ -7,7 +7,7 @@ import { jobList } from '../../../actions';
 import { Link } from "react-router-dom";
 
 class WorkMap extends React.Component{
-	
+
 
 	componentWillMount(){
 		console.log(this.props.name)
@@ -36,10 +36,10 @@ this.props.name
       </GoogleMap>
    ));
    return(
-      <div >
-	
+      <div className = "job-info-map" >
+
         <WorksMap
-          containerElement={ <div id = "work-map"/> }
+          containerElement={ <div id = "one-work-map"/> }
           mapElement={ <div style={{ height: `100%` }} /> }
         />
       </div>
@@ -59,4 +59,4 @@ const mapDispatchToProps = (dispatch) => {
 		}
 	}
 }
- export default connect(mapStateToProps,mapDispatchToProps)(WorkMap) 
+ export default connect(mapStateToProps,mapDispatchToProps)(WorkMap)
