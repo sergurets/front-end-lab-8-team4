@@ -54,6 +54,7 @@ export const editUserInfo = (user, key) => {
 			payload: { name: user.name, surname: user.surname, city: user.city }
 		});
 	}
+
 }
 
 
@@ -101,8 +102,8 @@ export const addExecutor = (mail, id, jobStatus, key) => {
 
 	})
 }
-
 export const deleteJob = (job, key) => {
+
 	firebaseJobsArchive.push(job);
 	firebase.database().ref(`jobList/${key}`).set({
 		title: null
@@ -130,4 +131,20 @@ export function addjobExecutor(user, job) {
 		"executor": user, "jobStatus": 'inProcess'
 	});
 
+export function addRatingToEmployee(rating, job) {
+    console.log(job.user, job.userJobKey, rating);
+    firebase.database().ref(`usersT/${job.userID}/createdJob/${job.userJobKey}`).update({
+        "jobStatus": "done", "ratingEmployee": rating
+    });
+    firebase.database().ref(`jobList/${job.databaseId}`).update({
+        "jobStatus": "done", "ratingEmployee": rating
+    });
+    firebase.database().ref(`usersT/${job.executorId}/AcceptedJob/${job.executorJobId}`).update({
+        "jobStatus": "done", "ratingEmployee": rating
+    });
 }
+
+
+
+
+

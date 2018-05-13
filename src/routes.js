@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Link, Switch, Redirect } from "react-ro
 
 
 import Header from './components/Header/Header.js';
+import Footer from './components/Footer/footer.js';
 import Page from './pages/RoksaPage/Page.js';
 import UserProfile from './pages/SamPage/UserProfile';
 import jobInfo from './pages/SergiyPage/jobInfo.js';
@@ -32,21 +33,21 @@ const PrivateRoute = ({
 			<Redirect to="/login" />
 	)} />
 }
-
 const Layout = (props) => {
 	return (
 		<div className="layout">
 			<Header />
-			<Route path="/Page" component={Page} />
-			<Route path="/UserProfile" component={UserProfile} />
-			<Route path="/jobInfo" component={jobInfo} />
-			<PrivateRoute isLogged={props.auth} path="/Addjob" component={Addjob} />
-			<PrivateRoute isLogged={props.auth} path="/editJob" component={editJob} />
-			<Route path="/login" component={Login} />
-			<Route path="/registration" component={Registration} />
-
+				<Route path="/Page" component={Page} />
+				<Route path="/UserProfile" component={UserProfile} />
+				<Route path="/jobInfo" component={jobInfo} />
+				<PrivateRoute isLogged={props.auth} path="/Addjob" component={Addjob} />
+				<PrivateRoute isLogged={props.auth} path="/editJob" component={editJob} />
+				<Route path="/login" component={Login} />
+				<Route  path="/registration" component={Registration} />
+		    <Footer/>
 
 		</div>
 	)
 }
 export default App 
+
