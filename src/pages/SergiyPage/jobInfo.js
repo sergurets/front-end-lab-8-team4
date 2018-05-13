@@ -48,46 +48,52 @@ class JobInfo extends React.Component{
 			if (user.email==job.executor) {
 				
 				function finishButton(){
-					function renderForm(){
-          return 4
+					if(job.jobStatus!=='done'){
+
+
+                        if(job.jobStatus=='inProcess'){
+                            function renderComlete(){
+                                function myFunction(){
+                                }
+                                let element = document.getElementById('finish');
+                                element.innerHTML=
+                                    `<div id="finishform">
+									    <label>Impression of work</label>
+										<select id="finish_form_Impression">
+											<option>excellent</option>
+											<option>OK</option>
+											<option>badly</option>
+											<option>horribly</option>
+										</select>
+										<button class="button">Сomplete</button>
+								</div>`;
+                                let elem = document.querySelector('#finishform .button ');
+                                elem.onclick = function(){
+                                    let formSel = document.getElementById('finish_form_Impression').value.toString();
+                                    addRatingToEmployer(formSel, job);};
+                            }
+                            return (
+                                <div>
+                                    <button className="button" onClick={() => {renderComlete()}}>Сomplete</button>
+                                    <div id="finish"></div>
+                                </div>
+
+                            )
+                        }
+
 					}
 					
-					if(job.jobStatus=='inProcess'){
-						function renderComlete(){
-							function myFunction(){
-								}
-							let element = document.getElementById('finish');
-							element.innerHTML=`<div id="finishform"><label>Impression of work</label><br>
-							<select id="finish_form_Impression">
-							<option>excellent</option>
-							<option>OK</option>
-							<option>badly</option>
-							<option>horribly</option>
-							</select>
-							<button class="button">Сomplete</button>
-							</div>`;
-							let elem = document.querySelector('#finishform .button ');
-							elem.onclick = function(){
-								let formSel = document.getElementById('finish_form_Impression').value.toString();
-								addRatingToEmployer(formSel, job);};
-						}
-						return (
-						<div>
-						<button className="button" onClick={() => {renderComlete()}}>Сomplete</button>
-						<div id="finish">{renderForm()}</div>
-						</div>
-					         
-					)
-					}
+
 					
 				}
+                if(job.jobStatus!=='done'){
 				return  (
 				<div>
 					<button className="button" onClick={() => {addExecutor('', '', 'new', job.databaseId); deletejobExecutor (id,job) }}>Сancel execution</button>
 					{finishButton()}
 				</div> 
 					); 
-				}
+				}}
 		else if (user.email===email) {
         if(job.jobStatus=='inProcess'){
 			return (<p>In process. Executor {job.executor}</p>)	}
