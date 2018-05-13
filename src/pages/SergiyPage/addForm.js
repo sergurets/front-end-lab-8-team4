@@ -6,7 +6,7 @@ import { saveJob, getUser } from '../../actions';
 import { firebaseJobList } from '../../firebase';
 import * as firebase from 'firebase';
 import Autocomplete from 'react-google-autocomplete';
-import {  BrowserRouter as Router , Link, Route, Redirect, withRouter} from 'react-router-dom';
+import { BrowserRouter as Router, Link, Route, Redirect, withRouter } from 'react-router-dom';
 
 
 function TodayDate() {
@@ -42,25 +42,25 @@ class Addjob extends Component {
 		this.handleDateChange = this.handleDateChange.bind(this);
 
 	}
-	addjobUser (user, job){
+	addjobUser(user, job) {
 		let key = firebase.database().ref(`usersT/${user}/createdJob`).push(job).key
 		this.state.userJobKey = key
-		}
+	}
 
 	handleSubmit(event) {
 		event.preventDefault();
 		this.state.id = Date.now().toString();
 		let userId = Object.keys(this.props.data.users)[0];
-		this.state.userID=userId;
-		this.state.userName=this.props.data.users[userId].name;
+		this.state.userID = userId;
+		this.state.userName = this.props.data.users[userId].name;
 		let JobInfo = {
-			 id: this.state.id,
-			 title: this.state.title,
-			 executor: null,
-			 executorID: null,
-			 jobStatus: 'new',
+			id: this.state.id,
+			title: this.state.title,
+			executor: null,
+			executorID: null,
+			jobStatus: 'new',
 		}
-		this.addjobUser(userId, JobInfo )
+		this.addjobUser(userId, JobInfo)
 		this.props.onAddJob(this.state);
 		window.location.href = `/jobInfo/#${this.state.id}`;
 	}
@@ -90,16 +90,16 @@ class Addjob extends Component {
 	infohandleInfoChange(event) {
 		this.setState({ info: event.target.value });
 	}
-	componentWillMount(){
+	componentWillMount() {
 		let user = firebase.auth().currentUser;
 		let email = '';
 		if (user) {
 			email = user.email;
 		}
-		this.props.getUser(email);		
+		this.props.getUser(email);
 	}
-	render() {	
-		
+	render() {
+
 		let user = firebase.auth().currentUser;
 		if (user) {
 			this.state.user = user.email;
@@ -175,8 +175,8 @@ class Addjob extends Component {
 		}
 		else return (
 			<div>
-				<Redirect to={'/login'}/>
-	    </div>
+				<Redirect to={'/login'} />
+			</div>
 		)
 	}
 }
@@ -193,7 +193,7 @@ const mapDispatchToProps = (dispatch) => {
 		onAddJob: (job) => {
 			dispatch(saveJob(job))
 		},
-		getUser: (mail) =>{
+		getUser: (mail) => {
 			dispatch(getUser(mail))
 		}
 	}
