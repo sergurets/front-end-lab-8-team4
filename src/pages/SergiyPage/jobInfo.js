@@ -16,9 +16,9 @@ class JobInfo extends React.Component{
 		}
 		this.props.getUser(email);
 		this.props.getJobs();
-		
+
 	}
-    
+
 	find(object, id){
 		let obj={};
 		for (let key in object){
@@ -28,7 +28,7 @@ class JobInfo extends React.Component{
 			 }
 		return obj;
 	}
-	
+
 	renderButton(email, id, databaseId, job){
 		let JobInfo = {
 			id: job.id,
@@ -38,15 +38,15 @@ class JobInfo extends React.Component{
 			userJobKey: job.userJobKey,
 			jobStatus: 'inProcess'
 		};
-	
+
 		let user = firebase.auth().currentUser;
 		if (user)
-		{	
+		{
 			let userId =  Object.assign({}, this.props.user.users );
 			let id = Object.keys(userId)[0];
-			
+
 			if (user.email==job.executor) {
-				
+
 				function finishButton(){
 					if(job.jobStatus!=='done'){
 
@@ -82,25 +82,25 @@ class JobInfo extends React.Component{
                         }
 
 					}
-					
 
-					
+
+
 				}
                 if(job.jobStatus!=='done'){
 				return  (
 				<div>
 					<button className="button" onClick={() => {addExecutor('', '', 'new', job.databaseId); deletejobExecutor (id,job) }}>Сancel execution</button>
 					{finishButton()}
-				</div> 
-					); 
+				</div>
+					);
 				}}
 		else if (user.email===email) {
         if(job.jobStatus=='inProcess'){
 			return (<p>In process. Executor {job.executor}</p>)	}
 			if(job.jobStatus=='done'){
 				function addRating() {
-					
-					let elem = document.getElementById('form_Employer').value.toString();		
+
+					let elem = document.getElementById('form_Employer').value.toString();
 					addRatingToEmployee(elem, job);
 					deleteJob(job, job.databaseId);
 
@@ -117,20 +117,20 @@ class JobInfo extends React.Component{
 		else {
 			  return (
 			  <div><a className=' button ButtonLink' href={this.addEdit(job.id)}>Edit</a>
-			  <button className="button" onClick={() => deleteJob(job, databaseId)}>Delete</button></div> ); 
-		}			
-        		
+			  <button className="button" onClick={() => deleteJob(job, databaseId)}>Delete</button></div> );
+		}
+
 
 			}
 			else if (user.email!==email){
-				return  (<div><button className="button" onClick={() => {addExecutor(user.email, id, 'inProcess',job.databaseId); addjobExecutor(id,JobInfo)}}>Accept Job</button></div> ); 
+				return  (<div><button className="button" onClick={() => {addExecutor(user.email, id, 'inProcess',job.databaseId); addjobExecutor(id,JobInfo)}}>Accept Job</button></div> );
 			}
 		}
-		  else return  (<div><p>You must login to accept job</p></div> ); 
-	
+		  else return  (<div><p>You must login to accept job</p></div> );
+
 	}
 
-	
+
     addEdit(id){
 		return `/editJob#${id}`;
 	};

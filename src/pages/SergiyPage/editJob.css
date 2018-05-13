@@ -37,7 +37,7 @@
 	display: grid;
 	grid-template-columns: 1fr;
 }
-.edit-job-info__duaration{
+.edit-job-info__description{
 	display: grid;
 	grid-template-columns: 1fr;
 }

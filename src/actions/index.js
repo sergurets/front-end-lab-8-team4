@@ -130,6 +130,20 @@ export function addjobExecutor(user, job) {
 	firebase.database().ref(`usersT/${job.user}/createdJob/${job.userJobKey}`).update({
 		"executor": user, "jobStatus": 'inProcess'
 	});
+}
+
+export function addRatingToEmployer(rating, job) {
+	console.log(job.user, job.userJobKey, rating);
+	firebase.database().ref(`usersT/${job.userID}/createdJob/${job.userJobKey}`).update({
+		"jobStatus": "done", "ratingEmployer": rating
+	});
+	firebase.database().ref(`jobList/${job.databaseId}`).update({
+		"jobStatus": "done", "ratingEmployer": rating
+	});
+	firebase.database().ref(`usersT/${job.executorId}/AcceptedJob/${job.executorJobId}`).update({
+		"jobStatus": "done", "ratingEmployer": rating
+	});
+}
 
 export function addRatingToEmployee(rating, job) {
     console.log(job.user, job.userJobKey, rating);
