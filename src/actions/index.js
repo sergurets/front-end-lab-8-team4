@@ -3,14 +3,16 @@ import {
   firebaseJobs,
   firebaseJobsArchive,
   firebaseTrueUsers
-} from '../firebase.js'
+} from '../firebase.js';
+
+import { FETCH_JOB_LIST, FETCH_USER_LIST, GET_USER, ADD_JOB } from './actionTypes';
 
 
 export function jobList() {
   return dispatch => {
     firebaseJobs.on('value', snapshot => {
       dispatch({
-        type: 'jobList',
+        type: FETCH_JOB_LIST,
         jobs: snapshot.val()
 
       });
@@ -22,7 +24,7 @@ export function userList() {
   return dispatch => {
     firebaseTrueUsers.on('value', snapshot => {
       dispatch({
-        type: 'FETCH_USER_LIST',
+        type: FETCH_USER_LIST,
         payload: snapshot.val()
       });
     });
@@ -33,7 +35,7 @@ export function getUser(mail) {
   return dispatch => {
     firebaseTrueUsers.orderByChild('email').equalTo(mail).on('value', snapshot => {
       dispatch({
-        type: 'FETCH_USER_LIST',
+        type: GET_USER,
         payload: snapshot.val()
       });
     });
@@ -49,7 +51,7 @@ export const saveJob = (job) => {
       "databaseId": dataKey
     });
     dispatch({
-      type: 'addJob',
+      type: ADD_JOB,
       jobs: dataKey
     });
 
@@ -81,7 +83,7 @@ export const addExecutor = (mail, id, jobStatus, key) => {
   firebase.database().ref(`jobList/${key}`).update({
     "executor": mail,
     "executorId": id,
-	"jobStatus": jobStatus
+    "jobStatus": jobStatus
 
   })
 }
