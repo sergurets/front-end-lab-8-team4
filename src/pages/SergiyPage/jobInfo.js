@@ -1,7 +1,6 @@
-
 import React from 'react';
 import { connect } from 'react-redux';
-import { jobList, addExecutor, deleteJob, getUser, deletejobExecutor, addjobExecutor} from '../../actions';
+import { jobList, addExecutor, deleteJob, getUser, deletejobExecutor, addjobExecutor, addRatingToEmployer, addRatingToEmployee} from '../../actions';
 import './jobInfo.css';
 import * as firebase from 'firebase';
 import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
@@ -38,7 +37,7 @@ class JobInfo extends React.Component{
 			user: job.userID,
 			userJobKey: job.userJobKey,
 			jobStatus: 'inProcess'
-		}
+		};
 	
 		let user = firebase.auth().currentUser;
 		if (user)
@@ -47,15 +46,74 @@ class JobInfo extends React.Component{
 			let id = Object.keys(userId)[0];
 			
 			if (user.email==job.executor) {
+				
+				function finishButton(){
+					if(job.jobStatus!=='done'){
+
+
+                        if(job.jobStatus=='inProcess'){
+                            function renderComlete(){
+                                function myFunction(){
+                                }
+                                let element = document.getElementById('finish');
+                                element.innerHTML=
+                                    `<div id="finishform">
+									    <label>Impression of work</label>
+										<select id="finish_form_Impression">
+											<option>excellent</option>
+											<option>OK</option>
+											<option>badly</option>
+											<option>horribly</option>
+										</select>
+										<button class="button">Сomplete</button>
+								</div>`;
+                                let elem = document.querySelector('#finishform .button ');
+                                elem.onclick = function(){
+                                    let formSel = document.getElementById('finish_form_Impression').value.toString();
+                                    addRatingToEmployer(formSel, job);};
+                            }
+                            return (
+                                <div>
+                                    <button className="button" onClick={() => {renderComlete()}}>Сomplete</button>
+                                    <div id="finish"></div>
+                                </div>
+
+                            )
+                        }
+
+					}
+					
+
+					
+				}
+                if(job.jobStatus!=='done'){
 				return  (
 				<div>
 					<button className="button" onClick={() => {addExecutor('', '', 'new', job.databaseId); deletejobExecutor (id,job) }}>Сancel execution</button>
+					{finishButton()}
 				</div> 
 					); 
-				}
+				}}
 		else if (user.email===email) {
         if(job.jobStatus=='inProcess'){
 			return (<p>In process. Executor {job.executor}</p>)	}
+			if(job.jobStatus=='done'){
+				function addRating() {
+					
+					let elem = document.getElementById('form_Employer').value.toString();		
+					addRatingToEmployee(elem, job);
+					deleteJob(job, job.databaseId);
+
+				}
+				return (<div id="finishformEmployer"><label>The work is completed, evaluate the level of execution</label>
+				<select id="form_Employer">
+				<option>excellent</option>
+				<option>OK</option>
+				<option>badly</option>
+				<option>horribly</option>
+				</select>
+				<button className="button" onClick={() => {addRating()}} >Сomplete</button>
+				</div>)	}
 		else {
 			  return (
 			  <div><a className=' button ButtonLink' href={this.addEdit(job.id)}>Edit</a>
@@ -134,7 +192,7 @@ const mapStateToProps = (state) => {
 		data: state.jobList,
 		user: state.userList
 	}
-}
+};
 const mapDispatchToProps = (dispatch) => {
 	return {
 		getJobs : () => {
@@ -144,6 +202,6 @@ const mapDispatchToProps = (dispatch) => {
 			dispatch(getUser(mail))
 		}
 	}
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(JobInfo);
