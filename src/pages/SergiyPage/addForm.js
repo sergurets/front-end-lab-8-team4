@@ -1,3 +1,4 @@
+
 import React from "react";
 import {Component} from "react";
 import {connect} from "react-redux";
@@ -36,6 +37,7 @@ function TodayDate() {
 let defDate = TodayDate();
 
 class Addjob extends Component {
+
     constructor(props) {
         super(props);
         this.state = {

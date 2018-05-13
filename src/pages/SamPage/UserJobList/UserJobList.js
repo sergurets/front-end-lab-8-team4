@@ -1,36 +1,36 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { jobList } from '../../../actions';
+import { getUser, jobList } from '../../../actions';
+import FB from '../../../firebase';
 import { Link } from "react-router-dom";
 
 class UserJobList extends React.Component {
 
     componentDidMount() {
-        this.props.getJobs();
+        let email = FB.firebase.auth().currentUser.email;
+        this.props.getUserByEmail(email);
     }
 
-    renderList = (jobList) => {
+    renderList = (obj) => {
         let jobs = [];
-        for (var key in jobList) {
+        for (let key in jobList) {
             jobs.push(jobList[key]);
         }
 
         return (
-            jobs ?
-                jobs.map(item => (
-                    <li className="job-list__item" key={item.id}>
-                        <Link to={`/jobInfo/#${item.id}`}>{item.title}</Link>
-                        <p>{item.info}</p>
-                    </li>
-                )) : null
+            jobs.map(item => (
+                <li className="job-list__item" key={item.id}>
+                    <Link to={`/jobInfo/#${item.id}`}>{item.title}</Link>
+                    <p>{item.info}</p>
+                </li>
+            ))
         );
     }
 
     render() {
-        console.log(this.props.data)
         return (
             <div id="job-container">
-                <h1>Jobs</h1>
+                <h1 className="job-container__heading">Jobs</h1>
                 <ol className="job-list">
                     {this.renderList(this.props.data)}
                 </ol>
@@ -41,13 +41,13 @@ class UserJobList extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        data: state.jobList.jobs
+        data: state.userList
     }
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        getJobs: () => {
-            dispatch(jobList())
+        getUserByEmail: () => {
+            dispatch(jobList());
         }
     }
 }

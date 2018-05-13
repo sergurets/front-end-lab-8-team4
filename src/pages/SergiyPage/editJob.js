@@ -8,6 +8,7 @@ import Autocomplete from 'react-google-autocomplete';
 let ID;
 let Coordinates = {};
 
+
 class JobEdit extends React.Component {
     defaultObj = {};
 

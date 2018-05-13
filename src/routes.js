@@ -14,9 +14,9 @@ import Registration from './components/Registration/Registration.js';
 import editJob from './pages/SergiyPage/editJob.js';
 import * as firebase from 'firebase';
 const App = (props) => {
-	return(
+	return (
 		<Router>
-			< Layout {...props}/>
+			< Layout {...props} />
 		</Router>
 	)
 }
@@ -26,16 +26,15 @@ const PrivateRoute = ({
 	component: Comp,
 	...rest
 }) => {
-	return <Route {...rest} component={(props)=>(
-		isLogged ? 
-			<Comp {...props}/>
-		: 
+	return <Route {...rest} component={(props) => (
+		isLogged ?
+			<Comp {...props} />
+			:
 			<Redirect to="/login" />
 	)} />
 }
 const Layout = (props) => {
-	console.log("props", props)
-	return(
+	return (
 		<div className="layout">
 			<Header />
 				<Route path="/Page" component={Page} />
@@ -46,6 +45,7 @@ const Layout = (props) => {
 				<Route path="/login" component={Login} />
 				<Route  path="/registration" component={Registration} />
 		    <Footer/>
+
 		</div>
 	)
 }
