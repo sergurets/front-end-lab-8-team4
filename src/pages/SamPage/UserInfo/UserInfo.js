@@ -68,15 +68,15 @@ class UserInfo extends React.Component {
 		}
 
 		return (
-			<div className="user-info__list">
-				<button onClick={this.editUserInfo}>Edit</button>
-				<ul className="">
+			<div >
+				<ul className="user-info__list">
+					<li className="user-info__list__item">Photo:<span><img src={temp.url} alt="user-av"></img></span></li>
 					<li className="user-info__list__item">Name: <span>{temp.name}</span></li>
 					<li className="user-info__list__item">Surname:<span>{temp.surname}</span></li>
 					<li className="user-info__list__item">City:<span>{temp.city}</span></li>
 					<li className="user-info__list__item">Email:<span>{temp.email}</span></li>
-					<li className="user-info__list__item">Photo:<span><img src={temp.url} alt="user-av"></img></span></li>
 				</ul>
+				<button className="button" onClick={this.editUserInfo}>Edit</button>
 			</div>
 		)
 	}
@@ -95,13 +95,13 @@ class UserInfo extends React.Component {
 
 		return (
 			<div className="edit-user-info">
-				<button onClick={this.saveUserInfo}>Save</button>
-				<ul className="">
-					<li className="edit-user-info__item">Name: <input onChange={this.handleChangeName} type="text" defaultValue={temp.name} /></li>
-					<li className="edit-user-info__item">Surname: <input onChange={this.handleChangeSurname} type="text" defaultValue={temp.surname} /></li>
-					<li className="edit-user-info__item">City: <input type="text" onChange={this.handleChangeCity} defaultValue={temp.city} /></li>
-					<li className="edit-user-info__item">Photo: <button>Upload new image</button></li>
+				<ul className="user-info__list">
+					<li className="user-info__list__item">Name: <input onChange={this.handleChangeName} type="text" defaultValue={temp.name} /></li>
+					<li className="user-info__list__item">Surname: <input onChange={this.handleChangeSurname} type="text" defaultValue={temp.surname} /></li>
+					<li className="user-info__list__item">City: <input type="text" onChange={this.handleChangeCity} defaultValue={temp.city} /></li>
+					<li className="user-info__list__item">Photo: <button >Upload new image</button></li>
 				</ul>
+				<button  className="button" onClick={this.saveUserInfo}>Save</button>
 			</div >
 		)
 	}
@@ -130,8 +130,7 @@ class UserInfo extends React.Component {
 
 		return (
 			<div className="user-info" >
-				<h1 className="user-info__heading">Users Info</h1>
-
+				<h1 className="user-info__header">Users Info</h1>
 				{this.state.editing ? this.renderEditing(this.props.data) : this.renderUsersInfo(this.props.data)}
 			</div >
 		);
