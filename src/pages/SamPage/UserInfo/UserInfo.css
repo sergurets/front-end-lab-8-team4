@@ -1,27 +1,98 @@
-.user-info {
-    padding: 10px;
-}
 
 .user-info ul {
     list-style: none;
 }
 
-.user-info__heading {
-    text-align: center;
+.user-info__header {
+	text-align: left;
+	font-size: 30px;
+	padding-bottom: 1vh;
 }
 
 .user-info__list {
-    padding: 5px;
+    display: grid;
+	grid-template-columns: 1fr;
+	grid-row-gap: 5px;
+	vertical-align: bottom;
 }
 
 .user-info__list__item {
     padding: 5px;
+	display: grid;
+	grid-template-columns: 1fr 3fr;
+	border-bottom: 1px solid #2c7dbc;
+	vertical-align: text-bottom;
+}
+.user-info__list__item input{
+	width: 100%;
+	padding: 10px 15px;
+	color: rgba(0, 0, 0, 0.7);
+	font-size: 15px;
+	font-family: "Proxima-Nova-Bold", sans-serif;
+	background-color: transparent;
+	-webkit-transition: all 0.3s cubic-bezier(0.4, 0.25, 0, 1);
+	transition: all 0.3s cubic-bezier(0.4, 0.25, 0, 1);
+	margin-bottom: 1vh;
+	border: 0;
+	border-bottom: 1px solid black;
+	outline: 0;
+}
+.user-info__list__item button{
+	display: -webkit-inline-box;
+	display: -ms-inline-flexbox;
+	display: inline-flex;
+	border-radius: 50px;
+	border: 0;
+	outline: 0;
+	cursor: pointer;
+	-webkit-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+	-webkit-transition: all 0.5s cubic-bezier(0.4, 0.25, 0, 1);
+	transition: all 0.5s cubic-bezier(0.4, 0.25, 0, 1);
+	border: 2px solid transparent;
+	-webkit-box-shadow: 0 0 0 0 transparent;
+	box-shadow: 0 0 0 0 transparent;
+	border-color: #2c7dbc;
+	background-color: transparent;
+	color: #2c7dbc;
+	margin-left: 5%;
+	margin-right: 55%;
+	font-weight: bold;
+	font-size: 15px;
+	text-decoration: none;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+}
+.user-info .button{
+	display: -webkit-inline-box;
+	display: -ms-inline-flexbox;
+	display: inline-flex;
+	border-radius: 50px;
+	border: 0;
+	outline: 0;
+	cursor: pointer;
+	-webkit-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+	-webkit-transition: all 0.5s cubic-bezier(0.4, 0.25, 0, 1);
+	transition: all 0.5s cubic-bezier(0.4, 0.25, 0, 1);
+	border: 2px solid transparent;
+	-webkit-box-shadow: 0 0 0 0 transparent;
+	box-shadow: 0 0 0 0 transparent;
+	border-color: #2c7dbc;
+	background-color: transparent;
+	color: #2c7dbc;
+	margin-left: 40%;
+	margin-top: 5%;
+	font-weight: bold;
+	font-size: 15px;
+	text-decoration: none;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
 }
 
-.user-info__list__item:nth-child(2n+1) {
-    background: rgb(235, 235, 235);
-}
-
-.user-info__list__item span {
-    float: right;
+.user-info__list__item img{
+	border-radius: 50%;
+	width: 20%;
 }
