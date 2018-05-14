@@ -1,4 +1,3 @@
-
 import React, { Component } from "react";
 import fireb from "../../firebase.js";
 import {
@@ -6,14 +5,14 @@ import {
   Redirect
 } from "react-router-dom";
 import "./Login.css";
+import { connect } from 'react-redux';
 
 class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
       password: "",
-      email: "",
-      status: true
+      email: ""
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -36,7 +35,8 @@ class Login extends Component {
 	    fireb.firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then(res => {
   			document.getElementsByClassName("regform--logout")[0].style.visibility = "visible";
   			document.getElementsByClassName("regform--send")[0].style.visibility = "hidden";
-  			alert('okay')
+  			alert('okay');
+  			this.props.history.goBack();
   		}).catch(function(error) {
 	    	 alert(error);
 		});
@@ -111,4 +111,10 @@ class Login extends Component {
   }
 }
 
-export default Login;
+const mapStateToProps = (state) => {
+	return {
+		CurUser: state.user.CurUser
+	}
+}
+
+export default connect(mapStateToProps,null)(Login);
