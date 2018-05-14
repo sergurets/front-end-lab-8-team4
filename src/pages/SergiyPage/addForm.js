@@ -1,10 +1,9 @@
-
 import React from "react";
-import {Component} from "react";
-import {connect} from "react-redux";
+import { Component } from "react";
+import { connect } from "react-redux";
 import "./addjob.css";
-import {saveJob, getUser} from "../../actions";
-import {firebaseJobList} from "../../firebase";
+import { saveJob, getUser } from "../../actions";
+import { firebaseJobList } from "../../firebase";
 import * as firebase from "firebase";
 import Autocomplete from "react-google-autocomplete";
 import {
@@ -37,7 +36,6 @@ function TodayDate() {
 let defDate = TodayDate();
 
 class Addjob extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -64,9 +62,9 @@ class Addjob extends Component {
     handleSubmit(event) {
         event.preventDefault();
         this.state.id = Date.now().toString();
-        let userId = Object.keys(this.props.data.users)[0];
+        let userId = Object.keys(this.props.data.user)[0];
         this.state.userID = userId;
-        this.state.userName = this.props.data.users[userId].name;
+        this.state.userName = this.props.data.user[userId].name;
         let JobInfo = {
             id: this.state.id,
             title: this.state.title,
@@ -80,25 +78,25 @@ class Addjob extends Component {
     }
 
     handleDateChange(event) {
-        this.setState({deadlineDate: event.target.value});
+        this.setState({ deadlineDate: event.target.value });
     }
 
     handleSalaryChange(event) {
-        this.setState({salary: event.target.value});
+        this.setState({ salary: event.target.value });
     }
 
     handleDurationChange(event) {
-        this.setState({duration: event.target.value});
+        this.setState({ duration: event.target.value });
         console.log(event.target.value);
     }
 
 
     handleTitleChange(event) {
-        this.setState({title: event.target.value});
+        this.setState({ title: event.target.value });
     }
 
     infohandleInfoChange(event) {
-        this.setState({info: event.target.value});
+        this.setState({ info: event.target.value });
     }
 
     componentWillMount() {
@@ -134,7 +132,7 @@ class Addjob extends Component {
                                 onChange={this.handleTitleChange}
                                 required
                             />
-                            <br/>
+                            <br />
                             <textarea
                                 placeholder="Enter info"
                                 id="info"
@@ -143,10 +141,10 @@ class Addjob extends Component {
                                 onChange={this.infohandleInfoChange}
                                 required
                             />
-                            <br/>
+                            <br />
                             <Autocomplete
                                 className="add-job__input"
-                                style={{width: "90%"}}
+                                style={{ width: "90%" }}
                                 onPlaceSelected={place => {
                                     this.state.lng =
                                         (place.geometry.viewport.b.f +
@@ -160,9 +158,9 @@ class Addjob extends Component {
                                     console.log(this.state, place.geometry.viewport);
                                 }}
                                 types={["geocode"]}
-                                componentRestrictions={{country: "ua"}}
+                                componentRestrictions={{ country: "ua" }}
                             />
-                            <br/>
+                            <br />
                             <input
                                 type="number"
                                 min="0"
@@ -173,7 +171,7 @@ class Addjob extends Component {
                                 onChange={this.handleSalaryChange}
                                 required
                             />
-                            <br/>
+                            <br />
                             <div className="job-info__selections">
                                 <div className="job-info_duration">
                                     <label className="job-info__label">Тривалість</label>
@@ -213,7 +211,7 @@ class Addjob extends Component {
                                         onChange={this.handleFileUpload}
                                         value={this.state.file}
                                     />
-                                    <br/>
+                                    <br />
                                 </div>
                             </div>
                             <button className="button send-button">Send</button>
@@ -224,7 +222,7 @@ class Addjob extends Component {
         } else
             return (
                 <div>
-                    <Redirect to={"/login"}/>
+                    <Redirect to={"/login"} />
                 </div>
             );
     }

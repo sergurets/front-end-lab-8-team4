@@ -58,21 +58,19 @@ export const editUserInfo = (user, key, email) => {
 	};
 }
 
-
 export const saveJob = (job) => {
 	return dispatch => {
-		var dataKey = firebaseJobs.push(job).key;
-		var Ref = firebase.database().ref(`jobList/${dataKey}`);
+		let dataKey = firebaseJobs.push(job).key;
+		let Ref = firebase.database().ref(`jobList/${dataKey}`);
 		Ref.update({
 			"databaseId": dataKey
 		});
 		dispatch({
-			type: ADD_JOB,
+			type: 'addJob',
 			jobs: dataKey
 		});
-
 	}
-}
+};
 
 export const editJob = (job, key) => {
 	firebase.database().ref(`jobList/${key}`).update({
