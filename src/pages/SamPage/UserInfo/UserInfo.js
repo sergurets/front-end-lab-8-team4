@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
-import { getUser, userList } from '../../../actions';
+import { getUser } from '../../../actions';
 import FB from '../../../firebase';
 import './UserInfo.css';
 
@@ -148,11 +148,7 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		getUserByEmail: (email) => {
 			dispatch(getUser(email))
-		},
-		getUsers: () => {
-			dispatch(userList())
 		}
-
 	}
 }
 
