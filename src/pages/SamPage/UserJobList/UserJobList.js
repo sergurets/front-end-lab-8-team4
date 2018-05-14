@@ -11,29 +11,57 @@ class UserJobList extends React.Component {
         this.props.getUserByEmail(email);
     }
 
-    renderList = (obj) => {
-        let jobs = [];
-        for (let key in jobList) {
-            jobs.push(jobList[key]);
-        }
+    renderCreatedJobList = (obj) => {
+        let temp = obj.user;
 
-        return (
-            jobs.map(item => (
-                <li className="job-list__item" key={item.id}>
-                    <Link to={`/jobInfo/#${item.id}`}>{item.title}</Link>
-                    <p>{item.info}</p>
-                </li>
-            ))
-        );
+        try {
+            temp = temp[Object.keys(temp)[0]].createdJob;
+            for (let i in temp) {
+                return (
+                    <li className="job-list__item" key={i.id}>
+                        <Link to={`/jobInfo/#${temp[i].id}`}>{temp[i].title}</Link>
+                        <p>{temp[i].info}</p>
+                    </li>
+                );
+            }
+        } catch (e) {
+            return;
+        }
+    }
+
+    renderAccptedJobList = (obj) => {
+        let temp = obj.user;
+
+        try {
+            temp = temp[Object.keys(temp)[0]].AcceptedJob;
+            for (let i in temp) {
+                return (
+                    <li className="job-list__item" key={i.id}>
+                        <Link to={`/jobInfo/#${temp[i].id}`}>{temp[i].title}</Link>
+                        <p>{temp[i].info}</p>
+                    </li>
+                );
+            }
+        } catch (e) {
+            return;
+        }
     }
 
     render() {
         return (
             <div id="job-container">
-                <h1 className="job-container__heading">Jobs</h1>
-                <ol className="job-list">
-                    {this.renderList(this.props.data)}
-                </ol>
+                <div className="created-jobs">
+                    <h1 className="jobs__heading">Created Jobs</h1>
+                    <ul className="job-list">
+                        {this.renderCreatedJobList(this.props.data)}
+                    </ul>
+                </div>
+                <div className="accepted-jobs">
+                    <h1 className="jobs__heading">Created Jobs</h1>
+                    <ul className="job-list">
+                        {this.renderAccptedJobList(this.props.data)}
+                    </ul>
+                </div>
             </div>
         );
     }
@@ -46,8 +74,8 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        getUserByEmail: () => {
-            dispatch(jobList());
+        getUserByEmail: (email) => {
+            dispatch(getUser(email));
         }
     }
 }

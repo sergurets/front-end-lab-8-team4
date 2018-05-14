@@ -122,11 +122,6 @@ class UserInfo extends React.Component {
 	}
 
 	render() {
-		const { redirect } = this.state;
-
-		if (redirect) {
-			return <Redirect to='/page' />;
-		}
 
 		return (
 			<div className="user-info" >
