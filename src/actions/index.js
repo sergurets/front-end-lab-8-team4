@@ -1,4 +1,8 @@
 import * as firebase from 'firebase';
+import React, { Component}  from 'react';
+import ReactDOM from 'react-dom';
+import App from './../app.js';
+import { Provider } from 'react-redux';
 import {
 	firebaseJobs,
 	firebaseJobsArchive,
@@ -159,6 +163,15 @@ export function addRatingToEmployee(rating, job) {
 }
 
 
-
-
-
+export function checkUser(user, store){
+  store.dispatch({
+    type: 'CurUser',
+    payload:  user
+  });
+  ReactDOM.render(
+    <Provider store={store}>
+      <App auth={user}/>
+    </Provider>,
+    document.getElementById('root')
+  );
+}
