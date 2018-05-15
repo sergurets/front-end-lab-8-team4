@@ -13,24 +13,37 @@ class Login extends Component {
     this.state = {
       password: "",
       email: "",
-      status: this.props.CurUser
+      status: true
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.singOut = this.singOut.bind(this);
   }
   
+  componentWillMount(){
+      fireb.firebase.auth().onAuthStateChanged((user)=>{
+        this.setState({
+          status: user? true : false 
+        });
+        if(user){
+          document.getElementsByClassName("regform--logout")[0].style.visibility = "visible";
+          document.getElementsByClassName("regform--send")[0].style.visibility = "hidden";
+        }
+      })
+    }
+  
   handleSubmit(event) {
     event.preventDefault();
-	    fireb.firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then(res => {
-  			alert('logged in');
-  			this.props.history.goBack();
-  		}).catch(function(error) {
-	    	 alert(error);
-		});
-    	for (let key in this.state){
-	      this.setState({[key]: ""})
-	    }
+      fireb.firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then(res => {
+        alert('okay')
+        document.getElementsByClassName("regform--logout")[0].style.visibility = "visible";
+        document.getElementsByClassName("regform--send")[0].style.visibility = "hidden";
+      }).catch(function(error) {
+         alert(error);
+    });
+      for (let key in this.state){
+        this.setState({[key]: ""})
+      }
   }
   
   handleChange(event) {
@@ -77,17 +90,13 @@ class Login extends Component {
               required
             />
             <br />
-            {!isLog && <button className="regform--send">Send</button>}
+            <button className="regform--send">Send</button>
           </form>
-        
           <div>
-            {isLog  &&
             <button onClick={this.singOut} className="button regform--logout">
               Log Out
             </button>
-        	}
           </div>
-      	  
           <div className="regform__register">
             <Link to="/registration" className="regform__register">
               Don't have an account? Register now
@@ -98,11 +107,9 @@ class Login extends Component {
     );
   }
 }
-
 const mapStateToProps = (state) => {
-	return {
-		CurUser: state.user.CurUser
-	}
+  return {
+    CurUser: state.user.CurUser
+  }
 }
-
 export default connect(mapStateToProps,null)(Login);
