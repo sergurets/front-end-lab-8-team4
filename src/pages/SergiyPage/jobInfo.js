@@ -41,8 +41,12 @@ class JobInfo extends React.Component {
 
 		let user = firebase.auth().currentUser;
 		if (user) {
+			
+			let userId2 = Object.assign({}, this.props.user.user);
+			
 			let userId = Object.assign({}, this.props.user);
-			let id = Object.keys(userId)[0];
+			console.log(user, userId, id, this.props.user.user, Object.keys(this.props.user.user)[0] )
+			let id = Object.keys(this.props.user.user)[0];
 
 			if (user.email == job.executor) {
 
