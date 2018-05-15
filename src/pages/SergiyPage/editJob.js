@@ -1,6 +1,7 @@
 import React from "react";
 import * as firebase from "firebase";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 import { jobList, editJob, editJobUser } from "../../actions";
 import "./editJob.css";
 import Autocomplete from "react-google-autocomplete";
@@ -198,13 +199,23 @@ class JobEdit extends React.Component {
   };
 
   render() {
-    return <div>{this.renderList(this.props.data.jobList)}</div>;
+  	let user = this.props.CurUser;
+  	if(user){
+    	return (<div>{this.renderList(this.props.data.jobList)}</div>)
+    } else {
+    	return (
+            <div>
+                <Redirect to="/login"/>
+            </div>
+        );
+    }
   }
 }
 
 const mapStateToProps = state => {
   return {
-    data: state.jobList
+    data: state.jobList,
+    CurUser: state.user.CurUser
   };
 };
 const mapDispatchToProps = dispatch => {

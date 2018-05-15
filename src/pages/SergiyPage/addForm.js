@@ -6,13 +6,7 @@ import { saveJob, getUser } from "../../actions";
 import { firebaseJobList } from "../../firebase";
 import * as firebase from "firebase";
 import Autocomplete from "react-google-autocomplete";
-import {
-    BrowserRouter as Router,
-    Link,
-    Route,
-    Redirect,
-    withRouter
-} from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 function TodayDate() {
     let month, date;
@@ -110,8 +104,9 @@ class Addjob extends Component {
 
     render() {
         let user = firebase.auth().currentUser;
+        let checkuser = this.props.CurUser;
         console.log("active_user", user);
-        if (user) {
+        if (checkuser) {
             console.log("active_user", user);
             this.state.user = user.email;
             return (
@@ -222,7 +217,7 @@ class Addjob extends Component {
         } else
             return (
                 <div>
-                    <Redirect to={"/login"} />
+                    <Redirect to="/login" />
                 </div>
             );
     }
@@ -231,7 +226,8 @@ class Addjob extends Component {
 const mapStateToProps = state => {
     return {
         saveJob: state.saveJob,
-        data: state.userList
+        data: state.userList,
+        CurUser: state.user.CurUser
     };
 };
 const mapDispatchToProps = dispatch => {
