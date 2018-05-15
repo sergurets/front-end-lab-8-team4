@@ -45,7 +45,7 @@ export function getUser(email) {
 	};
 }
 
-export const editUserInfo = (user, key) => {
+export const editUserInfo = (user, key, email) => {
 	firebase.database().ref(`usersT/${key}`).update({
 		"name": user.name,
 		"surname": user.surname,
@@ -53,29 +53,28 @@ export const editUserInfo = (user, key) => {
 	});
 
 	return dispatch => {
-		dispatch({
-			type: EDIT_USER_INFO,
-			payload: { name: user.name, surname: user.surname, city: user.city }
+		firebaseTrueUsers.orderByChild('email').equalTo(email).once('value').then(snapshot => {
+			dispatch({
+				type: EDIT_USER_INFO,
+				payload: snapshot.val()
+			});
 		});
-	}
-
+	};
 }
-
 
 export const saveJob = (job) => {
 	return dispatch => {
-		var dataKey = firebaseJobs.push(job).key;
-		var Ref = firebase.database().ref(`jobList/${dataKey}`);
+		let dataKey = firebaseJobs.push(job).key;
+		let Ref = firebase.database().ref(`jobList/${dataKey}`);
 		Ref.update({
 			"databaseId": dataKey
 		});
 		dispatch({
-			type: ADD_JOB,
+			type: 'addJob',
 			jobs: dataKey
 		});
-
 	}
-}
+};
 
 export const editJob = (job, key) => {
 	firebase.database().ref(`jobList/${key}`).update({

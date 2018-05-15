@@ -57,7 +57,7 @@ class UserJobList extends React.Component {
                     </ul>
                 </div>
                 <div className="accepted-jobs">
-                    <h1 className="jobs__heading">Created Jobs</h1>
+                    <h1 className="jobs__heading">Accepted Jobs</h1>
                     <ul className="job-list">
                         {this.renderAccptedJobList(this.props.data)}
                     </ul>

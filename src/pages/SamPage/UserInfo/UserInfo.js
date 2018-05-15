@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
-import { getUser } from '../../../actions';
+import { getUser, editUserInfo } from '../../../actions';
 import FB from '../../../firebase';
 import './UserInfo.css';
 
@@ -21,16 +21,12 @@ class UserInfo extends React.Component {
 		this.handleChangeSurname = this.handleChangeSurname.bind(this);
 		this.handleChangeCity = this.handleChangeCity.bind(this);
 	}
+	defaultUserInfo = {};
 
 	componentDidMount() {
-		try {
-			let email = FB.firebase.auth().currentUser.email;
-			this.userEmail = email;
-			this.props.getUserByEmail(email);
-		}
-		catch (e) {
-			this.setState({ redirect: true });
-		}
+		let email = FB.firebase.auth().currentUser.email;
+		this.userEmail = email;
+		this.props.getUserByEmail(email);
 	}
 
 	handleChangeName(e) {
@@ -45,25 +41,10 @@ class UserInfo extends React.Component {
 		this.setState({ city: e.target.value })
 	}
 
-	handleChangeEmail(e) {
-		this.setState({ email: e.target.value })
-	}
-
-	handleChangePassword(e) {
-		this.setState({ password: e.target.value })
-	}
-
-	handleLoginEmail(e) {
-		this.setState({ emailToLogin: e.target.value })
-	}
-
-	handleLoginPassword(e) {
-		this.setState({ passwordToLogin: e.target.value })
-	}
 
 	renderUsersInfo = (obj) => {
 		let temp = {};
-		for (var key in obj) {
+		for (let key in obj) {
 			temp = Object.assign({}, obj[key]);
 		}
 
@@ -81,7 +62,7 @@ class UserInfo extends React.Component {
 		)
 	}
 
-	editUserInfo = (e) => {
+	editUserInfo(e) {
 		this.setState({
 			editing: true
 		});
@@ -101,19 +82,21 @@ class UserInfo extends React.Component {
 					<li className="user-info__list__item">City: <input type="text" onChange={this.handleChangeCity} defaultValue={temp.city} /></li>
 					<li className="user-info__list__item">Photo: <button >Upload new image</button></li>
 				</ul>
-				<button  className="button" onClick={this.saveUserInfo}>Save</button>
+				<button className="button" onClick={this.saveUserInfo}>Save</button>
 			</div >
 		)
 	}
 
-	saveUserInfo = () => {
+	saveUserInfo() {
 		let keyName = Object.keys(this.props.data);
+		this.defaultUserInfo = Object.assign({}, this.props.data);
+		console.log(this.defaultUserInfo[keyName].name);
 
-		FB.firebase.database().ref(`usersT/${keyName}`).update({
-			"name": this.state.name,
-			"surname": this.state.surname,
-			"city": this.state.city,
-		});
+		this.props.editUserInfo({
+			"name": this.state.name || this.defaultUserInfo[keyName].name,
+			"surname": this.state.surname || this.defaultUserInfo[keyName].surname,
+			"city": this.state.city || this.defaultUserInfo[keyName].city,
+		}, keyName, this.userEmail);
 
 
 		this.setState({
@@ -122,7 +105,6 @@ class UserInfo extends React.Component {
 	}
 
 	render() {
-
 		return (
 			<div className="user-info" >
 				<h1 className="user-info__header">Users Info</h1>
@@ -142,6 +124,10 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		getUserByEmail: (email) => {
 			dispatch(getUser(email))
+		},
+
+		editUserInfo: (user, key, email) => {
+			dispatch(editUserInfo(user, key, email))
 		}
 	}
 }
