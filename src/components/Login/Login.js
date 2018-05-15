@@ -12,30 +12,18 @@ class Login extends Component {
     super(props);
     this.state = {
       password: "",
-      email: ""
+      email: "",
+      status: this.props.CurUser
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.singOut = this.singOut.bind(this);
   }
-  componentWillMount(){
-  		fireb.firebase.auth().onAuthStateChanged((user)=>{
-  			this.setState({
-  				status: user? true : false 
-  			});
-  			if(user){
-  				document.getElementsByClassName("regform--logout")[0].style.visibility = "visible";
-		 		document.getElementsByClassName("regform--send")[0].style.visibility = "hidden";
-  			}
-  		})
-  	}
   
   handleSubmit(event) {
     event.preventDefault();
 	    fireb.firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then(res => {
-  			document.getElementsByClassName("regform--logout")[0].style.visibility = "visible";
-  			document.getElementsByClassName("regform--send")[0].style.visibility = "hidden";
-  			alert('okay');
+  			alert('logged in');
   			this.props.history.goBack();
   		}).catch(function(error) {
 	    	 alert(error);
@@ -50,15 +38,11 @@ class Login extends Component {
   }
   
   singOut() {
-    fireb.firebase
-      .auth()
-      .signOut()
+    fireb.firebase.auth().signOut()
       .then(function() {
         alert("logged out");
-        document.getElementsByClassName("regform--logout")[0].style.visibility =
-          "hidden";
-        document.getElementsByClassName("regform--send")[0].style.visibility =
-          "visible";
+        document.getElementsByClassName("regform--logout")[0].style.visibility = "hidden";
+        document.getElementsByClassName("regform--send")[0].style.visibility = "visible";
       })
       .catch(function(error) {
         alert(error);
@@ -93,13 +77,17 @@ class Login extends Component {
               required
             />
             <br />
-            <button className="regform--send">Send</button>
+            {!isLog && <button className="regform--send">Send</button>}
           </form>
+        
           <div>
+            {isLog  &&
             <button onClick={this.singOut} className="button regform--logout">
               Log Out
             </button>
+        	}
           </div>
+      	  
           <div className="regform__register">
             <Link to="/registration" className="regform__register">
               Don't have an account? Register now
