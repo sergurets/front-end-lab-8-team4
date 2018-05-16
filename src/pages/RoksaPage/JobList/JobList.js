@@ -4,19 +4,19 @@ import { connect } from "react-redux";
 import { jobList } from "../../../actions";
 import { Link } from "react-router-dom";
 import WorkMap from "../Map/map.js";
-import $ from "jquery";
 
 class JobList extends React.Component {
-  onScroll = () => {
-    $(window).scroll(function () {
-      var scroll = $(window).scrollTop();
-      if (scroll >= 100) {
-        $(".section__line").css({ right: "10px" });
-      } else {
-        $(".section__line").css({ right: "1500px" });
-      }
-    });
-  };
+
+	onScroll = () => {
+		window.onscroll = function() {
+			if (window.pageYOffset > 100) {
+				document.querySelector('.section__line').setAttribute( "style", "right:10px" );
+			} else {
+				document.querySelector('.section__line').setAttribute("style", "right: 1500px" );
+			}
+		}
+	};
+
 
   componentWillMount() {
     this.props.jobList();
@@ -47,7 +47,7 @@ class JobList extends React.Component {
     this.onScroll();
     console.log(this.props.data.jobList);
     return (
-      <div id="job-container" className="section--features">
+      <div id ="job-container"   className="section--features">
         <div className="section__layout">
           <h1 className="job-container__header"> Jobs</h1>
           <div className="section__line" />

@@ -1,5 +1,6 @@
+
 import React from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route} from "react-router-dom";
 import Layout from './routes.js';
 
 const App = () => (
@@ -9,3 +10,4 @@ const App = () => (
 );
 
 export default App
+

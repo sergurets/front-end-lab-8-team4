@@ -81,7 +81,6 @@ class Addjob extends Component {
 
     handleDurationChange(event) {
         this.setState({ duration: event.target.value });
-        console.log(event.target.value);
     }
 
 
@@ -105,9 +104,7 @@ class Addjob extends Component {
     render() {
         let user = firebase.auth().currentUser;
         let checkuser = this.props.CurUser;
-        console.log("active_user", user);
         if (checkuser) {
-            console.log("active_user", user);
             this.state.user = user.email;
             return (
                 <section id="addJobForm" className="section-add-job">
@@ -150,7 +147,6 @@ class Addjob extends Component {
                                             place.geometry.viewport.f.b) /
                                         2;
                                     this.state.city = place.formatted_address;
-                                    console.log(this.state, place.geometry.viewport);
                                 }}
                                 types={["geocode"]}
                                 componentRestrictions={{ country: "ua" }}

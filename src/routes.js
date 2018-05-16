@@ -13,19 +13,21 @@ import editJob from './components/EditJob/EditJob.js';
 import Footer from './components/Footer/footer.js';
 
 const Layout = ({ match }) => {
-	return (
-		<div className="layout">
-			<Header />
-			<Route path={`${match.url}/`} component={Page} />
-			<Route path={`${match.url}UserProfile`} component={UserProfile} />
-			<Route path={`${match.url}jobInfo`} component={jobInfo} />
-			<Route path={`${match.url}Addjob`} component={Addjob} />
-			<Route path={`${match.url}editJob`} component={editJob} />
-			<Route path={`${match.url}login`} component={Login} />
-			<Route path={`${match.url}registration`} component={Registration} />
-			<Footer />
-		</div>
-	);
+
+	return(
+	<div className="layout">
+		<Header />
+		<Route path={`${match.url}/`} component={Page} />
+		<Route path={`${match.url}UserProfile`} component={UserProfile} />
+		<Route path={`${match.url}jobInfo`} component={jobInfo} />
+		<Route path={`${match.url}Addjob`} component={Addjob} />
+		<Route path={`${match.url}editJob`} component={editJob} />
+		<Route path={`${match.url}login`} component={Login} />
+		<Route path={`${match.url}registration`} component={Registration} />
+		<Footer/>
+	</div>
+);
+
 }
 
 const mapStateToProps = (state) => {
