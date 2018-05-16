@@ -151,7 +151,8 @@ class JobInfo extends React.Component {
 											</div>
 											<div className="Contacts">
 												<h3>{job.userName}</h3>
-																						</div>
+												<h3>{job.user}</h3>
+											</div>
 										</div>
 									</div>
 								</div>
