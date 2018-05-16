@@ -113,7 +113,15 @@ class JobInfo extends React.Component {
 
 			}
 			else if (user.email !== email) {
-				return (<div><button className="button" onClick={() => { addExecutor(user.email, id, 'inProcess', job.databaseId); addjobExecutor(id, JobInfo) }}>Accept Job</button></div>);
+				if (job.jobStatus === 'inProcess') {
+					return (<p>In process</p>)
+				}
+				else if (job.jobStatus === 'done') {
+					return (<p>Done</p>)
+				}
+				else {
+					return (<div><button className="button" onClick={() => { addExecutor(user.email, id, 'inProcess', job.databaseId); addjobExecutor(id, JobInfo) }}>Accept Job</button></div>)
+				};
 			}
 		}
 		else return (<div><p>You must login to accept job</p></div>);
