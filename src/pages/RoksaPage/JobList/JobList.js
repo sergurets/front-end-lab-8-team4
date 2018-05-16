@@ -7,72 +7,76 @@ import WorkMap from "../Map/map.js";
 
 class JobList extends React.Component {
 
-	/*onScroll = () => {
-		window.onscroll = function() {
-			if (window.pageYOffset > 100) {
-				document.querySelector('.section__line').setAttribute( "style", "right:10px" );
-			} else {
-				document.querySelector('.section__line').setAttribute("style", "right: 1500px" );
-			}
+
+	onScroll() {
+		let el = document.querySelector('.section__line');
+		if (window.pageYOffset > 100) {
+			el.setAttribute("style", "right:10px");
+		} else {
+			el.setAttribute("style", "right: 1500px");
 		}
-	};*/
+	}
 
-
-	componentWillMount() {
+	componentDidMount() {
 		this.props.jobList();
+		window.addEventListener('scroll', this.onScroll);
+	}
+
+
+	componentWillUnmount() {
+		window.removeEventListener('scroll', this.onScroll);
+	}
+
+	renderList = jobList => {
+		let jobs = [];
+		for (let key in jobList) {
+			jobs.push(jobList[key]);
+		}
+
+		jobs = jobs.filter(el => {
+			return el.jobStatus === 'new'
+		});
+
+		return (
+			jobs.length ?
+				jobs.map(item => (
+					<li className="job-list__item" key={item.id}>
+						<Link to={`/jobInfo/#${item.id}`}>{item.title}</Link>
+						<p>{item.info}</p>
+					</li>
+				)) : <li className="job-list__item"><h3>No jobs for you</h3></li>
+		);
 	};
 
-  renderList = jobList => {
-    let jobs = [];
-    for (let key in jobList) {
-      jobs.push(jobList[key]);
-    }
 
-    jobs = jobs.filter(el => {
-      return el.jobStatus === 'new'
-    });
-
-    return (
-      jobs.length ?
-        jobs.map(item => (
-          <li className="job-list__item" key={item.id}>
-            <Link to={`/jobInfo/#${item.id}`}>{item.title}</Link>
-            <p>{item.info}</p>
-          </li>
-        )) : <li className="job-list__item"><h3>No jobs for you</h3></li>
-    );
-  };
-
-  render() {
-    //this.onScroll();
-    console.log(this.props.data.jobList);
-    return (
-      <div id ="job-container"   className="section--features">
-        <div className="section__layout">
-          <h1 className="job-container__header"> Jobs</h1>
-          <div className="section__line" />
-          <ul className="job-list">
-            {this.renderList(this.props.data.jobList)}
-          </ul>
-          <WorkMap />
-        </div>
-      </div>
-    );
+	render() {
+		return (
+			<div id="job-container" className="section--features">
+				<div className="section__layout">
+					<h1 className="job-container__header"> Jobs</h1>
+					<div className="section__line" />
+					<ul className="job-list">
+						{this.renderList(this.props.data.jobList)}
+					</ul>
+					<WorkMap />
+				</div>
+			</div>
+		);
   }
 }
 
 const mapStateToProps = state => {
-  return {
-    data: state.jobList
-  };
+	return {
+		data: state.jobList
+	};
 };
 
 const mapDispatchToProps = dispatch => {
-  return {
-    jobList: () => {
-      dispatch(jobList());
-    }
-  };
+	return {
+		jobList: () => {
+			dispatch(jobList());
+		}
+	};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(JobList);
