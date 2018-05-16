@@ -1,5 +1,5 @@
 import * as firebase from 'firebase';
-import React, { Component } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './../app.js';
 import { Provider } from 'react-redux';
@@ -9,7 +9,7 @@ import {
 	firebaseTrueUsers
 } from '../firebase.js';
 
-import { FETCH_JOB_LIST, FETCH_USER_LIST, GET_USER, ADD_JOB, EDIT_USER_INFO } from './actionTypes';
+import { FETCH_JOB_LIST, FETCH_USER_LIST, GET_USER, EDIT_USER_INFO } from './actionTypes';
 
 
 export function jobList() {

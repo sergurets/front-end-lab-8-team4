@@ -77,7 +77,7 @@
 }
 
 .header--scrolled .header__nav-links:hover {
-  color: #2c7dbc;
+  color: rgb(43, 124, 185);
 }
 
 .header--scrolled .header__nav-links:hover:before {
@@ -102,6 +102,7 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 20px;
-  width: 20px;
+  height: 30px;
+  width: 30px;
+  margin-left: 5px;
 }

@@ -5,7 +5,7 @@ import $ from "jquery";
 
 class Header extends React.Component {
   onScroll = () => {
-    $(window).scroll(function() {
+    $(window).scroll(function () {
       let scroll = $(window).scrollTop();
       if (scroll >= 50) {
         $(".header").addClass("header--scrolled");
@@ -19,13 +19,13 @@ class Header extends React.Component {
     return (
       <header className="header section--header ">
         <nav className="header__nav">
-          <a href="/Page#job-container" className="header__nav-links">
+          <a href="/#job-container" className="header__nav-links">
             Find a job
           </a>
           <Link to="/Addjob" className="header__nav-links">
             Post a job
           </Link>
-          <a href="/Page#about-us" className="header__nav-links">
+          <a href="/#about-us" className="header__nav-links">
             About us
           </a>
         </nav>

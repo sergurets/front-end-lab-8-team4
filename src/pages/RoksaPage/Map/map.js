@@ -15,6 +15,11 @@ class WorkMap extends React.Component {
     for (var key in jobList) {
       jobs.push(jobList[key]);
     }
+
+    jobs = jobs.filter(el => {
+      return el.jobStatus === 'new'
+    });
+
     return jobs
       ? jobs.map(item => (
         <Marker

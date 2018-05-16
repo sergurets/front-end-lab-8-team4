@@ -16,7 +16,7 @@ const Layout = ({ match }) => {
 	return (
 		<div className="layout">
 			<Header />
-			<Route path={`${match.url}`} component={Page} />
+			<Route path={`${match.url}/`} component={Page} />
 			<Route path={`${match.url}UserProfile`} component={UserProfile} />
 			<Route path={`${match.url}jobInfo`} component={jobInfo} />
 			<Route path={`${match.url}Addjob`} component={Addjob} />
