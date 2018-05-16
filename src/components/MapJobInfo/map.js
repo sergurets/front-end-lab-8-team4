@@ -5,25 +5,15 @@ import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 import { connect } from 'react-redux';
 import { jobList } from '../../actions';
 
-
 class WorkMap extends React.Component{
-
-
 	componentWillMount(){
-		console.log(this.props.name)
 		this.props.getJobs()
 	}
 	renderWorksOnMap = () =>{
-
 		return(
-
 					<Marker position={{ lat: Number(`${this.props.name.lat}`), lng: Number(`${this.props.name.lng}`) }}/>
-
 		);
 	}
-	handleMarkerClick = (props, marker, e) => {
-		console.log(e);
-  	}
 
    render(){
 this.props.name
@@ -37,7 +27,6 @@ this.props.name
    ));
    return(
       <div className = "job-info-map" >
-
         <WorksMap
           containerElement={ <div id = "one-work-map"/> }
           mapElement={ <div style={{ height: `100%` }} /> }

@@ -177,7 +177,7 @@ class JobEdit extends React.Component {
               </form>
             </div>
           </section>
-        );
+        )
       } else {
         return "no data";
       }
@@ -195,7 +195,7 @@ class JobEdit extends React.Component {
             <div>
                 <Redirect to="/login"/>
             </div>
-        );
+        )
     }
   }
 }

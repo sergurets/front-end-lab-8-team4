@@ -5,7 +5,6 @@ import './JobInfo.css';
 import * as firebase from 'firebase';
 import Map from '../MapJobInfo/map.js';
 
-
 class JobInfo extends React.Component {
 	componentWillMount() {
 		let user = firebase.auth().currentUser;
@@ -37,17 +36,12 @@ class JobInfo extends React.Component {
 			userJobKey: job.userJobKey,
 			jobStatus: 'inProcess'
 		};
-
 		let user = firebase.auth().currentUser;
-		
 		if (this.props.user.user) {
 			let id = Object.keys(this.props.user.user)[0];
 			if (user.email === job.executor) {
-
 				function finishButton() {
 					if (job.jobStatus !== 'done') {
-
-
 						if (job.jobStatus === 'inProcess') {
 							function renderComlete() {
 								let element = document.getElementById('finish');
@@ -73,7 +67,6 @@ class JobInfo extends React.Component {
 									<button className="button" onClick={() => { renderComlete() }}>Сomplete</button>
 									<div id="finish"></div>
 								</div>
-
 							)
 						}
 
@@ -127,7 +120,6 @@ class JobInfo extends React.Component {
 
 	}
 
-
 	addEdit(id) {
 		return `/editJob#${id}`;
 	};
@@ -138,7 +130,6 @@ class JobInfo extends React.Component {
 			let jobId = this.props.location.hash.slice(1) + '';
 			let job = this.find(obj, jobId);
 			if (job.id) {
-				console.log("length");
 				return (
 					<section className=" section-job-info">
 						<div className="section--features">
