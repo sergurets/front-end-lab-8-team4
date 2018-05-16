@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import WorkMap from "../Map/map.js";
 
 class JobList extends React.Component {
+
 	onScroll = () => {
 		window.onscroll = function() {
 			if (window.pageYOffset > 100) {
@@ -16,8 +17,9 @@ class JobList extends React.Component {
 		}
 	};
 
+
   componentWillMount() {
-    this.props.getJobs();
+    this.props.jobList();
   };
 
   renderList = jobList => {
@@ -26,15 +28,19 @@ class JobList extends React.Component {
       jobs.push(jobList[key]);
     }
 
-    return(
-			jobs?// check length
-			jobs.map(item =>(
-					<li className = "job-list__item" key ={item.id}>
-						<Link to= {`/jobInfo/#${item.id}`}>{item.title}</Link>
-						<p>{item.info}</p>
-					</li>
-				)): null
-		);
+    jobs = jobs.filter(el => {
+      return el.jobStatus === 'new'
+    });
+
+    return (
+      jobs.length ?
+        jobs.map(item => (
+          <li className="job-list__item" key={item.id}>
+            <Link to={`/jobInfo/#${item.id}`}>{item.title}</Link>
+            <p>{item.info}</p>
+          </li>
+        )) : <li className="job-list__item"><h3>No jobs for you</h3></li>
+    );
   };
 
   render() {
@@ -45,9 +51,9 @@ class JobList extends React.Component {
         <div className="section__layout">
           <h1 className="job-container__header"> Jobs</h1>
           <div className="section__line" />
-          <ol className="job-list">
+          <ul className="job-list">
             {this.renderList(this.props.data.jobList)}
-          </ol>
+          </ul>
           <WorkMap />
         </div>
       </div>
@@ -63,7 +69,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getJobs: () => {
+    jobList: () => {
       dispatch(jobList());
     }
   };

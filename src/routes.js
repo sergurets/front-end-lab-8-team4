@@ -13,6 +13,7 @@ import editJob from './components/EditJob/EditJob.js';
 import Footer from './components/Footer/footer.js';
 
 const Layout = ({ match }) => {
+
 	return(
 	<div className="layout">
 		<Header />
@@ -26,6 +27,7 @@ const Layout = ({ match }) => {
 		<Footer/>
 	</div>
 );
+
 }
 
 const mapStateToProps = (state) => {
@@ -34,5 +36,5 @@ const mapStateToProps = (state) => {
 	}
 }
 
-export default connect(mapStateToProps,null)(Layout);
+export default connect(mapStateToProps, null)(Layout);
 

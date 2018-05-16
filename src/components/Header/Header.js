@@ -4,6 +4,7 @@ import "./Header.css";
 
 class Header extends React.Component {
 
+
 	onScroll = () => {
 				if (window.pageYOffset > 50) {
 					document.querySelector('.header').classList.add("header--scrolled");
@@ -25,17 +26,22 @@ class Header extends React.Component {
 	 componentDidMount(){
 		 window.addEventListener('scroll', this.onScroll);
 	 }
+
   render() {
     return (
       <header className="header section--header ">
         <nav className="header__nav">
+
           <Link to="/#job-container" className="header__nav-links" onСlick = {this.scrollJob()}>
+
             Find a job
           </Link>
           <Link to="/Addjob" className="header__nav-links">
             Post a job
           </Link>
+
           <Link to="/#about-us" className="header__nav-links" onСlick = {this.scrollAboutUs()}>
+
             About us
           </Link>
         </nav>
