@@ -1,4 +1,3 @@
-
 import React, { Component } from "react";
 import fireb from "../../firebase.js";
 import {
@@ -6,6 +5,7 @@ import {
   Redirect
 } from "react-router-dom";
 import "./Login.css";
+import { connect } from 'react-redux';
 
 class Login extends Component {
   constructor(props) {
@@ -19,30 +19,31 @@ class Login extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.singOut = this.singOut.bind(this);
   }
+  
   componentWillMount(){
-  		fireb.firebase.auth().onAuthStateChanged((user)=>{
-  			this.setState({
-  				status: user? true : false 
-  			});
-  			if(user){
-  				document.getElementsByClassName("regform--logout")[0].style.visibility = "visible";
-		 		document.getElementsByClassName("regform--send")[0].style.visibility = "hidden";
-  			}
-  		})
-  	}
+      fireb.firebase.auth().onAuthStateChanged((user)=>{
+        this.setState({
+          status: user? true : false 
+        });
+        if(user){
+          document.getElementsByClassName("regform--logout")[0].style.visibility = "visible";
+          document.getElementsByClassName("regform--send")[0].style.visibility = "hidden";
+        }
+      })
+    }
   
   handleSubmit(event) {
     event.preventDefault();
-	    fireb.firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then(res => {
-  			document.getElementsByClassName("regform--logout")[0].style.visibility = "visible";
-  			document.getElementsByClassName("regform--send")[0].style.visibility = "hidden";
-  			alert('okay')
-  		}).catch(function(error) {
-	    	 alert(error);
-		});
-    	for (let key in this.state){
-	      this.setState({[key]: ""})
-	    }
+      fireb.firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then(res => {
+        alert('okay')
+        document.getElementsByClassName("regform--logout")[0].style.visibility = "visible";
+        document.getElementsByClassName("regform--send")[0].style.visibility = "hidden";
+      }).catch(function(error) {
+         alert(error);
+    });
+      for (let key in this.state){
+        this.setState({[key]: ""})
+      }
   }
   
   handleChange(event) {
@@ -50,15 +51,11 @@ class Login extends Component {
   }
   
   singOut() {
-    fireb.firebase
-      .auth()
-      .signOut()
+    fireb.firebase.auth().signOut()
       .then(function() {
         alert("logged out");
-        document.getElementsByClassName("regform--logout")[0].style.visibility =
-          "hidden";
-        document.getElementsByClassName("regform--send")[0].style.visibility =
-          "visible";
+        document.getElementsByClassName("regform--logout")[0].style.visibility = "hidden";
+        document.getElementsByClassName("regform--send")[0].style.visibility = "visible";
       })
       .catch(function(error) {
         alert(error);
@@ -110,5 +107,9 @@ class Login extends Component {
     );
   }
 }
-
-export default Login;
+const mapStateToProps = (state) => {
+  return {
+    CurUser: state.user.CurUser
+  }
+}
+export default connect(mapStateToProps,null)(Login);

@@ -1,4 +1,8 @@
 import * as firebase from 'firebase';
+import React, { Component}  from 'react';
+import ReactDOM from 'react-dom';
+import App from './../app.js';
+import { Provider } from 'react-redux';
 import {
 	firebaseJobs,
 	firebaseJobsArchive,
@@ -41,7 +45,7 @@ export function getUser(email) {
 	};
 }
 
-export const editUserInfo = (user, key) => {
+export const editUserInfo = (user, key, email) => {
 	firebase.database().ref(`usersT/${key}`).update({
 		"name": user.name,
 		"surname": user.surname,
@@ -49,29 +53,28 @@ export const editUserInfo = (user, key) => {
 	});
 
 	return dispatch => {
-		dispatch({
-			type: EDIT_USER_INFO,
-			payload: { name: user.name, surname: user.surname, city: user.city }
+		firebaseTrueUsers.orderByChild('email').equalTo(email).once('value').then(snapshot => {
+			dispatch({
+				type: EDIT_USER_INFO,
+				payload: snapshot.val()
+			});
 		});
-	}
-
+	};
 }
-
 
 export const saveJob = (job) => {
 	return dispatch => {
-		var dataKey = firebaseJobs.push(job).key;
-		var Ref = firebase.database().ref(`jobList/${dataKey}`);
+		let dataKey = firebaseJobs.push(job).key;
+		let Ref = firebase.database().ref(`jobList/${dataKey}`);
 		Ref.update({
 			"databaseId": dataKey
 		});
 		dispatch({
-			type: ADD_JOB,
+			type: 'addJob',
 			jobs: dataKey
 		});
-
 	}
-}
+};
 
 export const editJob = (job, key) => {
 	firebase.database().ref(`jobList/${key}`).update({
@@ -159,6 +162,15 @@ export function addRatingToEmployee(rating, job) {
 }
 
 
-
-
-
+export function checkUser(user, store){
+  store.dispatch({
+    type: 'CurUser',
+    payload:  user
+  });
+  ReactDOM.render(
+    <Provider store={store}>
+      <App auth={user}/>
+    </Provider>,
+    document.getElementById('root')
+  );
+}
