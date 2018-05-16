@@ -54,7 +54,7 @@ class JobInfo extends React.Component {
 											<option>badly</option>
 											<option>horribly</option>
 										</select>
-										<button class="button">Сomplete</button>
+										<button class="button">Send</button>
 								</div>`;
 								let elem = document.querySelector('#finishform .button ');
 								elem.onclick = function () {
@@ -63,9 +63,8 @@ class JobInfo extends React.Component {
 								};
 							}
 							return (
-								<div>
-									<button className="button" onClick={() => { renderComlete() }}>Сomplete</button>
-									<div id="finish"></div>
+									<div id="finish" className="complete-button">
+										<button className="button " onClick={() => { renderComlete() }}>Сomplete</button>
 								</div>
 							)
 						}

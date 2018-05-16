@@ -1,5 +1,5 @@
 .section-user-info {
-	height: 93vh;
+	height: 100vh;
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
@@ -18,7 +18,7 @@
 	-webkit-box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.05);
 	box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.2);
 	width: 85%;
-	height: 70vh;
+	height: 87vh;
 	padding: 5vh;
 	display: grid;
 	grid-template-columns: 1fr;

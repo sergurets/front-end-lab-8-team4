@@ -7,6 +7,7 @@ import WorkMap from "../Map/map.js";
 
 class JobList extends React.Component {
 
+
 	onScroll() {
 		let el = document.querySelector('.section__line');
 		if (window.pageYOffset > 100) {
@@ -20,6 +21,7 @@ class JobList extends React.Component {
 		this.props.jobList();
 		window.addEventListener('scroll', this.onScroll);
 	}
+
 
 	componentWillUnmount() {
 		window.removeEventListener('scroll', this.onScroll);
@@ -46,6 +48,7 @@ class JobList extends React.Component {
 		);
 	};
 
+
 	render() {
 		return (
 			<div id="job-container" className="section--features">
@@ -59,7 +62,7 @@ class JobList extends React.Component {
 				</div>
 			</div>
 		);
-	}
+  }
 }
 
 const mapStateToProps = state => {
