@@ -44,7 +44,6 @@ class UserInfo extends React.Component {
 
 	getFile(event) {
 		let selectedFile = event.target.files[0];
-		console.log(selectedFile);
 
 		let storageRef = FB.firebase.storage().ref().child('/userImages');
 

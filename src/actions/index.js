@@ -36,7 +36,7 @@ export function userList() {
 
 export function getUser(email) {
 	return dispatch => {
-		firebaseTrueUsers.orderByChild('email').equalTo(email).once('value').then(snapshot => {
+		firebaseTrueUsers.orderByChild('email').equalTo(email).on('value', snapshot => {
 			dispatch({
 				type: GET_USER,
 				payload: snapshot.val()
@@ -105,12 +105,20 @@ export const addExecutor = (mail, id, jobStatus, key) => {
 
 	})
 }
-export const deleteJob = (job, key) => {
+export const deleteJob = (job, key, user) => {
+
+	console.log(job);
 
 	firebaseJobsArchive.push(job);
 	firebase.database().ref(`jobList/${key}`).set({
 		title: null
 	});
+
+	firebase.database().ref(`usersT/${user}/createdJob/${job.userJobKey}`).set({
+		title: job.title,
+		jobStatus: 'deleted'
+	});
+
 }
 
 export function deletejobExecutor(user, job) {
@@ -136,7 +144,6 @@ export function addjobExecutor(user, job) {
 }
 
 export function addRatingToEmployer(rating, job) {
-	console.log(job.user, job.userJobKey, rating);
 	firebase.database().ref(`usersT/${job.userID}/createdJob/${job.userJobKey}`).update({
 		"jobStatus": "done", "ratingEmployer": rating
 	});
@@ -149,7 +156,6 @@ export function addRatingToEmployer(rating, job) {
 }
 
 export function addRatingToEmployee(rating, job) {
-	console.log(job.user, job.userJobKey, rating);
 	firebase.database().ref(`usersT/${job.userID}/createdJob/${job.userJobKey}`).update({
 		"jobStatus": "done", "ratingEmployee": rating
 	});
