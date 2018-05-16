@@ -17,17 +17,17 @@ class WorkMap extends React.Component {
     }
     return jobs
       ? jobs.map(item => (
-          <Marker
-            key={Number(`${item.id}`)}
-            position={{
-              lat: Number(`${item.lat}`),
-              lng: Number(`${item.lng}`)
-            }}
-            onClick={e => {
-              window.location.href = `/jobInfo/#${item.id}`; // redirect to
-            }}
-          />
-        ))
+        <Marker
+          key={Number(`${item.id}`)}
+          position={{
+            lat: Number(`${item.lat}`),
+            lng: Number(`${item.lng}`)
+          }}
+          onClick={e => {
+            window.location.href = `/jobInfo/#${item.id}`; // redirect to
+          }}
+        />
+      ))
       : null;
   };
   render() {

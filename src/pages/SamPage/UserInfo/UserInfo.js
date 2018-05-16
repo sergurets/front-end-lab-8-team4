@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router';
+
 import { getUser, editUserInfo } from '../../../actions';
 import FB from '../../../firebase';
 import './UserInfo.css';
@@ -20,6 +20,7 @@ class UserInfo extends React.Component {
 		this.handleChangeName = this.handleChangeName.bind(this);
 		this.handleChangeSurname = this.handleChangeSurname.bind(this);
 		this.handleChangeCity = this.handleChangeCity.bind(this);
+		this.getFile = this.getFile.bind(this);
 	}
 	defaultUserInfo = {};
 
@@ -39,6 +40,14 @@ class UserInfo extends React.Component {
 
 	handleChangeCity(e) {
 		this.setState({ city: e.target.value })
+	}
+
+	getFile(event) {
+		let selectedFile = event.target.files[0];
+		console.log(selectedFile);
+
+		let storageRef = FB.firebase.storage().ref().child('/userImages');
+
 	}
 
 
@@ -80,7 +89,12 @@ class UserInfo extends React.Component {
 					<li className="user-info__list__item">Name: <input onChange={this.handleChangeName} type="text" defaultValue={temp.name} /></li>
 					<li className="user-info__list__item">Surname: <input onChange={this.handleChangeSurname} type="text" defaultValue={temp.surname} /></li>
 					<li className="user-info__list__item">City: <input type="text" onChange={this.handleChangeCity} defaultValue={temp.city} /></li>
-					<li className="user-info__list__item">Photo: <button >Upload new image</button></li>
+					<li className="user-info__list__item"><label htmlFor="file" className="regform__label">Upload image</label> <input type="file"
+						onChange={this.getFile}
+						id="file"
+						name="photo"
+						multiple
+						accept="image/*,image/jpeg" /></li>
 				</ul>
 				<button className="button" onClick={this.saveUserInfo}>Save</button>
 			</div >
@@ -90,14 +104,12 @@ class UserInfo extends React.Component {
 	saveUserInfo() {
 		let keyName = Object.keys(this.props.data);
 		this.defaultUserInfo = Object.assign({}, this.props.data);
-		console.log(this.defaultUserInfo[keyName].name);
 
 		this.props.editUserInfo({
 			"name": this.state.name || this.defaultUserInfo[keyName].name,
 			"surname": this.state.surname || this.defaultUserInfo[keyName].surname,
 			"city": this.state.city || this.defaultUserInfo[keyName].city,
 		}, keyName, this.userEmail);
-
 
 		this.setState({
 			editing: false
