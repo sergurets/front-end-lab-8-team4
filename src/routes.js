@@ -49,5 +49,5 @@ const Layout = (props) => {
 		</div>
 	)
 }
-export default App 
+export default App;
 
