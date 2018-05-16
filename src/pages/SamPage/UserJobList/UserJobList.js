@@ -1,4 +1,5 @@
 import React from 'react';
+import "./UserJobList.css";
 import { connect } from 'react-redux';
 import { getUser, jobList } from '../../../actions';
 import FB from '../../../firebase';
@@ -49,16 +50,16 @@ class UserJobList extends React.Component {
 
     render() {
         return (
-            <div id="job-container">
+            <div id="user-job-container" className="user-job-container" >
                 <div className="created-jobs">
                     <h1 className="jobs__heading">Created Jobs</h1>
-                    <ul className="job-list">
+                    <ul className="user-job-list">
                         {this.renderCreatedJobList(this.props.data)}
                     </ul>
                 </div>
                 <div className="accepted-jobs">
                     <h1 className="jobs__heading">Accepted Jobs</h1>
-                    <ul className="job-list">
+                    <ul className="user-job-list">
                         {this.renderAccptedJobList(this.props.data)}
                     </ul>
                 </div>

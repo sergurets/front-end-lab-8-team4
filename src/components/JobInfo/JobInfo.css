@@ -10,7 +10,7 @@
 }
 .section-job-info .section--features {
   width: 100%;
-  padding: 25vh 10vh 0 10vh;
+  padding: 20vh 10vh 0 10vh;
   position: static;
 }
 .section-job-info .section--features .section__layout {
@@ -69,6 +69,11 @@
   background-color: #91e5c5;
   color: #fff;
   border-color: #91e5c5;
+}
+.complete-button{
+	float: right;
+	margin-top: 1%;
+	margin-right: 10%;
 }
 .job-info__text {
   padding-left: 30px;

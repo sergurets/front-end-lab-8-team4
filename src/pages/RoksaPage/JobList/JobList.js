@@ -7,7 +7,7 @@ import WorkMap from "../Map/map.js";
 
 class JobList extends React.Component {
 
-	onScroll = () => {
+	/*onScroll = () => {
 		window.onscroll = function() {
 			if (window.pageYOffset > 100) {
 				document.querySelector('.section__line').setAttribute( "style", "right:10px" );
@@ -15,12 +15,12 @@ class JobList extends React.Component {
 				document.querySelector('.section__line').setAttribute("style", "right: 1500px" );
 			}
 		}
+	};*/
+
+
+	componentWillMount() {
+		this.props.jobList();
 	};
-
-
-  componentWillMount() {
-    this.props.jobList();
-  };
 
   renderList = jobList => {
     let jobs = [];
@@ -44,7 +44,7 @@ class JobList extends React.Component {
   };
 
   render() {
-    this.onScroll();
+    //this.onScroll();
     console.log(this.props.data.jobList);
     return (
       <div id ="job-container"   className="section--features">
