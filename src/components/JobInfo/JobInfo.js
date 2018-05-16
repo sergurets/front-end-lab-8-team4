@@ -1,10 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { jobList, addExecutor, deleteJob, getUser, deletejobExecutor, addjobExecutor, addRatingToEmployer, addRatingToEmployee } from '../../actions';
-import './jobInfo.css';
+import './JobInfo.css';
 import * as firebase from 'firebase';
-import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
-import Map from './Map/map.js';
+import Map from '../MapJobInfo/map.js';
 
 
 class JobInfo extends React.Component {
@@ -42,25 +41,15 @@ class JobInfo extends React.Component {
 		let user = firebase.auth().currentUser;
 		
 		if (this.props.user.user) {
-			
-		/*	let userId2 = Object.assign({}, this.props.user.user);
-			
-			let userId = Object.assign({}, this.props.user);
-			console.log(user, userId, this.props.user.user )*/
 			let id = Object.keys(this.props.user.user)[0];
-			/*let id = 'user';
-			console.log(id2)*/
-
-			if (user.email == job.executor) {
+			if (user.email === job.executor) {
 
 				function finishButton() {
 					if (job.jobStatus !== 'done') {
 
 
-						if (job.jobStatus == 'inProcess') {
+						if (job.jobStatus === 'inProcess') {
 							function renderComlete() {
-								function myFunction() {
-								}
 								let element = document.getElementById('finish');
 								element.innerHTML =
 									`<div id="finishform">
@@ -90,8 +79,6 @@ class JobInfo extends React.Component {
 
 					}
 
-
-
 				}
 				if (job.jobStatus !== 'done') {
 					return (
@@ -103,10 +90,10 @@ class JobInfo extends React.Component {
 				}
 			}
 			else if (user.email === email) {
-				if (job.jobStatus == 'inProcess') {
+				if (job.jobStatus === 'inProcess') {
 					return (<p>In process. Executor {job.executor}</p>)
 				}
-				if (job.jobStatus == 'done') {
+				if (job.jobStatus === 'done') {
 					function addRating() {
 
 						let elem = document.getElementById('form_Employer').value.toString();
