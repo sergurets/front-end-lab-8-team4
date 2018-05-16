@@ -4,7 +4,7 @@ import Layout from './routes.js';
 
 const App = () => (
 	<Router>
-		<Route path="/" component={Layout} />
+		<Route path="" component={Layout} />
 	</Router>
 );
 

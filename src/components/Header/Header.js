@@ -1,36 +1,46 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Header.css";
-import $ from "jquery";
 
 class Header extends React.Component {
-  onScroll = () => {
-    $(window).scroll(function() {
-      let scroll = $(window).scrollTop();
-      if (scroll >= 50) {
-        $(".header").addClass("header--scrolled");
-      } else {
-        $(".header").removeClass("header--scrolled");
-      }
-    });
-  };
+
+	onScroll = () => {
+				if (window.pageYOffset > 50) {
+					document.querySelector('.header').classList.add("header--scrolled");
+				} else {
+					document.querySelector('.header').classList.remove("header--scrolled");
+				}
+
+	};
+	 scrollJob = () =>{
+	 	if(window.pageYOffset < 300){
+			window.scrollBy(0, 500);
+		}
+	 };
+	scrollAboutUs = () =>{
+		if(window.pageYOffset < 100){
+			window.scrollBy(0, 50);
+		}
+	};
+	 componentDidMount(){
+		 window.addEventListener('scroll', this.onScroll);
+	 }
   render() {
-    this.onScroll();
     return (
       <header className="header section--header ">
         <nav className="header__nav">
-          <a href="/Page#job-container" className="header__nav-links">
+          <Link to="/#job-container" className="header__nav-links" onСlick = {this.scrollJob()}>
             Find a job
-          </a>
+          </Link>
           <Link to="/Addjob" className="header__nav-links">
             Post a job
           </Link>
-          <a href="/Page#about-us" className="header__nav-links">
+          <Link to="/#about-us" className="header__nav-links" onСlick = {this.scrollAboutUs()}>
             About us
-          </a>
+          </Link>
         </nav>
         <div className="header__div">
-          <Link to="/Login" className="header__nav-links">
+          <Link to="/Login" className="header__nav-links" >
             Sign in
           </Link>
           <Link to="/UserProfile" className="header__div__img" />
