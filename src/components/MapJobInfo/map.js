@@ -3,8 +3,8 @@ import './map.css';
 import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 
 import { connect } from 'react-redux';
-import { jobList } from '../../../actions';
-import { Link } from "react-router-dom";
+import { jobList } from '../../actions';
+
 
 class WorkMap extends React.Component{
 

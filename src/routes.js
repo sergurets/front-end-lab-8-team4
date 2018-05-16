@@ -2,16 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { connect } from 'react-redux';
-
 import Header from './components/Header/Header.js';
 import Page from './pages/RoksaPage/Page.js';
 import UserProfile from './pages/SamPage/UserProfile';
-import jobInfo from './pages/SergiyPage/jobInfo.js';
-import Addjob from './pages/SergiyPage/addjob.js';
+import jobInfo from './components/JobInfo/JobInfo.js';
+import Addjob from './components/AddJob/AddJob.js';
 import Login from './components/Login/Login.js';
 import Registration from './components/Registration/Registration.js';
-import editJob from './pages/SergiyPage/editJob.js';
-import Footer from './components/Footer/footer'
+import editJob from './components/EditJob/EditJob.js';
+import Footer from './components/Footer/footer.js';
 
 const Layout = ({ match }) => {
 	return (
@@ -36,5 +35,4 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, null)(Layout);
-
 

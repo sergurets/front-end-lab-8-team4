@@ -3,7 +3,7 @@ import * as firebase from "firebase";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { jobList, editJob, editJobUser } from "../../actions";
-import "./editJob.css";
+import "./EditJob.css";
 import Autocomplete from "react-google-autocomplete";
 
 let ID;
@@ -170,18 +170,6 @@ class JobEdit extends React.Component {
                       min="2018-04-18"
                       className="inpform"
                       required
-                    />
-                  </div>
-                  <div className="job-info_img">
-                    <label htmlFor="file">Upload Image</label>
-                    <input
-                      type="file"
-                      id="file"
-                      name="photo"
-                      multiple
-                      accept="image/*,image/jpeg"
-                      onChange={this.handleFileUpload}
-                      defaultValue={defaultState.file}
                     />
                   </div>
                 </div>
