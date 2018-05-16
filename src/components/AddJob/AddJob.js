@@ -1,7 +1,7 @@
 import React from "react";
 import { Component } from "react";
 import { connect } from "react-redux";
-import "./addjob.css";
+import "./AddJob.css";
 import { saveJob, getUser } from "../../actions";
 import { firebaseJobList } from "../../firebase";
 import * as firebase from "firebase";
@@ -192,21 +192,6 @@ class Addjob extends Component {
                                         className="inpform"
                                         required
                                     />
-                                </div>
-                                <div className="job-info_img">
-                                    <label htmlFor="file" className="job-info__label">
-                                        Upload Image
-                                    </label>
-                                    <input
-                                        type="file"
-                                        id="file"
-                                        name="photo"
-                                        multiple
-                                        accept="image/*,image/jpeg"
-                                        onChange={this.handleFileUpload}
-                                        value={this.state.file}
-                                    />
-                                    <br />
                                 </div>
                             </div>
                             <button className="button send-button">Send</button>
