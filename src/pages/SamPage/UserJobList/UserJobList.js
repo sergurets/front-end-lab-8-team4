@@ -11,39 +11,32 @@ class UserJobList extends React.Component {
         this.props.getUserByEmail(email);
     }
 
-    renderCreatedJobList = (obj) => {
+    renderJobList = (obj, status) => {
         let temp = obj.user;
 
         try {
-            temp = temp[Object.keys(temp)[0]].createdJob;
-            for (let i in temp) {
-                return (
-                    <li className="job-list__item" key={i.id}>
-                        <Link to={`/jobInfo/#${temp[i].id}`}>{temp[i].title}</Link>
-                        <p>{temp[i].info}</p>
-                    </li>
-                );
+            if (status === 'created') {
+                temp = temp[Object.keys(temp)[0]].createdJob;
+            } else {
+                temp = temp[Object.keys(temp)[0]].AcceptedJob;
             }
-        } catch (e) {
-            return;
-        }
-    }
 
-    renderAccptedJobList = (obj) => {
-        let temp = obj.user;
-
-        try {
-            temp = temp[Object.keys(temp)[0]].AcceptedJob;
-            for (let i in temp) {
-                return (
-                    <li className="job-list__item" key={i.id}>
-                        <Link to={`/jobInfo/#${temp[i].id}`}>{temp[i].title}</Link>
-                        <p>{temp[i].info}</p>
-                    </li>
-                );
+            let jobs = [];
+            for (let key in temp) {
+                jobs.push(temp[key]);
             }
+
+            return (
+                jobs.map(item => (
+                    <li className="job-list__item" key={item.id}>
+                        {item.jobStatus === 'deleted' ? <p>{item.title}(deleted)</p> : <Link to={`/jobInfo/#${item.id}`}>{item.title}</Link>}
+                    </li>
+                ))
+            )
         } catch (e) {
-            return;
+            return (
+                <li>Job List is empty</li>
+            )
         }
     }
 
@@ -53,13 +46,13 @@ class UserJobList extends React.Component {
                 <div className="created-jobs">
                     <h1 className="jobs__heading">Created Jobs</h1>
                     <ul className="job-list">
-                        {this.renderCreatedJobList(this.props.data)}
+                        {this.renderJobList(this.props.data, 'created')}
                     </ul>
                 </div>
                 <div className="accepted-jobs">
                     <h1 className="jobs__heading">Accepted Jobs</h1>
                     <ul className="job-list">
-                        {this.renderAccptedJobList(this.props.data)}
+                        {this.renderJobList(this.props.data, 'accepted')}
                     </ul>
                 </div>
             </div>

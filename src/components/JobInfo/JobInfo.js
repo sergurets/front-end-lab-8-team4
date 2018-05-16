@@ -91,7 +91,7 @@ class JobInfo extends React.Component {
 
 						let elem = document.getElementById('form_Employer').value.toString();
 						addRatingToEmployee(elem, job);
-						deleteJob(job, job.databaseId);
+						deleteJob(job, job.databaseId, JobInfo.user);
 
 					}
 					return (<div id="finishformEmployer"><label>The work is completed, evaluate the level of execution</label>
@@ -107,7 +107,7 @@ class JobInfo extends React.Component {
 				else {
 					return (
 						<div><a className=' button ButtonLink' href={this.addEdit(job.id)}>Edit</a>
-							<button className="button" onClick={() => deleteJob(job, databaseId)}>Delete</button></div>);
+							<button className="button" onClick={() => deleteJob(job, databaseId, JobInfo.user)}>Delete</button></div>);
 				}
 
 
