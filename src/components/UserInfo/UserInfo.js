@@ -88,12 +88,6 @@ class UserInfo extends React.Component {
 					<li className="user-info__list__item">Name: <input onChange={this.handleChangeName} type="text" defaultValue={temp.name} /></li>
 					<li className="user-info__list__item">Surname: <input onChange={this.handleChangeSurname} type="text" defaultValue={temp.surname} /></li>
 					<li className="user-info__list__item">City: <input type="text" onChange={this.handleChangeCity} defaultValue={temp.city} /></li>
-					<li className="user-info__list__item"><label htmlFor="file" className="regform__label">Upload image</label> <input type="file"
-						onChange={this.getFile}
-						id="file"
-						name="photo"
-						multiple
-						accept="image/*,image/jpeg" /></li>
 				</ul>
 				<button className="button" onClick={this.saveUserInfo}>Save</button>
 			</div >
