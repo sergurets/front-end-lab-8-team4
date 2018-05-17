@@ -180,7 +180,7 @@ class JobInfo extends React.Component {
 		} else {
 			return (
 				<div>
-					<Redirect to="/"/>
+					no data
 				</div>
 			);
 		}
