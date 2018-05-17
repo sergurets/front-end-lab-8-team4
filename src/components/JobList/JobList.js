@@ -62,7 +62,7 @@ class JobList extends React.Component {
 				</div>
 			</div>
 		);
-  }
+	}
 }
 
 const mapStateToProps = state => {

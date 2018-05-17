@@ -1,7 +1,7 @@
 import React from 'react';
 
-import UserInfo from './UserInfo/UserInfo';
-import UserJobList from './UserJobList/UserJobList';
+import UserInfo from '../UserInfo/UserInfo';
+import UserJobList from '../UserJobList/UserJobList';
 import { Redirect } from "react-router-dom";
 import './userProfile.css';
 import { connect } from "react-redux";

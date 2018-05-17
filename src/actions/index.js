@@ -91,9 +91,7 @@ export const editJob = (job, key) => {
 
 export const editJobUser = (job) => {
 	firebase.database().ref(`usersT/${job.userID}/createdJob/${job.userJobKey}`).update({
-		"id": job.id,
-		"jobStatus": job.jobStatus,
-		"title": job.title
+		...job
 	})
 }
 
@@ -115,7 +113,7 @@ export const deleteJob = (job, key, user) => {
 	});
 
 	firebase.database().ref(`usersT/${user}/createdJob/${job.userJobKey}`).set({
-		title: job.title,
+		...job,
 		jobStatus: 'deleted'
 	});
 
