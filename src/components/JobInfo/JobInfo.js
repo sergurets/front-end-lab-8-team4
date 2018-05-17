@@ -124,7 +124,7 @@ class JobInfo extends React.Component {
 				};
 			}
 		}
-		else return (<div><p>You must login to accept job</p></div>);
+		else return (<divn className="job-info--decline">You must login to accept job</divn>);
 
 	}
 

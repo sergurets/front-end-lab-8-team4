@@ -102,6 +102,13 @@
 	font-weight: normal;
 	line-height: normal;
 }
+.job-info--decline{
+	margin-left: 4%;
+	font-size: 20px;
+	font-family: "Proxima-Nova-Bold", sans-serif;
+	font-weight: normal;
+	line-height: normal;
+}
 .job-info__rating{
 	font-size: 18px;
 	font-family: "Proxima-Nova-Bold", sans-serif;
