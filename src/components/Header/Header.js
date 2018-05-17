@@ -4,57 +4,62 @@ import "./Header.css";
 
 class Header extends React.Component {
 
+	constructor(props) {
+		super(props);
+		this.scrollAboutUs = this.scrollAboutUs.bind(this);
+		this.scrollToJob = this.scrollToJob.bind(this);
+	}
 
 	onScroll = () => {
-				if (window.pageYOffset > 50) {
-					document.querySelector('.header').classList.add("header--scrolled");
-				} else {
-					document.querySelector('.header').classList.remove("header--scrolled");
-				}
+		if (window.pageYOffset > 50) {
+			document.querySelector('.header').classList.add("header--scrolled");
+		} else {
+			document.querySelector('.header').classList.remove("header--scrolled");
+		}
 
-	};
-	 scrollJob = () =>{
-	 	if(window.pageYOffset < 300){
+	}
+
+	scrollToJob() {
+		if (window.pageYOffset < 300) {
 			window.scrollBy(0, 500);
 		}
-	 };
-	scrollAboutUs = () =>{
-		if(window.pageYOffset < 100){
-			window.scrollBy(0, 50);
-		}
-	};
-	 componentDidMount(){
-		 window.addEventListener('scroll', this.onScroll);
-	 }
+	}
 
-  render() {
-    return (
-      <header className="header section--header ">
-        <nav className="header__nav">
+	scrollAboutUs() {
+		document.body.scrollTop = document.documentElement.scrollTop = 0;
 
-          <Link to="/#job-container" className="header__nav-links" onСlick = {this.scrollJob()}>
+	}
 
-            Find a job
-          </Link>
-          <Link to="/Addjob" className="header__nav-links">
-            Post a job
-          </Link>
+	componentDidMount() {
+		window.addEventListener('scroll', this.onScroll);
+		document.querySelector('#toClickJob').addEventListener('click', this.scrollToJob);
+		document.querySelector('#toClickAbout').addEventListener('click', this.scrollAboutUs);
+	}
 
-          <Link to="/#about-us" className="header__nav-links" onСlick = {this.scrollAboutUs()}>
+	render() {
+		return (
+			<header className="header section--header ">
+				<nav className="header__nav">
+					<Link to="/#job-container" id="toClickJob" className="header__nav-links" >
+						Find a job
+          			</Link>
+					<Link to="/Addjob" className="header__nav-links">
+						Post a job
+					</Link>
 
-            About us
-          </Link>
-        </nav>
-        <div className="header__div">
-          <Link to="/Login" className="header__nav-links header__div-links" >
-						<span></span>
-            Sign in
-          </Link>
-          <Link to="/UserProfile" className="header__div__img" />
-        </div>
-      </header>
-    );
-  }
+					<Link to="/#about-us" id="toClickAbout" className="header__nav-links" >
+						About us
+          			</Link>
+				</nav>
+				<div className="header__div">
+					<Link to="/Login" className="header__nav-links header__div-links" >
+						<span>Sign in</span>
+					</Link>
+					<Link to="/UserProfile" className="header__div__img" />
+				</div>
+			</header>
+		);
+	}
 
 }
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import "./UserJobList.css";
 import { connect } from 'react-redux';
-import { getUser, jobList } from '../../../actions';
-import FB from '../../../firebase';
+import { getUser, jobList } from '../../actions';
+import FB from '../../firebase';
 import { Link } from "react-router-dom";
 
 class UserJobList extends React.Component {

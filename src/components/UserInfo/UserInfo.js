@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { getUser, editUserInfo } from '../../../actions';
-import FB from '../../../firebase';
+import { getUser, editUserInfo } from '../../actions';
+import FB from '../../firebase';
 import './UserInfo.css';
 
 class UserInfo extends React.Component {

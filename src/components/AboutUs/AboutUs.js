@@ -4,13 +4,13 @@ import './AboutUs.css';
 class AboutUs extends React.Component {
 	render() {
 		return (
-			<section className="section--home section--full-height">
+			<section id="about-us" className="section--home section--full-height">
 				<div className="home-circle"></div>
-				<div id="about-us" className="section__layout">
-					<div className="section__content">
+				<div className="section__layout">
+					<div id="about-us" className="section__content">
 						<h1 className="about-us__header">About Us</h1>
 						<div className="mega_layout">
-							<p className="about-us__text"> Try to think how many things you can do with some extra time? <br/> Our website will help you to save your time and to find employees to work for you, while you can do whatever you want.<br/> Or if you are looking for some extra money, then you are in wright place. Here you can find a well paid one-time job.</p>
+							<p className="about-us__text"> Try to think how many things you can do with some extra time? <br /> Our website will help you to save your time and to find employees to work for you, while you can do whatever you want.<br /> Or if you are looking for some extra money, then you are in wright place. Here you can find a well paid one-time job.</p>
 						</div>
 					</div>
 					<div id="main-logo">
