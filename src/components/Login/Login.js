@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import fireb from "../../firebase.js";
-import {
-  Link,
-  Redirect
-} from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Login.css";
 import { connect } from 'react-redux';
 
@@ -35,7 +32,8 @@ class Login extends Component {
   handleSubmit(event) {
     event.preventDefault();
       fireb.firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then(res => {
-        alert('okay')
+        alert('okay');
+        this.props.history.goBack();
         document.getElementsByClassName("regform--logout")[0].style.visibility = "visible";
         document.getElementsByClassName("regform--send")[0].style.visibility = "hidden";
       }).catch(function(error) {
