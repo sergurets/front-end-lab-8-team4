@@ -4,6 +4,7 @@ import { jobList, addExecutor, deleteJob, getUser, deletejobExecutor, addjobExec
 import './JobInfo.css';
 import * as firebase from 'firebase';
 import Map from '../MapJobInfo/map.js';
+import { Redirect } from "react-router-dom";
 
 class JobInfo extends React.Component {
 	componentWillMount() {
@@ -48,7 +49,7 @@ class JobInfo extends React.Component {
 								element.innerHTML =
 									`<div id="finishform">
 									    <label>Impression of work</label>
-										<select id="finish_form_Impression">
+										<select className="job-info__rating" id="finish_form_Impression">
 											<option>excellent</option>
 											<option>OK</option>
 											<option>badly</option>
@@ -83,7 +84,7 @@ class JobInfo extends React.Component {
 			}
 			else if (user.email === email) {
 				if (job.jobStatus === 'inProcess') {
-					return (<p>In process. Executor {job.executor}</p>)
+					return (<div className="job-info--status">In process. Executor {job.executor}</div>)
 				}
 				if (job.jobStatus === 'done') {
 					function addRating() {
@@ -93,14 +94,14 @@ class JobInfo extends React.Component {
 						deleteJob(job, job.databaseId, JobInfo.user);
 
 					}
-					return (<div id="finishformEmployer"><label>The work is completed, evaluate the level of execution</label>
-						<select id="form_Employer">
+					return (<div id="finishformEmployer" className="job-info--finishEmployer"><label>The work is completed, evaluate the level of execution  </label>
+						<select id="form_Employer" className="job-info__rating">
 							<option>excellent</option>
 							<option>OK</option>
 							<option>badly</option>
 							<option>horribly</option>
 						</select>
-						<button className="button" onClick={() => { addRating() }} >Сomplete</button>
+						<button className="button" onClick={() => { addRating() }} >Send</button>
 					</div>)
 				}
 				else {
@@ -113,10 +114,10 @@ class JobInfo extends React.Component {
 			}
 			else if (user.email !== email) {
 				if (job.jobStatus === 'inProcess') {
-					return (<p>In process</p>)
+					return (<div className="job-info--status">In process</div>)
 				}
 				else if (job.jobStatus === 'done') {
-					return (<p>Done</p>)
+					return (<div className="job-info--status">Done</div>)
 				}
 				else {
 					return (<div><button className="button" onClick={() => { addExecutor(user.email, id, 'inProcess', job.databaseId); addjobExecutor(id, JobInfo) }}>Accept Job</button></div>)
@@ -170,10 +171,18 @@ class JobInfo extends React.Component {
 					</section>
 				);
 			} else {
-				return "no data";
+				return (
+					<div>
+						<Redirect to="/"/>
+					</div>
+				);
 			}
 		} else {
-			return "no data";
+			return (
+				<div>
+					<Redirect to="/"/>
+				</div>
+			);
 		}
 	};
 	render() {

@@ -49,6 +49,7 @@
 }
 .section--home .section__content {
   z-index: 1;
+	width: 100%;
 }
 .home-circle {
   position: absolute;
@@ -77,7 +78,11 @@
 }
 
 #main-logo img {
-  width: 30%;
+  width: 200%;
+	border-radius: 300%;
+	box-shadow: rgba(0,0,0,0.9);
+	margin-right: 20%;
+
 }
 
 .mega_layout {

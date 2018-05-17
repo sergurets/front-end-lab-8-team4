@@ -24,10 +24,16 @@
 	-webkit-margin-after: 0.83em;
 	-webkit-margin-start: 0px;
 	-webkit-margin-end: 0px;
-	padding: 0.4em 0 0.4em 1em;
+	padding: 0.4em 0 0 1em;
 }
 .user-job-list{
+	padding: 0 20px 20px 3em;
 	overflow-y: scroll;
-	max-height:100px;
-	padding-left: 10px;
+	max-height:90px;
+	position: relative;
+	color: #262626;
+	margin: 0 0 0 0.5%;
+	font-weight: bold;
+	text-transform: uppercase;
+	font-size: 14px;
 }
