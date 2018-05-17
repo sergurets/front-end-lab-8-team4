@@ -1,7 +1,7 @@
 import React from "react";
 import "./JobList.css";
 import { connect } from "react-redux";
-import { jobList } from "../../../actions";
+import { jobList } from "../../actions";
 import { Link } from "react-router-dom";
 import WorkMap from "../Map/map.js";
 
