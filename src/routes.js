@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { connect } from 'react-redux';
 import Header from './components/Header/Header.js';
-import Page from './pages/RoksaPage/Page.js';
+import Page from './components/Page/Page.js';
 import UserProfile from './pages/SamPage/UserProfile';
 import jobInfo from './components/JobInfo/JobInfo.js';
 import Addjob from './components/AddJob/AddJob.js';

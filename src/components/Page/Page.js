@@ -1,9 +1,8 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import "./Page.css";
 
-import AboutUs from "./AboutUs/AboutUs.js";
-import JobList from "./JobList/JobList.js";
+import AboutUs from "../AboutUs/AboutUs.js";
+import JobList from "../JobList/JobList.js";
 
 class HomePage extends React.Component {
   render() {

@@ -7,6 +7,7 @@
   left: 0;
   right: 0;
   z-index: 50;
+	outline: 0;
 }
 
 .header:before {
@@ -47,7 +48,9 @@
   color: #ffffff;
   background-color: transparent;
 }
-
+.header__div-links{
+	margin-left: 38%;
+}
 .header__nav-links:active,
 .header__nav-links:hover {
   outline-width: 0;
