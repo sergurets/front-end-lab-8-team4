@@ -95,4 +95,24 @@
   font-weight: normal;
   line-height: normal;
 }
+.job-info--finishEmployer{
+	margin-left: 4%;
+	font-size: 20px;
+	font-family: "Proxima-Nova-Bold", sans-serif;
+	font-weight: normal;
+	line-height: normal;
+}
+.job-info__rating{
+	font-size: 18px;
+	font-family: "Proxima-Nova-Bold", sans-serif;
+	font-weight: normal;
+	line-height: normal;
+}
+.job-info--status{
+	margin: 2% 0 2% 4%;
+	font-size: 20px;
+	font-family: "Proxima-Nova-Bold", sans-serif;
+	font-weight: normal;
+	line-height: normal;
+}
 
